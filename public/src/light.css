@@ -1,0 +1,19 @@
+/*
+  Tankersparnis.net
+
+  Helles Farbschema
+
+  Farben:
+  https://www.color-hex.com/color-palette/1294
+
+  Hintergrundbild:
+  https://php-noise.com
+*/
+:root {
+  --bgImg: url("bg-light.png");
+  --wrapperColor: #eeeeee;
+  --fontColor: #005b96;
+  --linkColor: #005b96;
+  --linkHover: #03396c;
+  --hrColor: rgba(0, 91, 150, 0.2); /* #005b96 */
+}

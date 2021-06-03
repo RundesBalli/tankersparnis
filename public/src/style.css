@@ -14,6 +14,7 @@ Contents:
 3. Navigation
 4. Footer
 5. Grid
+6. Forms
 */
 
 /*
@@ -95,6 +96,27 @@ hr {
 
 pre {
   font-family: monospace;
+}
+
+.warnbox {
+  background-color: rgba(197, 43, 47, 0.5); /* c52b2f, 50% opacity */
+  border-left: 5px solid #c52b2f;
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.successbox {
+  background-color: rgba(91, 185, 28, 0.5); /* 5bb91c, 50% opacity */
+  border-left: 5px solid #5bb91c;
+  padding: 15px;
+  margin: 10px 0;
+}
+
+.infobox {
+  background-color: rgba(0, 143, 255, 0.5); /* 008fff, 50% opacity */
+  border-left: 5px solid #008fff;
+  padding: 15px;
+  margin: 10px 0;
 }
 
 /*
@@ -395,4 +417,44 @@ https://fontawesome.com/
 
 .spacer-l {
   height: 50px;
+}
+
+/*
+  6. Forms
+*/
+input[type=text], input[type=password], input[type=number], select, textarea {
+  width: 100%;
+  border: 1px solid var(--fontColor);
+  padding: 8px;
+  background-color: transparent;
+  color: var(--fontColor);
+}
+
+textarea {
+  resize: none;
+  height: 120px;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, select:focus, textarea:focus {
+  border: 1px solid var(--linkHover);
+  outline-color: var(--linkHover);
+}
+
+input[type=submit], input[type=reset], input[type=button] {
+  min-width: 30%;
+  cursor: pointer;
+  padding: 8px 12px;
+  background-color: transparent;
+  color: var(--fontColor);
+  border: 1px solid var(--fontColor);
+}
+
+input[type=submit]:hover, input[type=reset]:hover, input[type=button]:hover {
+  border: 1px solid var(--linkHover);
+  outline-color: var(--linkHover);
+}
+
+label {
+  display: inline-block;
+  color: var(--fontColor);
 }

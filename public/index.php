@@ -41,6 +41,7 @@ $pageArray = array(
   'datasafety'     => 'datasafety.php',
 
   /* Userseiten */
+  'register'       => 'register.php',
   'login'          => 'login.php',
   'logout'         => 'logout.php',
   'overview'       => 'overview.php',
@@ -69,6 +70,7 @@ if((isset($_COOKIE[$cookieName]) AND !empty($_COOKIE[$cookieName])) AND preg_mat
 } else {
   $nav = "<a href='/'".($getp == "start" ? $a : NULL)."><span class='fas icon'>&#xf015;</span>Startseite</a>";
   $nav.= "<a href='/login'".($getp == "login" ? $a : NULL)."><span class='fas icon'>&#xf2f6;</span>Login</a>";
+  $nav.= "<a href='/register'".($getp == "register" ? $a : NULL)."><span class='far icon'>&#xf044;</span>Registrieren</a>";
   $nav.= "<a href='/info'".($getp == "info" ? $a : NULL)."><span class='fas icon'>&#xf128;</span>Info</a>";
 }
 
@@ -106,5 +108,4 @@ $tidyOptions = array(
 $tidy = tidy_parse_string($output, $tidyOptions, 'UTF8');
 tidy_clean_repair($tidy);
 echo $tidy;
-
 ?>

@@ -32,6 +32,7 @@ $content.= "<div class='row'>".PHP_EOL.
 "<div class='col-s-12 col-l-12'>Schriftart der Überschriften: <a href='https://fonts.google.com/specimen/Open+Sans+Condensed' target='_blank' rel='noopener'>Open Sans Condensed</a></div>".PHP_EOL.
 "<div class='col-s-12 col-l-12'>Haftungsausschluss von <a href='http://www.mustervorlage.net/disclaimer-muster' target='_blank' rel='noopener'>mustervorlage.net</a></div>".PHP_EOL.
 "<div class='col-s-12 col-l-12'><a href='https://www.color-hex.com/color-palette/1294' target='_blank' rel='noopener'>verwendete Farbpalette</a></div>".PHP_EOL.
+"<div class='col-s-12 col-l-12'><a href='https://github.com/PHPMailer/PHPMailer' target='_blank' rel='noopener'>PHPMailer</a> - <a href='https://github.com/PHPMailer/PHPMailer/blob/master/LICENSE' target='_blank' rel='noopener'>Lizenz</a></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='spacer-m'></div>".PHP_EOL;
 

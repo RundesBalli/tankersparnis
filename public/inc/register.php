@@ -57,10 +57,36 @@ if(isset($_POST['submit'])) {
    * Wenn durch die Postdaten-Validierung die Inhalte geprüft und entschärft wurden, kann der Query erzeugt und ausgeführt werden.
    */
   if($form == 0) {
-    if(mysqli_query($dbl, "INSERT INTO `users` (`email`, `password`, `salt`) VALUES ('".$email."', '".$password."', '".$salt."')")) {
-      userLog(mysqli_insert_id($dbl), 1, "Registriert");
+    $registerHash = hash('sha256', random_bytes(4096));
+    if(mysqli_query($dbl, "INSERT INTO `users` (`email`, `password`, `salt`, `registerHash`) VALUES ('".$email."', '".$password."', '".$salt."', '".$registerHash."')")) {
+      $newUserId = mysqli_insert_id($dbl);
+      userLog($newUserId, 1, "Registriert");
       $content.= "<div class='successbox'>Account erfolgreich angelegt.</div>".PHP_EOL;
-      //
+      require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
+      require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
+      $mail = new PHPMailer();
+      $mail->isSMTP();
+      $mail->SMTPDebug = SMTP::DEBUG_OFF;
+      $mail->Host = $mailConfig['conn']['host'];
+      $mail->Port = $mailConfig['conn']['port'];
+      $mail->SMTPAuth = TRUE;
+      $mail->Username = $mailConfig['conn']['smtpUser'];
+      $mail->Password = $mailConfig['conn']['smtpPass'];
+      $mail->setFrom($mailConfig['conf']['fromEmail'], $mailConfig['conf']['fromName']);
+      $mail->addAddress($email);
+      $mail->Subject = $mailConfig['subject']['register'];
+      $mail->isHTML(FALSE);
+      $mail->CharSet = "UTF-8";
+      $mailBody = "Hallo!\n\n".
+      "Du hast dich auf https://".$_SERVER['HTTP_HOST']." registriert.\n\n".
+      "Um deine Registrierung abzuschließen, musst du deinen Account aktivieren. Klicke dazu auf den folgenden Link:\nhttps://".$_SERVER['HTTP_HOST']."/activate?hash=".$registerHash."\n\n".
+      "Solltest du die Registrierung nicht abgeschlossen haben, wird deine E-Mail Adresse nach 24 Stunden aus unserem System gelöscht.\n\n".
+      $mailConfig['conf']['closingGreeting'];
+      $mail->Body = $mailBody;
+      if (!$mail->send()) {
+        mysqli_query($dbl, "INSERT INTO `failedEmails` (`userId`, `to`, `subject`, `message`) VALUES ('".$newUserId."', '".$email."', '".$mailConfig['subject']['register']."', '".defuse($mailBody)."')") OR DIE(MYSQLI_ERROR($dbl));
+        $content.= "<div class='infobox'>Der Mailserver ist gerade ausgelastet. Es kann ein paar Minuten dauern, bis du die Aktivierungsmail bekommst.</div>".PHP_EOL;
+      }
     } else {
       $form = 1;
       if(mysqli_errno($dbl) == 1062) {

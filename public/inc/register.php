@@ -116,11 +116,11 @@ if($form == 1) {
   "</div>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
     "<div class='col-s-12 col-l-3'>Datenschutz</div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='checkbox' name='privacy' id='privacy' value='1'><label for='privacy'>Ich habe die <a href='/privacy' target='_blank'>Datenschutzerklärung</a> gelesen, verstanden und akzeptiere sie.</label></div>".PHP_EOL.
+    "<div class='col-s-12 col-l-9'><input type='checkbox' name='privacy' id='privacy' value='1' tabindex='3'><label for='privacy'>Ich habe die <a href='/privacy' target='_blank'>Datenschutzerklärung</a> gelesen, verstanden und akzeptiere sie.</label></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
     "<div class='col-s-12 col-l-3'><label for='submit'><span class='far icon'>&#xf044;</span>Registrieren</label></div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='submit' id='submit' name='submit' value='Registrieren' tabindex='3'></div>".PHP_EOL.
+    "<div class='col-s-12 col-l-9'><input type='submit' id='submit' name='submit' value='Registrieren' tabindex='4'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "</section>".PHP_EOL;
   $content.= "</form>".PHP_EOL;

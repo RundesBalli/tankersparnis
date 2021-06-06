@@ -38,7 +38,7 @@ $pageArray = array(
   'start'          => 'start.php',
   'imprint'        => 'imprint.php',
   'info'           => 'info.php',
-  'datasafety'     => 'datasafety.php',
+  'privacy'        => 'privacy.php',
 
   /* Userseiten */
   'register'       => 'register.php',
@@ -66,7 +66,7 @@ if(isset($pageArray[$getp])) {
  */
 $a = " class='active'";
 if((isset($_COOKIE[$cookieName]) AND !empty($_COOKIE[$cookieName])) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOKIE[$cookieName]), $match) === 1) {
-
+  // Login Navi
 } else {
   $nav = "<a href='/'".($getp == "start" ? $a : NULL)."><span class='fas icon'>&#xf015;</span>Startseite</a>";
   $nav.= "<a href='/login'".($getp == "login" ? $a : NULL)."><span class='fas icon'>&#xf2f6;</span>Login</a>";
@@ -78,7 +78,7 @@ if((isset($_COOKIE[$cookieName]) AND !empty($_COOKIE[$cookieName])) AND preg_mat
  * Footer
  */
 $footer = "<a href='/imprint'".($getp == "imprint" ? $a : NULL)."><span class='fas icon'>&#xf21b;</span>Impressum</a>";
-$footer.= "<a href='/datasafety'".($getp == "datasafety" ? $a : NULL)."><span class='fas icon'>&#xf1c0;</span>Datenschutz</a>";
+$footer.= "<a href='/privacy'".($getp == "privacy" ? $a : NULL)."><span class='fas icon'>&#xf1c0;</span>Datenschutz</a>";
 $footer.= "<a href='https://github.com/RundesBalli/tankersparnis.net' target='_blank' rel='noopener'><span class='fab icon'>&#xf09b;</span>GitHub</a>";
 $footer.= "<a href='https://RundesBalli.com/' target='_blank' rel='noopener'>🎱 RundesBalli</a>";
 

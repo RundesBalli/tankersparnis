@@ -42,6 +42,7 @@ $pageArray = array(
 
   /* Userseiten */
   'register'       => 'register.php',
+  'activate'       => 'activate.php',
   'login'          => 'login.php',
   'logout'         => 'logout.php',
   'overview'       => 'overview.php',

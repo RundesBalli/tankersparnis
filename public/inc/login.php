@@ -50,16 +50,28 @@ if((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND !isset($_
      */
     $row = mysqli_fetch_array($result);
     if(password_verify($_POST['password'].$row['salt'], $row['password'])) {
-      /**
-       * Wenn das Passwort verifiziert werden konnte wird eine Sitzung generiert und im Cookie gespeichert.
-       * Danach erfolg eine Weiterleitung zur Übersichts-Seite.
-       */
-      $sessionhash = hash('sha256', random_bytes(4096));
-      mysqli_query($dbl, "INSERT INTO `sessions` (`userId`, `hash`) VALUES ('".$row['id']."', '".$sessionhash."')") OR DIE(MYSQLI_ERROR($dbl));
-      setcookie($cookieName, $sessionhash, time()+(6*7*86400));
-      userLog($row['id'], 1, "Login");
-      header("Location: /overview");
-      die();
+      if($row['active'] == 1) {
+        /**
+         * Wenn das Passwort verifiziert werden konnte und der Account aktiv ist, wird eine Sitzung generiert und im Cookie gespeichert.
+         * Danach erfolg eine Weiterleitung zur Übersichts-Seite.
+         */
+        $sessionhash = hash('sha256', random_bytes(4096));
+        mysqli_query($dbl, "INSERT INTO `sessions` (`userId`, `hash`) VALUES ('".$row['id']."', '".$sessionhash."')") OR DIE(MYSQLI_ERROR($dbl));
+        setcookie($cookieName, $sessionhash, time()+(6*7*86400));
+        userLog($row['id'], 1, "Login");
+        header("Location: /overview");
+        die();
+      } else {
+        /**
+         * Der Account ist noch nicht aktiviert. Es wird HTTP403 und eine Fehlermeldung ausgegeben.
+         */
+        http_response_code(403);
+        $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>".PHP_EOL;
+        $content.= "<div class='warnbox'>Der Account ist noch nicht aktiviert. Bitte klicke auf den Link in der Registrierungsmail.</div>".PHP_EOL;
+        $content.= "<div class='row'>".PHP_EOL.
+        "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a></div>".PHP_EOL.
+        "</div>".PHP_EOL;
+      }
     } else {
       /**
        * Wenn das Passwort nicht verifiziert werden konnte wird HTTP403 zurückgegeben und eine Fehlermeldung wird ausgegeben.
@@ -68,7 +80,7 @@ if((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND !isset($_
       $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>".PHP_EOL;
       $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>".PHP_EOL;
       $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-s-12 col-l-12'><a href='/login'>Erneut versuchen</a><br><a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a></div>".PHP_EOL.
+      "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a></div>".PHP_EOL.
       "</div>".PHP_EOL;
     }
   } else {
@@ -79,7 +91,7 @@ if((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND !isset($_
     $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>".PHP_EOL;
     $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>".PHP_EOL;
     $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-12'><a href='/login'>Erneut versuchen</a><br><a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a></div>".PHP_EOL.
+    "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a></div>".PHP_EOL.
     "</div>".PHP_EOL;
   }
 } else {

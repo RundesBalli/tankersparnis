@@ -119,6 +119,10 @@ pre {
   margin: 10px 0;
 }
 
+.small {
+  font-size: calc(var(--fontSize) * 0.6);
+}
+
 /*
 1.1 Fontawesome
 https://fontawesome.com/
@@ -266,18 +270,22 @@ https://fontawesome.com/
   flex: auto;
 }
 
+section .row:not(:last-child) {
+  border-bottom: 1px solid var(--hrColor);
+}
+
 [class*="col-"] {
   float: left;
   padding: 5px 5px;
   border: 0;
 }
+
 @media only screen and (max-width: 1250px) {
   .wrapper {
-    padding: 10px;
+    padding: 0px 10px;
   }
 }
 
- /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   :root {
     --fontSize: 14px;
@@ -304,28 +312,9 @@ https://fontawesome.com/
   }
 
   [class*="col-"] {
-    padding: 5px 5px;
-  }
-  .col-x-0 {width: 0%; display: none;}
-  .col-x-1 {width: 8.33%;}
-  .col-x-2 {width: 16.66%;}
-  .col-x-3 {width: 25%;}
-  .col-x-4 {width: 33.33%;}
-  .col-x-5 {width: 41.66%;}
-  .col-x-6 {width: 50%;}
-  .col-x-7 {width: 58.33%;}
-  .col-x-8 {width: 66.66%;}
-  .col-x-9 {width: 75%;}
-  .col-x-10 {width: 83.33%;}
-  .col-x-11 {width: 91.66%;}
-  .col-x-12 {width: 100%;}
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  [class*="col-"] {
     padding: 5px 8px;
   }
+
   .col-s-0 {width: 0%; display: none;}
   .col-s-1 {width: 8.33%;}
   .col-s-2 {width: 16.66%;}
@@ -341,30 +330,9 @@ https://fontawesome.com/
   .col-s-12 {width: 100%;}
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 601px) {
   [class*="col-"] {
-    padding: 7px 10px;
-  }
-  .col-m-0 {width: 0%; display: none;}
-  .col-m-1 {width: 8.33%;}
-  .col-m-2 {width: 16.66%;}
-  .col-m-3 {width: 25%;}
-  .col-m-4 {width: 33.33%;}
-  .col-m-5 {width: 41.66%;}
-  .col-m-6 {width: 50%;}
-  .col-m-7 {width: 58.33%;}
-  .col-m-8 {width: 66.66%;}
-  .col-m-9 {width: 75%;}
-  .col-m-10 {width: 83.33%;}
-  .col-m-11 {width: 91.66%;}
-  .col-m-12 {width: 100%;}
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {
-  [class*="col-"] {
-    padding: 8px 12px;
+    padding: 5px 5px;
   }
   .col-l-0 {width: 0%; display: none;}
   .col-l-1 {width: 8.33%;}
@@ -379,26 +347,6 @@ https://fontawesome.com/
   .col-l-10 {width: 83.33%;}
   .col-l-11 {width: 91.66%;}
   .col-l-12 {width: 100%;}
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-  [class*="col-"] {
-    padding: 10px 15px;
-  }
-  .col-xl-0 {width: 0%; display: none;}
-  .col-xl-1 {width: 8.33%;}
-  .col-xl-2 {width: 16.66%;}
-  .col-xl-3 {width: 25%;}
-  .col-xl-4 {width: 33.33%;}
-  .col-xl-5 {width: 41.66%;}
-  .col-xl-6 {width: 50%;}
-  .col-xl-7 {width: 58.33%;}
-  .col-xl-8 {width: 66.66%;}
-  .col-xl-9 {width: 75%;}
-  .col-xl-10 {width: 83.33%;}
-  .col-xl-11 {width: 91.66%;}
-  .col-xl-12 {width: 100%;}
 }
 
 .row::after {
@@ -422,7 +370,7 @@ https://fontawesome.com/
 /*
   6. Forms
 */
-input[type=text], input[type=password], input[type=number], select, textarea {
+input[type=text], input[type=password], input[type=number], input[type=email], select, textarea {
   width: 100%;
   border: 1px solid var(--fontColor);
   padding: 8px;
@@ -435,7 +383,7 @@ textarea {
   height: 120px;
 }
 
-input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, select:focus, textarea:focus {
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, select:focus, textarea:focus {
   border: 1px solid var(--linkHover);
   outline-color: var(--linkHover);
 }

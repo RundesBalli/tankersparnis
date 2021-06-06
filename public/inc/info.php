@@ -6,6 +6,6 @@
  */
 $title = "Informationsseite";
 
-$content.= "<h1>Informationsseite</h1>".PHP_EOL;
+$content.= "<h1><span class='fas icon'>&#xf128;</span>Informationsseite</h1>".PHP_EOL;
 
 ?>

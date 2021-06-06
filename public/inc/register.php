@@ -11,6 +11,6 @@ if((isset($_COOKIE[$cookieName]) AND !empty($_COOKIE[$cookieName])) AND preg_mat
   die();
 }
 
-$content.= "<h1>Registrieren</h1>".PHP_EOL;
+$content.= "<h1><span class='far icon'>&#xf044;</span>Registrieren</h1>".PHP_EOL;
 
 ?>

@@ -29,10 +29,10 @@ if(!isset($_POST['submit'])) {
    * Auswahl
    */
   $content.= "<div class='row hover bordered'>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-4 col-l-3 col-xl-2'>Möchtest du dich ausloggen?</div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-4 col-l-4 col-xl-4'><input type='submit' name='submit' value='Ja'></div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-4 col-l-5 col-xl-6'></div>".PHP_EOL.
-  "<div class='col-x-12 col-s-12 col-m-0 col-l-0 col-xl-0'><div class='spacer-s'></div></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-3'>Möchtest du dich ausloggen?</div>".PHP_EOL.
+  "<div class='col-s-12 col-l-4'><input type='submit' name='submit' value='Ja'></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-5'></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-0'><div class='spacer-s'></div></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "</form>".PHP_EOL;
 } else {
@@ -46,7 +46,7 @@ if(!isset($_POST['submit'])) {
     http_response_code(403);
     $content.= "<div class='warnbox'>Ungültiges Token.</div>".PHP_EOL;
     $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'><a href='/overview'>Zurück zur Übersicht</a></div>".PHP_EOL.
+    "<div class='col-s-12 col-l-12'><a href='/overview'>Zurück zur Übersicht</a></div>".PHP_EOL.
     "</div>".PHP_EOL;
   } else {
     /**

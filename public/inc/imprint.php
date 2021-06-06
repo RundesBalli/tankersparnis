@@ -19,6 +19,7 @@ $content.= "<div class='spacer-m'></div>".PHP_EOL;
 $content.= "<h2><span class='fas icon'>&#xf674;</span>Kontaktmöglichkeiten</h2>".PHP_EOL;
 $content.= "<div class='row'>".PHP_EOL.
 "<div class='col-s-12 col-l-12'><a href='mailto:info@tankersparnis.net' target='_blank'><span class='fas icon'>&#xf0e0;</span>Mail</a></div>".PHP_EOL.
+"<div class='col-s-12 col-l-12'><a href='https://t.me/RundesBalli' target='_blank' rel='noopener'><span class='fab icon'>&#xf2c6;</span>Telegram</a></div>".PHP_EOL.
 "</div>".PHP_EOL;
 $content.= "<div class='spacer-m'></div>".PHP_EOL;
 

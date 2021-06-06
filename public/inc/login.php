@@ -20,16 +20,16 @@ if((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND !isset($_
    */
   $content.= "<form action='/login' method='post'>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-s-12 col-l-3'>Name</div>".PHP_EOL.
-  "<div class='col-s-12 col-l-9'><input type='text' name='username' placeholder='Name' autofocus></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-3'><label for='email'>E-Mail Adresse</label></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='Name' autofocus tabindex='1'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-s-12 col-l-3'>Passwort</div>".PHP_EOL.
-  "<div class='col-s-12 col-l-9'><input type='password' name='password' placeholder='Passwort'></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-3'><label for='password'>Passwort<br><span class='small'><a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a></span></label></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-9'><input type='password' name='password' id='password' placeholder='Passwort' tabindex='2'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-s-12 col-l-3'>Einloggen</div>".PHP_EOL.
-  "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Einloggen'></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Einloggen' tabindex='3'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "</form>".PHP_EOL;
 } elseif((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND isset($_POST['submit'])) {
@@ -39,11 +39,11 @@ if((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND !isset($_
   /**
    * Entschärfen der Usereingaben.
    */
-  $username = defuse($_POST['username']);
+  $email = defuse($_POST['email']);
   /**
    * Abfragen ob eine Übereinstimmung in der Datenbank vorliegt.
    */
-  $result = mysqli_query($dbl, "SELECT * FROM `users` WHERE `username`='".$username."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+  $result = mysqli_query($dbl, "SELECT * FROM `users` WHERE `email`='".$email."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
   if(mysqli_num_rows($result) == 1) {
     /**
      * Wenn der User existiert, muss der Passworthash validiert werden.
@@ -57,7 +57,7 @@ if((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND !isset($_
       $sessionhash = hash('sha256', random_bytes(4096));
       mysqli_query($dbl, "INSERT INTO `sessions` (`userId`, `hash`) VALUES ('".$row['id']."', '".$sessionhash."')") OR DIE(MYSQLI_ERROR($dbl));
       setcookie($cookieName, $sessionhash, time()+(6*7*86400));
-      mysqli_query($dbl, "INSERT INTO `log` (`userId`, `loglevel`, `text`) VALUES ('".$row['id']."', 1, 'Login: ".$username."')") OR DIE(MYSQLI_ERROR($dbl));
+      userLog($row['id'], 1, "Login");
       header("Location: /overview");
       die();
     } else {
@@ -68,7 +68,7 @@ if((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND !isset($_
       $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>".PHP_EOL;
       $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>".PHP_EOL;
       $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-s-12 col-l-12'><a href='/login'>Erneut versuchen</a></div>".PHP_EOL.
+      "<div class='col-s-12 col-l-12'><a href='/login'>Erneut versuchen</a><br><a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a></div>".PHP_EOL.
       "</div>".PHP_EOL;
     }
   } else {
@@ -79,7 +79,7 @@ if((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND !isset($_
     $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>".PHP_EOL;
     $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>".PHP_EOL;
     $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-12'><a href='/login'>Erneut versuchen</a></div>".PHP_EOL.
+    "<div class='col-s-12 col-l-12'><a href='/login'>Erneut versuchen</a><br><a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a></div>".PHP_EOL.
     "</div>".PHP_EOL;
   }
 } else {

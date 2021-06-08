@@ -5,6 +5,7 @@
 
   Farben:
   https://www.color-hex.com/color-palette/1294
+  https://www.color-hex.com/color-palette/110397
 
   Hintergrundbild:
   https://php-noise.com
@@ -15,5 +16,6 @@
   --fontColor: #b3cde0;
   --linkColor: #b3cde0;
   --linkHover: #6497b1;
+  --highlightColor: #e58272;
   --hrColor: rgba(179, 205, 224, 0.2); /* #b3cde0 */
 }

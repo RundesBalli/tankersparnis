@@ -29,12 +29,13 @@ if(!isset($_POST['submit'])) {
    * Auswahl
    */
   $content.= "<div class='row hover bordered'>".PHP_EOL.
-  "<div class='col-s-12 col-l-3'>Möchtest du dich ausloggen?</div>".PHP_EOL.
-  "<div class='col-s-12 col-l-4'><input type='submit' name='submit' value='Ja'></div>".PHP_EOL.
-  "<div class='col-s-12 col-l-5'></div>".PHP_EOL.
-  "<div class='col-s-12 col-l-0'><div class='spacer-s'></div></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-12'>Möchtest du dich ausloggen?</div>".PHP_EOL.
+  "<div class='col-s-12 col-l-12'><input type='submit' name='submit' value='Ja'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "</form>".PHP_EOL;
+  $content.= "<div class='row'>".PHP_EOL.
+    "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Zurück zur Übersicht</a></div>".PHP_EOL.
+  "</div>".PHP_EOL;
 } else {
   /**
    * Formular abgesendet

@@ -44,6 +44,7 @@ $pageArray = array(
   'register'       => 'register.php',
   'activate'       => 'activate.php',
   'login'          => 'login.php',
+  'pwReset'        => 'pwReset.php',
   'logout'         => 'logout.php',
   'overview'       => 'overview.php',
 

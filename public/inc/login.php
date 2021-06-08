@@ -19,6 +19,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
    * Loginformular
    */
   $content.= "<form action='/login' method='post'>";
+  $content.= "<section>";
   $content.= "<div class='row'>".
   "<div class='col-s-12 col-l-3'><label for='email'>E-Mail Adresse</label></div>".
   "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='E-Mail Adresse' autofocus required tabindex='1'></div>".
@@ -31,6 +32,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   "<div class='col-s-12 col-l-3'>Einloggen</div>".
   "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Einloggen' tabindex='3'></div>".
   "</div>";
+  $content.= "</section>";
   $content.= "</form>";
 } elseif(empty($_COOKIE[$cookieName]) AND isset($_POST['submit'])) {
   /**

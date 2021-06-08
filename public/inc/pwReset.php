@@ -15,6 +15,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
    * Passwort zurücksetzen Formular
    */
   $content.= "<form action='/pwReset' method='post'>";
+  $content.= "<section>";
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-3'><label for='email'>E-Mail Adresse</label></div>".
     "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='Name' autofocus required tabindex='1'></div>".
@@ -23,6 +24,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
     "<div class='col-s-12 col-l-3'>Passwort zurücksetzen</div>".
     "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Passwort zurücksetzen' tabindex='2'></div>".
   "</div>";
+  $content.= "</section>";
   $content.= "</form>";
 } elseif(empty($_COOKIE[$cookieName]) AND isset($_POST['submit'])) {
   /**

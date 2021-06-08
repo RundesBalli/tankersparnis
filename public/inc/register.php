@@ -62,6 +62,9 @@ if(isset($_POST['submit'])) {
       $newUserId = mysqli_insert_id($dbl);
       userLog($newUserId, 1, "Registriert");
       $content.= "<div class='successbox'>Account erfolgreich angelegt.</div>".PHP_EOL;
+      /**
+       * Mail
+       */
       require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
       require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
       $mail = new PHPMailer();

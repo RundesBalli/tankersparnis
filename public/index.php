@@ -47,6 +47,8 @@ $pageArray = array(
   'pwReset'        => 'pwReset.php',
   'logout'         => 'logout.php',
   'overview'       => 'overview.php',
+  'addEntry'       => 'addEntry.php',
+  'settings'       => 'settings.php',
 
   /* Fehlerseiten */
   '404'            => '404.php',

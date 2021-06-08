@@ -53,16 +53,28 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
     $row = mysqli_fetch_array($result);
     if(password_verify($_POST['password'].$row['salt'], $row['password'])) {
       if($row['active'] == 1) {
-        /**
-         * Wenn das Passwort verifiziert werden konnte und der Account aktiv ist, wird eine Sitzung generiert und im Cookie gespeichert.
-         * Danach erfolg eine Weiterleitung zur Übersichts-Seite.
-         */
-        $sessionhash = hash('sha256', random_bytes(4096));
-        mysqli_query($dbl, "INSERT INTO `sessions` (`userId`, `hash`) VALUES ('".$row['id']."', '".$sessionhash."')") OR DIE(MYSQLI_ERROR($dbl));
-        setcookie($cookieName, $sessionhash, time()+(6*7*86400));
-        userLog($row['id'], 1, "Login");
-        header("Location: /overview");
-        die();
+        if($row['validEmail'] == 1) {
+          /**
+           * Wenn das Passwort verifiziert werden konnte und der Account aktiv und die E-Mail Adresse bestätigt ist,
+           * wird eine Sitzung generiert und im Cookie gespeichert. Danach erfolg eine Weiterleitung zur Übersichts-Seite.
+           */
+          $sessionhash = hash('sha256', random_bytes(4096));
+          mysqli_query($dbl, "INSERT INTO `sessions` (`userId`, `hash`) VALUES ('".$row['id']."', '".$sessionhash."')") OR DIE(MYSQLI_ERROR($dbl));
+          setcookie($cookieName, $sessionhash, time()+(6*7*86400));
+          userLog($row['id'], 1, "Login");
+          header("Location: /overview");
+          die();
+        } else {
+          /**
+           * Die E-Mail wurde noch nicht bestätigt. Es wird HTTP403 und eine Fehlermeldung ausgegeben.
+           */
+          http_response_code(403);
+          $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>";
+          $content.= "<div class='warnbox'>Du musst deine E-Mail Adresse bestätigen indem du auf den Link in der E-Mail klickst.</div>";
+          $content.= "<div class='row'>".
+          "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a></div>".
+          "</div>";
+        }
       } else {
         /**
          * Der Account ist noch nicht aktiviert. Es wird HTTP403 und eine Fehlermeldung ausgegeben.

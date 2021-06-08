@@ -18,19 +18,20 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   /**
    * Loginformular
    */
+  $tabindex = 1;
   $content.= "<form action='/login' method='post'>";
   $content.= "<section>";
   $content.= "<div class='row'>".
   "<div class='col-s-12 col-l-3'><label for='email'>E-Mail Adresse</label></div>".
-  "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='E-Mail Adresse' autofocus required tabindex='1'></div>".
+  "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='E-Mail Adresse' autofocus required tabindex='".$tabindex++."'></div>".
   "</div>";
   $content.= "<div class='row'>".
   "<div class='col-s-12 col-l-3'><label for='password'>Passwort<br><span class='small'><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></span></label></div>".
-  "<div class='col-s-12 col-l-9'><input type='password' name='password' id='password' minlength='8' placeholder='Passwort' required tabindex='2'></div>".
+  "<div class='col-s-12 col-l-9'><input type='password' name='password' id='password' minlength='8' placeholder='Passwort' required tabindex='".$tabindex++."'></div>".
   "</div>";
   $content.= "<div class='row'>".
   "<div class='col-s-12 col-l-3'>Einloggen</div>".
-  "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Einloggen' tabindex='3'></div>".
+  "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Einloggen' tabindex='".$tabindex++."'></div>".
   "</div>";
   $content.= "</section>";
   $content.= "</form>";

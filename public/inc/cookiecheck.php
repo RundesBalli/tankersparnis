@@ -14,16 +14,16 @@ if(!empty($_COOKIE[$cookieName])) {
     /**
      * Abfrage in der Datenbank, ob eine Sitzung mit diesem Hash existiert.
      */
-    $result = mysqli_query($dbl, "SELECT `users`.`id`, `users`.`email` FROM `sessions` JOIN `users` ON `users`.`id`=`sessions`.`userId` WHERE `hash`='".$match[0]."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+    $result = mysqli_query($dbl, "SELECT `users`.`id`, `users`.`email`, `users`.`password`, `users`.`salt` FROM `sessions` JOIN `users` ON `users`.`id`=`sessions`.`userId` WHERE `hash`='".$match[0]."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
     if(mysqli_num_rows($result) == 1) {
       /**
        * Wenn eine Sitzung existiert wird der letzte Nutzungszeitpunkt aktualisiert und die E-Mail Adresse in die Variable $email geladen.
        */
       mysqli_query($dbl, "UPDATE `sessions` SET `lastActivity`=CURRENT_TIMESTAMP WHERE `hash`='".$match[0]."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       setcookie($cookieName, $match[0], time()+(6*7*86400));
-      $userrow = mysqli_fetch_array($result);
-      $email = $userrow['email'];
-      $userId = $userrow['id'];
+      $userRow = mysqli_fetch_array($result);
+      $email = $userRow['email'];
+      $userId = $userRow['id'];
       $sessionhash = $match[0];
     } else {
       /**

@@ -50,18 +50,16 @@ $mailConfig['conn']['smtpPass'] = "";
 
 $mailConfig['conf']['fromEmail'] = "noreply@example.com";
 $mailConfig['conf']['fromName'] = "Example.com";
-$mailConfig['conf']['closingGreeting'] = "Viele Grüße\nDein Team von Example.com";
+$mailConfig['conf']['closingGreeting'] = "Viele Grüße\nDein Team von Example.com\nWeb: https://example.com - E-Mail: info@example.com";
 
 /**
  * Mail Betreffe
  * @var string Betreff der Registrierungsmail
  * @var string Betreff der Aktivierungsmail (nach Klicken des Aktivierungslinks in der Registrierungsmail)
- * @var string Betreff der "Passwort vergessen" Mail
  * @var string Betreff der "Passwort wurde zurückgesetzt" Mail
  */
 $mailConfig['subject']['register'] = "Deine Registrierung";
 $mailConfig['subject']['accountActivated'] = "Dein Account wurde aktiviert";
-$mailConfig['subject']['forgotPassword'] = "Passwort vergessen";
 $mailConfig['subject']['passwordResetted'] = "Passwort wurde zurückgesetzt";
 
 ?>

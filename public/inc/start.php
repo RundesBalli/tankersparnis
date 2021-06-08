@@ -6,6 +6,14 @@
  */
 $title = "Startseite";
 
+/**
+ * Prüfen ob eingeloggt. Wenn ja, dann Umleitung auf Nutzerseite. Prüfung auf Validität erfolgt über die Userseite.
+ */
+if(!empty($_COOKIE[$cookieName]) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOKIE[$cookieName]), $match) === 1) {
+  header("Location: /overview");
+  die();
+}
+
 $content.= "<h1><span class='fas icon'>&#xf52f;</span>Herzlich willkommen</h1>".PHP_EOL;
 $content.= "<div class='row'>".PHP_EOL.
 "<div class='col-s-12 col-l-12'>Herzlich willkommen auf tankersparnis.net</div>".PHP_EOL.

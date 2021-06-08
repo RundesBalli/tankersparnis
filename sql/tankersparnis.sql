@@ -83,14 +83,17 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
   `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Username',
+  `validEmail` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0 = Unbestätigte Email',
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Passworthash',
   `salt` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Passwortsalt',
-  `registered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Registrierungszeitpunkt',
+  `registered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitpunkt der Registrierung',
   `registerHash` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Hash zum Aktivieren des Accounts',
   `active` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Account aktiviert',
+  `preventPasswordReset` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Passwort zurücksetzen verhindern',
+  `lastPwReset` datetime DEFAULT NULL COMMENT 'Zeitpunkt des letzten Passwort Resets',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2021-06-06 21:11:24
+-- 2021-06-08 14:34:54

@@ -28,6 +28,7 @@ $content.= "<div class='row'>".PHP_EOL.
 $content.= "<h2>Was kostet das?</h2>".PHP_EOL;
 $content.= "<div class='row'>".PHP_EOL.
 "<div class='col-s-12 col-l-12'>tankersparnis.net ist komplett kostenfrei und kommt ohne Werbung und versteckte Kosten aus.</div>".PHP_EOL.
+"<div class='col-s-12 col-l-12'>Deine Daten werden nicht verkauft und die Aussage <span class='italic'>«Wenn es kostenlos ist, bist du die Ware»</span> gilt hier nicht, da es sich um ein reines Hobbyprojekt handelt, welches der Autor auch für sich selbst nutzt.</div>".PHP_EOL.
 "</div>".PHP_EOL;
 
 $content.= "<h2>Warum?</h2>".PHP_EOL;

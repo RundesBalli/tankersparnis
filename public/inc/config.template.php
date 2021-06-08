@@ -57,11 +57,13 @@ $mailConfig['conf']['closingGreeting'] = "Viele Grüße\nDein Team von Example.c
  * @var string Betreff der Registrierungsmail
  * @var string Betreff der Aktivierungsmail (nach Klicken des Aktivierungslinks in der Registrierungsmail)
  * @var string Betreff der "Passwort wurde zurückgesetzt" Mail
+ * @var string Betreff der "E-Mail Adresse wurde geändert" Mail
  * @var string Betreff der "Passwort wurde geänder" Mail
  */
 $mailConfig['subject']['register'] = "Deine Registrierung";
 $mailConfig['subject']['accountActivated'] = "Dein Account wurde aktiviert";
 $mailConfig['subject']['passwordResetted'] = "Passwort wurde zurückgesetzt";
+$mailConfig['subject']['emailChanged'] = "E-Mail Adresse wurde geändert";
 $mailConfig['subject']['passwordChanged'] = "Passwort wurde geändert";
 
 ?>

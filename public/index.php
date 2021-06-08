@@ -50,6 +50,7 @@ $pageArray = array(
   'addEntry'       => 'addEntry.php',
   'settings'       => 'settings.php',
   'changeSettings' => 'changeSettings.php',
+  'confirmEmail'   => 'confirmEmail.php',
 
   /* Fehlerseiten */
   '404'            => '404.php',

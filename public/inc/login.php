@@ -9,7 +9,7 @@ $title = "Login";
 /**
  * Kein Cookie gesetzt oder Cookie leer und Formular nicht übergeben.
  */
-if((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND !isset($_POST['submit'])) {
+if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   $content.= "<h1><span class='fas icon'>&#xf2f6;</span>Login</h1>".PHP_EOL;
   /**
    * Cookiewarnung
@@ -32,7 +32,7 @@ if((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND !isset($_
   "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Einloggen' tabindex='3'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "</form>".PHP_EOL;
-} elseif((!isset($_COOKIE[$cookieName]) OR empty($_COOKIE[$cookieName])) AND isset($_POST['submit'])) {
+} elseif(empty($_COOKIE[$cookieName]) AND isset($_POST['submit'])) {
   /**
    * Kein Cookie gesetzt oder Cookie leer und Formular wurde übergeben.
    */

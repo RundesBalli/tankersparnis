@@ -66,8 +66,8 @@ if(isset($pageArray[$getp])) {
  * Hinweis: das Toggle-Element ist im Template enthalten.
  */
 $a = " class='active'";
-if((isset($_COOKIE[$cookieName]) AND !empty($_COOKIE[$cookieName])) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOKIE[$cookieName]), $match) === 1) {
-  // Login Navi
+if(!empty($_COOKIE[$cookieName]) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOKIE[$cookieName]), $match) === 1) {
+  //Login Navi
 } else {
   $nav = "<a href='/'".($getp == "start" ? $a : NULL)."><span class='fas icon'>&#xf015;</span>Startseite</a>";
   $nav.= "<a href='/login'".($getp == "login" ? $a : NULL)."><span class='fas icon'>&#xf2f6;</span>Login</a>";

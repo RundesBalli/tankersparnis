@@ -5,7 +5,7 @@
  * Prüft ob ein gültiger Cookie gesetzt ist.
  */
 
-if(isset($_COOKIE[$cookieName]) AND !empty($_COOKIE[$cookieName])) {
+if(!empty($_COOKIE[$cookieName])) {
   /**
    * Cookieinhalt entschärfen und prüfen ob Inhalt ein sha256-Hash ist.
    */

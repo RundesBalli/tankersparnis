@@ -49,6 +49,7 @@ $pageArray = array(
   'overview'       => 'overview.php',
   'addEntry'       => 'addEntry.php',
   'settings'       => 'settings.php',
+  'changeSettings' => 'changeSettings.php',
 
   /* Fehlerseiten */
   '404'            => '404.php',

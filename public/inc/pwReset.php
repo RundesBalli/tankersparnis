@@ -74,7 +74,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
       $password = password_hash($pw.$salt, PASSWORD_DEFAULT);
       mysqli_query($dbl, "UPDATE `users` SET `password`='".$password."', `salt`='".$salt."', `lastPwReset`=NOW() WHERE `id`='".$row['id']."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       mysqli_query($dbl, "DELETE FROM `sessions` WHERE `userId`=".$row['id']." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-      userLog($row['id'], 1, "Passwort zurückgesetzt und alle Sitzungen ausgeloggt");
+      userLog($row['id'], 1, "Passwort zurückgesetzt (pwReset) und alle Sitzungen ausgeloggt");
       $content.= "<div class='successbox'>Passwort erfolgreich zurückgesetzt. Es wurde dir per E-Mail zugeschickt.</div>";
       /**
        * Mail

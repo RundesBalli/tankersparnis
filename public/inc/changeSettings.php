@@ -216,6 +216,7 @@ if(empty($_POST['action'])) {
     $password = password_hash($_POST['passwordNew'].$salt, PASSWORD_DEFAULT);
     mysqli_query($dbl, "UPDATE `users` SET `password`='".$password."', `salt`='".$salt."' WHERE `id`='".$userId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
     mysqli_query($dbl, "DELETE FROM `sessions` WHERE `userId`=".$userId) OR DIE(MYSQLI_ERROR($dbl));
+    userLog($userId, 5, "Passwort geändert (settings) und alle Sitzungen ausgeloggt");
     $content.= "<div class='successbox'>Dein Passwort wurde geändert. Du musst dich jetzt neu einloggen.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Zum Login</a></div>".

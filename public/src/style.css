@@ -123,6 +123,14 @@ pre {
   font-size: calc(var(--fontSize) * 0.6);
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
 .highlight {
   color: var(--highlightColor);
 }

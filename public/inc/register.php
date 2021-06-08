@@ -5,7 +5,7 @@
  * Registrierungsseite
  */
 $title = "Registrieren";
-$content.= "<h1><span class='far icon'>&#xf044;</span>Registrieren</h1>".PHP_EOL;
+$content.= "<h1><span class='far icon'>&#xf044;</span>Registrieren</h1>";
 
 /**
  * Prüfen ob eingeloggt. Wenn ja, dann Umleitung auf Nutzerseite. Prüfung auf Validität erfolgt über die Userseite.
@@ -31,7 +31,7 @@ if(isset($_POST['submit'])) {
     $email = defuse(filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL));
   } else {
     $form = 1;
-    $content.= "<div class='warnbox'>Die eingegebene E-Mail Adresse ist ungültig.</div>".PHP_EOL;
+    $content.= "<div class='warnbox'>Die eingegebene E-Mail Adresse ist ungültig.</div>";
   }
 
   /**
@@ -42,7 +42,7 @@ if(isset($_POST['submit'])) {
     $password = password_hash($_POST['password'].$salt, PASSWORD_DEFAULT);
   } else {
     $form = 1;
-    $content.= "<div class='warnbox'>Das Passwort ist zu kurz.</div>".PHP_EOL;
+    $content.= "<div class='warnbox'>Das Passwort ist zu kurz.</div>";
   }
 
   /**
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])) {
    */
   if(empty($_POST['privacy']) OR $_POST['privacy'] != 1) {
     $form = 1;
-    $content.= "<div class='warnbox'>Du musst die Datenschutzerklärung lesen, verstehen und akzeptieren um dir ein Nutzerkonto anzulegen.</div>".PHP_EOL;
+    $content.= "<div class='warnbox'>Du musst die Datenschutzerklärung lesen, verstehen und akzeptieren um dir ein Nutzerkonto anzulegen.</div>";
   }
   
   /**
@@ -61,7 +61,7 @@ if(isset($_POST['submit'])) {
     if(mysqli_query($dbl, "INSERT INTO `users` (`email`, `password`, `salt`, `registerHash`) VALUES ('".$email."', '".$password."', '".$salt."', '".$registerHash."')")) {
       $newUserId = mysqli_insert_id($dbl);
       userLog($newUserId, 1, "Registriert");
-      $content.= "<div class='successbox'>Account erfolgreich angelegt.</div>".PHP_EOL;
+      $content.= "<div class='successbox'>Account erfolgreich angelegt.</div>";
       /**
        * Mail
        */
@@ -88,14 +88,14 @@ if(isset($_POST['submit'])) {
       $mail->Body = $mailBody;
       if (!$mail->send()) {
         mysqli_query($dbl, "INSERT INTO `failedEmails` (`userId`, `to`, `subject`, `message`) VALUES ('".$newUserId."', '".$email."', '".$mailConfig['subject']['register']."', '".defuse($mailBody)."')") OR DIE(MYSQLI_ERROR($dbl));
-        $content.= "<div class='infobox'>Der Mailserver ist gerade ausgelastet. Es kann ein paar Minuten dauern, bis du die Aktivierungsmail bekommst.</div>".PHP_EOL;
+        $content.= "<div class='infobox'>Der Mailserver ist gerade ausgelastet. Es kann ein paar Minuten dauern, bis du die Aktivierungsmail bekommst.</div>";
       }
     } else {
       $form = 1;
       if(mysqli_errno($dbl) == 1062) {
-        $content.= "<div class='warnbox'>Es existiert bereits ein Nutzerkonto unter dieser E-Mail Adresse.<br>Wenn du dein Passwort vergessen hast, kannst du es unter <a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a> neu setzen.</div>".PHP_EOL;
+        $content.= "<div class='warnbox'>Es existiert bereits ein Nutzerkonto unter dieser E-Mail Adresse.<br>Wenn du dein Passwort vergessen hast, kannst du es unter <a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a> neu setzen.</div>";
       } else {
-        $content.= "<div class='warnbox'>Unbekannter Fehler. Bitte wende dich an <a href='/imprint'>den Plattformbetreiber</a>.</div>".PHP_EOL;
+        $content.= "<div class='warnbox'>Unbekannter Fehler. Bitte wende dich an <a href='/imprint'>den Plattformbetreiber</a>.</div>";
       }
     }
   }
@@ -107,25 +107,25 @@ if(isset($_POST['submit'])) {
 }
 
 if($form == 1) {
-  $content.= "<form action='/register' method='post'>".PHP_EOL;
-  $content.= "<section>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-3'><label for='email'><span class='fas icon'>&#xf1fa;</span>E-Mail Adresse</label></div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='email' id='email' name='email' placeholder='john@example.com'".(!empty($email) ? " value='".output($email)."'" : NULL)." autofocus required tabindex='1'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-3'><label for='password'><span class='fas icon'>&#xf084;</span>Passwort<br><span class='small'>min. 8 Zeichen</span></label></div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='password' id='password' minlength='8' name='password' placeholder='Passwort' required tabindex='2'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-3'>Datenschutz</div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='checkbox' name='privacy' id='privacy' value='1' required tabindex='3'><label for='privacy'>Ich habe die <a href='/privacy' target='_blank'>Datenschutzerklärung</a> gelesen, verstanden und akzeptiere sie.</label></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-3'><label for='submit'><span class='far icon'>&#xf044;</span>Registrieren</label></div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='submit' id='submit' name='submit' value='Registrieren' tabindex='4'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "</section>".PHP_EOL;
-  $content.= "</form>".PHP_EOL;
+  $content.= "<form action='/register' method='post'>";
+  $content.= "<section>";
+  $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-3'><label for='email'><span class='fas icon'>&#xf1fa;</span>E-Mail Adresse</label></div>".
+    "<div class='col-s-12 col-l-9'><input type='email' id='email' name='email' placeholder='john@example.com'".(!empty($email) ? " value='".output($email)."'" : NULL)." autofocus required tabindex='1'></div>".
+  "</div>";
+  $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-3'><label for='password'><span class='fas icon'>&#xf084;</span>Passwort<br><span class='small'>min. 8 Zeichen</span></label></div>".
+    "<div class='col-s-12 col-l-9'><input type='password' id='password' minlength='8' name='password' placeholder='Passwort' required tabindex='2'></div>".
+  "</div>";
+  $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-3'>Datenschutz</div>".
+    "<div class='col-s-12 col-l-9'><input type='checkbox' name='privacy' id='privacy' value='1' required tabindex='3'><label for='privacy'>Ich habe die <a href='/privacy' target='_blank'>Datenschutzerklärung</a> gelesen, verstanden und akzeptiere sie.</label></div>".
+  "</div>";
+  $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-3'><label for='submit'><span class='far icon'>&#xf044;</span>Registrieren</label></div>".
+    "<div class='col-s-12 col-l-9'><input type='submit' id='submit' name='submit' value='Registrieren' tabindex='4'></div>".
+  "</div>";
+  $content.= "</section>";
+  $content.= "</form>";
 }
 ?>

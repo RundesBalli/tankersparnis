@@ -10,28 +10,28 @@ $title = "Login";
  * Kein Cookie gesetzt oder Cookie leer und Formular nicht übergeben.
  */
 if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
-  $content.= "<h1><span class='fas icon'>&#xf2f6;</span>Login</h1>".PHP_EOL;
+  $content.= "<h1><span class='fas icon'>&#xf2f6;</span>Login</h1>";
   /**
    * Cookiewarnung
    */
-  $content.= "<div class='infobox'>Ab diesem Punkt werden technisch notwendige Cookies verwendet! Mit dem Fortfahren stimmst du dem zu!</div>".PHP_EOL;
+  $content.= "<div class='infobox'>Ab diesem Punkt werden technisch notwendige Cookies verwendet! Mit dem Fortfahren stimmst du dem zu!</div>";
   /**
    * Loginformular
    */
-  $content.= "<form action='/login' method='post'>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-s-12 col-l-3'><label for='email'>E-Mail Adresse</label></div>".PHP_EOL.
-  "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='E-Mail Adresse' autofocus required tabindex='1'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-s-12 col-l-3'><label for='password'>Passwort<br><span class='small'><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></span></label></div>".PHP_EOL.
-  "<div class='col-s-12 col-l-9'><input type='password' name='password' id='password' minlength='8' placeholder='Passwort' required tabindex='2'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-s-12 col-l-3'>Einloggen</div>".PHP_EOL.
-  "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Einloggen' tabindex='3'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "</form>".PHP_EOL;
+  $content.= "<form action='/login' method='post'>";
+  $content.= "<div class='row'>".
+  "<div class='col-s-12 col-l-3'><label for='email'>E-Mail Adresse</label></div>".
+  "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='E-Mail Adresse' autofocus required tabindex='1'></div>".
+  "</div>";
+  $content.= "<div class='row'>".
+  "<div class='col-s-12 col-l-3'><label for='password'>Passwort<br><span class='small'><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></span></label></div>".
+  "<div class='col-s-12 col-l-9'><input type='password' name='password' id='password' minlength='8' placeholder='Passwort' required tabindex='2'></div>".
+  "</div>";
+  $content.= "<div class='row'>".
+  "<div class='col-s-12 col-l-3'>Einloggen</div>".
+  "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Einloggen' tabindex='3'></div>".
+  "</div>";
+  $content.= "</form>";
 } elseif(empty($_COOKIE[$cookieName]) AND isset($_POST['submit'])) {
   /**
    * Kein Cookie gesetzt oder Cookie leer und Formular wurde übergeben.
@@ -66,33 +66,33 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
          * Der Account ist noch nicht aktiviert. Es wird HTTP403 und eine Fehlermeldung ausgegeben.
          */
         http_response_code(403);
-        $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>".PHP_EOL;
-        $content.= "<div class='warnbox'>Der Account ist noch nicht aktiviert. Bitte klicke auf den Link in der Registrierungsmail.</div>".PHP_EOL;
-        $content.= "<div class='row'>".PHP_EOL.
-        "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a></div>".PHP_EOL.
-        "</div>".PHP_EOL;
+        $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>";
+        $content.= "<div class='warnbox'>Der Account ist noch nicht aktiviert. Bitte klicke auf den Link in der Registrierungsmail.</div>";
+        $content.= "<div class='row'>".
+        "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a></div>".
+        "</div>";
       }
     } else {
       /**
        * Wenn das Passwort nicht verifiziert werden konnte wird HTTP403 zurückgegeben und eine Fehlermeldung wird ausgegeben.
        */
       http_response_code(403);
-      $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>".PHP_EOL;
-      $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>".PHP_EOL;
-      $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></div>".PHP_EOL.
-      "</div>".PHP_EOL;
+      $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>";
+      $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>";
+      $content.= "<div class='row'>".
+      "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></div>".
+      "</div>";
     }
   } else {
     /**
      * Wenn keine Übereinstimmung vorliegt, dann wird HTTP403 zurückgegeben und eine Fehlermeldung wird ausgegeben.
      */
     http_response_code(403);
-    $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>".PHP_EOL;
-    $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>".PHP_EOL;
-    $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></div>".PHP_EOL.
-    "</div>".PHP_EOL;
+    $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>";
+    $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>";
+    $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></div>".
+    "</div>";
   }
 } else {
   /**

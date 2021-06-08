@@ -10,20 +10,20 @@ $title = "Passwort zurücksetzen";
  * Kein Cookie gesetzt oder Cookie leer und Formular nicht übergeben.
  */
 if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
-  $content.= "<h1><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</h1>".PHP_EOL;
+  $content.= "<h1><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</h1>";
   /**
    * Passwort zurücksetzen Formular
    */
-  $content.= "<form action='/pwReset' method='post'>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-3'><label for='email'>E-Mail Adresse</label></div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='Name' autofocus required tabindex='1'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-3'>Passwort zurücksetzen</div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Passwort zurücksetzen' tabindex='2'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "</form>".PHP_EOL;
+  $content.= "<form action='/pwReset' method='post'>";
+  $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-3'><label for='email'>E-Mail Adresse</label></div>".
+    "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='Name' autofocus required tabindex='1'></div>".
+  "</div>";
+  $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-3'>Passwort zurücksetzen</div>".
+    "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Passwort zurücksetzen' tabindex='2'></div>".
+  "</div>";
+  $content.= "</form>";
 } elseif(empty($_COOKIE[$cookieName]) AND isset($_POST['submit'])) {
   /**
    * Kein Cookie gesetzt oder Cookie leer und Formular wurde übergeben.
@@ -46,21 +46,21 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
        * Der Nutzer ist für das Zurücksetzen des Passworts gesperrt.
        */
       http_response_code(403);
-      $content.= "<h1><span class='fas icon'>&#xf071;</span>Passwort zurücksetzen gescheitert</h1>".PHP_EOL;
-      $content.= "<div class='warnbox'>Dieses Nutzerkonto ist für die Passwort zurücksetzen Funktion gesperrt. Wenn du dein Kennwort ändern lassen möchtest, schreib eine E-Mail an die <a href='/imprint'>vorhandenen Kontaktmöglichkeiten</a>.</div>".PHP_EOL;
-      $content.= "<div class='row'>".PHP_EOL.
-        "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".PHP_EOL.
-      "</div>".PHP_EOL;
+      $content.= "<h1><span class='fas icon'>&#xf071;</span>Passwort zurücksetzen gescheitert</h1>";
+      $content.= "<div class='warnbox'>Dieses Nutzerkonto ist für die Passwort zurücksetzen Funktion gesperrt. Wenn du dein Kennwort ändern lassen möchtest, schreib eine E-Mail an die <a href='/imprint'>vorhandenen Kontaktmöglichkeiten</a>.</div>";
+      $content.= "<div class='row'>".
+        "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
+      "</div>";
     } elseif(!empty($row['lastPwReset']) AND (time()-86400) < strtotime($row['lastPwReset'])) {
       /**
        * Der Nutzer hat zu viele Passwort Zurücksetzungen angefordert.
        */
       http_response_code(403);
-      $content.= "<h1><span class='fas icon'>&#xf071;</span>Passwort zurücksetzen gescheitert</h1>".PHP_EOL;
-      $content.= "<div class='warnbox'>Es wurde in zu kurzer Zeit zu oft versucht das Passwort zurückzusetzen. Wenn du dein Kennwort ändern lassen möchtest, schreib eine E-Mail an die <a href='/imprint'>vorhandenen Kontaktmöglichkeiten</a> oder warte einen Tag.</div>".PHP_EOL;
-      $content.= "<div class='row'>".PHP_EOL.
-        "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".PHP_EOL.
-      "</div>".PHP_EOL;
+      $content.= "<h1><span class='fas icon'>&#xf071;</span>Passwort zurücksetzen gescheitert</h1>";
+      $content.= "<div class='warnbox'>Es wurde in zu kurzer Zeit zu oft versucht das Passwort zurückzusetzen. Wenn du dein Kennwort ändern lassen möchtest, schreib eine E-Mail an die <a href='/imprint'>vorhandenen Kontaktmöglichkeiten</a> oder warte einen Tag.</div>";
+      $content.= "<div class='row'>".
+        "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
+      "</div>";
     } else {
       /**
        * Der Nutzer darf sein Passwort zurücksetzen.
@@ -72,7 +72,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
       mysqli_query($dbl, "UPDATE `users` SET `password`='".$password."', `salt`='".$salt."', `lastPwReset`=NOW() WHERE `id`='".$row['id']."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       mysqli_query($dbl, "DELETE FROM `sessions` WHERE `userId`=".$row['id']." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       userLog($row['id'], 1, "Passwort zurückgesetzt und alle Sitzungen ausgeloggt");
-      $content.= "<div class='successbox'>Passwort erfolgreich zurückgesetzt. Es wurde dir per E-Mail zugeschickt.</div>".PHP_EOL;
+      $content.= "<div class='successbox'>Passwort erfolgreich zurückgesetzt. Es wurde dir per E-Mail zugeschickt.</div>";
       /**
        * Mail
        */
@@ -100,7 +100,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
       $mail->Body = $mailBody;
       if (!$mail->send()) {
         mysqli_query($dbl, "INSERT INTO `failedEmails` (`userId`, `to`, `subject`, `message`) VALUES ('".$row['id']."', '".defuse($row['email'])."', '".$mailConfig['subject']['passwordResetted']."', '".defuse($mailBody)."')") OR DIE(MYSQLI_ERROR($dbl));
-        $content.= "<div class='infobox'>Der Mailserver ist gerade ausgelastet. Es kann ein paar Minuten dauern, bis du die Passwort E-Mail bekommst.</div>".PHP_EOL;
+        $content.= "<div class='infobox'>Der Mailserver ist gerade ausgelastet. Es kann ein paar Minuten dauern, bis du die Passwort E-Mail bekommst.</div>";
       }
     }
   } else {
@@ -108,11 +108,11 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
      * Wenn keine Übereinstimmung vorliegt, dann wird HTTP403 zurückgegeben und eine Fehlermeldung wird ausgegeben.
      */
     http_response_code(403);
-    $content.= "<h1><span class='fas icon'>&#xf071;</span>Passwort zurücksetzen gescheitert</h1>".PHP_EOL;
-    $content.= "<div class='warnbox'>Es existiert kein Nutzerkonto mit der E-Mail Adresse.</div>".PHP_EOL;
-    $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-s-12 col-l-12'><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Mit anderer E-Mail Adresse versuchen</a><br><a href='/register'><span class='far icon'>&#xf044;</span>Neues Nutzerkonto registrieren</a></div>".PHP_EOL.
-    "</div>".PHP_EOL;
+    $content.= "<h1><span class='fas icon'>&#xf071;</span>Passwort zurücksetzen gescheitert</h1>";
+    $content.= "<div class='warnbox'>Es existiert kein Nutzerkonto mit der E-Mail Adresse.</div>";
+    $content.= "<div class='row'>".
+      "<div class='col-s-12 col-l-12'><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Mit anderer E-Mail Adresse versuchen</a><br><a href='/register'><span class='far icon'>&#xf044;</span>Neues Nutzerkonto registrieren</a></div>".
+    "</div>";
   }
 } else {
   /**

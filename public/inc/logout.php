@@ -14,28 +14,28 @@ require_once('cookiecheck.php');
  * Titel
  */
 $title = "Logout";
-$content.= "<h1>Logout</h1>".PHP_EOL;
+$content.= "<h1>Logout</h1>";
 
 if(!isset($_POST['submit'])) {
   /**
    * Formular wird angezeigt
    */
-  $content.= "<form action='/logout' method='post'>".PHP_EOL;
+  $content.= "<form action='/logout' method='post'>";
   /**
    * Sitzungstoken
    */
-  $content.= "<input type='hidden' name='token' value='".$sessionhash."'>".PHP_EOL;
+  $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
   /**
    * Auswahl
    */
-  $content.= "<div class='row hover bordered'>".PHP_EOL.
-  "<div class='col-s-12 col-l-12'>Möchtest du dich ausloggen?</div>".PHP_EOL.
-  "<div class='col-s-12 col-l-12'><input type='submit' name='submit' value='Ja'></div>".PHP_EOL.
-  "</div>".PHP_EOL;
-  $content.= "</form>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Zurück zur Übersicht</a></div>".PHP_EOL.
-  "</div>".PHP_EOL;
+  $content.= "<div class='row hover bordered'>".
+  "<div class='col-s-12 col-l-12'>Möchtest du dich ausloggen?</div>".
+  "<div class='col-s-12 col-l-12'><input type='submit' name='submit' value='Ja'></div>".
+  "</div>";
+  $content.= "</form>";
+  $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Zurück zur Übersicht</a></div>".
+  "</div>";
 } else {
   /**
    * Formular abgesendet
@@ -45,10 +45,10 @@ if(!isset($_POST['submit'])) {
    */
   if($_POST['token'] != $sessionhash) {
     http_response_code(403);
-    $content.= "<div class='warnbox'>Ungültiges Token.</div>".PHP_EOL;
-    $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-12'><a href='/overview'>Zurück zur Übersicht</a></div>".PHP_EOL.
-    "</div>".PHP_EOL;
+    $content.= "<div class='warnbox'>Ungültiges Token.</div>";
+    $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-12'><a href='/overview'>Zurück zur Übersicht</a></div>".
+    "</div>";
   } else {
     /**
      * Löschen der Sitzung.

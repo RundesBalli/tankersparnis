@@ -6,7 +6,7 @@
  */
 $title = "Nutzerkonto aktivieren";
 
-$content.= "<h1><span class='fas icon'>&#xf058;</span>Nutzerkonto aktivieren</h1>".PHP_EOL;
+$content.= "<h1><span class='fas icon'>&#xf058;</span>Nutzerkonto aktivieren</h1>";
 
 if(!empty($_GET['hash'])) {
   if(preg_match('/[a-f0-9]{64}/i', defuse($_GET['hash']), $match) === 1) {
@@ -17,7 +17,7 @@ if(!empty($_GET['hash'])) {
       if(mysqli_affected_rows($dbl) == 1) {
         $row = mysqli_fetch_array($result);
         userLog($row['id'], 1, "Aktiviert");
-        $content.= "<div class='successbox'>Nutzerkonto aktiviert.</div>".PHP_EOL;
+        $content.= "<div class='successbox'>Nutzerkonto aktiviert.</div>";
         require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
         require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
         $mail = new PHPMailer();
@@ -41,29 +41,29 @@ if(!empty($_GET['hash'])) {
         if (!$mail->send()) {
           mysqli_query($dbl, "INSERT INTO `failedEmails` (`userId`, `to`, `subject`, `message`) VALUES ('".$row['id']."', '".$row['email']."', '".$mailConfig['subject']['accountActivated']."', '".defuse($mailBody)."')") OR DIE(MYSQLI_ERROR($dbl));
         }
-        $content.= "<div class='row'>".PHP_EOL.
-          "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Login</a></div>".PHP_EOL.
-        "</div>".PHP_EOL;
+        $content.= "<div class='row'>".
+          "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Login</a></div>".
+        "</div>";
       }
     } else {
       http_response_code(403);
-      $content.= "<div class='warnbox'>Der übergebene Hash ist ungültig oder wurde bereits benutzt. Bitte klicke den Link in der Aktivierungsmail an oder probiere dich einzuloggen um fortzufahren.</div>".PHP_EOL;
-      $content.= "<div class='row'>".PHP_EOL.
-        "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".PHP_EOL.
-      "</div>".PHP_EOL;
+      $content.= "<div class='warnbox'>Der übergebene Hash ist ungültig oder wurde bereits benutzt. Bitte klicke den Link in der Aktivierungsmail an oder probiere dich einzuloggen um fortzufahren.</div>";
+      $content.= "<div class='row'>".
+        "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
+      "</div>";
     }
   } else {
     http_response_code(403);
-    $content.= "<div class='warnbox'>Der übergebene Hash hat ein ungültiges Format. Bitte klicke den Link in der Aktivierungsmail an um fortzufahren.</div>".PHP_EOL;
-    $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".PHP_EOL.
-    "</div>".PHP_EOL;
+    $content.= "<div class='warnbox'>Der übergebene Hash hat ein ungültiges Format. Bitte klicke den Link in der Aktivierungsmail an um fortzufahren.</div>";
+    $content.= "<div class='row'>".
+      "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
+    "</div>";
   }
 } else {
   http_response_code(403);
-  $content.= "<div class='warnbox'>Es wurde kein Hash übergeben. Bitte klicke den Link in der Aktivierungsmail an um fortzufahren.</div>".PHP_EOL;
-  $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".PHP_EOL.
-  "</div>".PHP_EOL;
+  $content.= "<div class='warnbox'>Es wurde kein Hash übergeben. Bitte klicke den Link in der Aktivierungsmail an um fortzufahren.</div>";
+  $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
+  "</div>";
 }
 ?>

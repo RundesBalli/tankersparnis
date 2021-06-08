@@ -153,7 +153,16 @@ if(empty($_POST['action'])) {
   /**
    * Passwort ändern
    */
-  if(empty($_POST['password']) OR empty($_POST['passwordNew']) OR empty($_POST['passwordNew1'])) {
+  if($_POST['token'] != $sessionhash) {
+    /**
+     * Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.
+     */
+    http_response_code(403);
+    $content.= "<div class='warnbox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
+    $content.= "<div class='row'>".
+      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
+    "</div>";
+  } elseif(empty($_POST['password']) OR empty($_POST['passwordNew']) OR empty($_POST['passwordNew1'])) {
     /**
      * Wenigstens eins der übergebenen Felder ist leer.
      */

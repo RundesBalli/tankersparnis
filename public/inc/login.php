@@ -21,11 +21,11 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   $content.= "<form action='/login' method='post'>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-s-12 col-l-3'><label for='email'>E-Mail Adresse</label></div>".PHP_EOL.
-  "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='Name' autofocus tabindex='1'></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='Name' autofocus required tabindex='1'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
-  "<div class='col-s-12 col-l-3'><label for='password'>Passwort<br><span class='small'><a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a></span></label></div>".PHP_EOL.
-  "<div class='col-s-12 col-l-9'><input type='password' name='password' id='password' placeholder='Passwort' tabindex='2'></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-3'><label for='password'>Passwort<br><span class='small'><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></span></label></div>".PHP_EOL.
+  "<div class='col-s-12 col-l-9'><input type='password' name='password' id='password' minlength='8' placeholder='Passwort' required tabindex='2'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
   "<div class='col-s-12 col-l-3'>Einloggen</div>".PHP_EOL.
@@ -80,7 +80,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
       $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>".PHP_EOL;
       $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>".PHP_EOL;
       $content.= "<div class='row'>".PHP_EOL.
-      "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a></div>".PHP_EOL.
+      "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></div>".PHP_EOL.
       "</div>".PHP_EOL;
     }
   } else {
@@ -91,7 +91,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
     $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>".PHP_EOL;
     $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>".PHP_EOL;
     $content.= "<div class='row'>".PHP_EOL.
-    "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a></div>".PHP_EOL.
+    "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></div>".PHP_EOL.
     "</div>".PHP_EOL;
   }
 } else {

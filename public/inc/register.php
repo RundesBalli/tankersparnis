@@ -90,7 +90,7 @@ if(isset($_POST['submit'])) {
     } else {
       $form = 1;
       if(mysqli_errno($dbl) == 1062) {
-        $content.= "<div class='warnbox'>Es existiert bereits ein Nutzerkonto unter dieser E-Mail Adresse.<br>Wenn du dein Passwort vergessen hast, kannst du es unter <a href='/pwforget'><span class='fas icon'>&#xf084;</span>Passwort vergessen</a> neu setzen.</div>".PHP_EOL;
+        $content.= "<div class='warnbox'>Es existiert bereits ein Nutzerkonto unter dieser E-Mail Adresse.<br>Wenn du dein Passwort vergessen hast, kannst du es unter <a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a> neu setzen.</div>".PHP_EOL;
       } else {
         $content.= "<div class='warnbox'>Unbekannter Fehler. Bitte wende dich an <a href='/imprint'>den Plattformbetreiber</a>.</div>".PHP_EOL;
       }
@@ -108,15 +108,15 @@ if($form == 1) {
   $content.= "<section>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
     "<div class='col-s-12 col-l-3'><label for='email'><span class='fas icon'>&#xf1fa;</span>E-Mail Adresse</label></div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='email' id='email' name='email' placeholder='john@example.com'".(!empty($email) ? " value='".output($email)."'" : NULL)." autofocus tabindex='1'></div>".PHP_EOL.
+    "<div class='col-s-12 col-l-9'><input type='email' id='email' name='email' placeholder='john@example.com'".(!empty($email) ? " value='".output($email)."'" : NULL)." autofocus required tabindex='1'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
     "<div class='col-s-12 col-l-3'><label for='password'><span class='fas icon'>&#xf084;</span>Passwort<br><span class='small'>min. 8 Zeichen</span></label></div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='password' id='password' minlength='8' name='password' placeholder='Passwort' tabindex='2'></div>".PHP_EOL.
+    "<div class='col-s-12 col-l-9'><input type='password' id='password' minlength='8' name='password' placeholder='Passwort' required tabindex='2'></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
     "<div class='col-s-12 col-l-3'>Datenschutz</div>".PHP_EOL.
-    "<div class='col-s-12 col-l-9'><input type='checkbox' name='privacy' id='privacy' value='1' tabindex='3'><label for='privacy'>Ich habe die <a href='/privacy' target='_blank'>Datenschutzerklärung</a> gelesen, verstanden und akzeptiere sie.</label></div>".PHP_EOL.
+    "<div class='col-s-12 col-l-9'><input type='checkbox' name='privacy' id='privacy' value='1' required tabindex='3'><label for='privacy'>Ich habe die <a href='/privacy' target='_blank'>Datenschutzerklärung</a> gelesen, verstanden und akzeptiere sie.</label></div>".PHP_EOL.
   "</div>".PHP_EOL;
   $content.= "<div class='row'>".PHP_EOL.
     "<div class='col-s-12 col-l-3'><label for='submit'><span class='far icon'>&#xf044;</span>Registrieren</label></div>".PHP_EOL.

@@ -89,4 +89,23 @@ $content.= "<h2>Passwort</h2>";
   "</div>";
   $content.= "</section>";
   $content.= "</form>";
+  $content.= "<div class='spacer-m'></div>";
+
+/**
+ * Log
+ */
+$content.= "<h2>Log</h2>";
+$content.= "<section>";
+  $content.= "<div class='row bold breakWord' style='border-left: 6px solid #808080;'>".
+    "<div class='col-s-12 col-l-3'>Zeitpunkt</div>".
+    "<div class='col-s-12 col-l-9'>Text</div>".
+  "</div>";
+  $result = mysqli_query($dbl, "SELECT `log`.*, `logLevel`.`title` AS `logTitle`, `logLevel`.`color` FROM `log` JOIN `logLevel` ON `log`.`logLevel`=`logLevel`.`id` WHERE `userId`=".$userId." ORDER BY `id` DESC LIMIT 25") OR DIE(MYSQLI_ERROR($dbl));
+  while($row = mysqli_fetch_array($result)) {
+    $content.= "<div class='row breakWord help hover' style='border-left: 6px solid #".output($row['color']).";' title='".output($row['logTitle'])."'>".
+      "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i:s", strtotime($row['timestamp']))."</div>".
+      "<div class='col-s-12 col-l-9'>".showLog($row['text'])."</div>".
+    "</div>";
+  }
+$content.= "</section>";
 ?>

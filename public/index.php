@@ -51,6 +51,7 @@ $pageArray = array(
   'cars'           => 'cars.php',
   'addCar'         => 'addCar.php',
   'editCar'        => 'editCar.php',
+  'deleteCar'      => 'deleteCar.php',
   'settings'       => 'settings.php',
   'changeSettings' => 'changeSettings.php',
   'confirmEmail'   => 'confirmEmail.php',

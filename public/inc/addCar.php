@@ -76,7 +76,7 @@ if(empty($_POST['token'])) {
     "</div>";
   }
   if($ok == 1) {
-    mysqli_query($dbl, "INSERT INTO `cars` (`userId`, `name`, `fuel`, `fuelCompare`) VALUES (".$userId.", '".$name."', '".$fuel."', '".$fuelCompare."')") OR DIE(MYSQLI_ERROR($dbl));
+    mysqli_query($dbl, "INSERT INTO `cars` (`userId`, `name`, `fuel`, `fuelCompare`) VALUES (".$userId.", '".$name."', ".$fuel.", ".$fuelCompare.")") OR DIE(MYSQLI_ERROR($dbl));
     if(mysqli_affected_rows($dbl) == 1) {
       $content.= "<div class='successbox'>Das Fahrzeug wurde erfolgreich angelegt.</div>";
       $content.= "<div class='row'>".

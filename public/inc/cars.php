@@ -15,6 +15,34 @@ require_once('cookiecheck.php');
  */
 $title = "KFZs";
 $content.= "<h1><span class='fas icon'>&#xf1b9;</span>KFZs</h1>";
+
+/**
+ * Fahrzeug Übersicht
+ */
+$content.= "<h2><span class='fas icon'>&#xf5e4;</span>Deine KFZs</h2>";
+$result = mysqli_query($dbl, "SELECT `cars`.*, `fuels`.`name` AS `fuel`, `fuelsCompare`.`name` AS `fuelCompare` FROM `cars` JOIN `fuels` ON `fuels`.`id`=`cars`.`fuel` JOIN `fuelsCompare` ON `fuelsCompare`.`id`=`cars`.`fuelCompare` WHERE `userId`=".$userId." ORDER BY `cars`.`id` ASC") OR DIE(MYSQLI_ERROR($dbl));
+if(mysqli_num_rows($result) > 0) {
+  $content.= "<section>";
+  $content.= "<div class='row bold breakWord'>".
+    "<div class='col-s-12 col-l-4'>Bezeichnung</div>".
+    "<div class='col-s-6 col-l-3'>getankter Kraftstoff</div>".
+    "<div class='col-s-6 col-l-3'>Vergleichskraftstoff</div>".
+    "<div class='col-s-12 col-l-2'>Aktion</div>".
+  "</div>";
+  while($row = mysqli_fetch_array($result)) {
+    $content.= "<div class='row hover'>".
+      "<div class='col-s-12 col-l-4'>".output($row['name'])."</div>".
+      "<div class='col-s-6 col-l-3'>".output($row['fuel'])."</div>".
+      "<div class='col-s-6 col-l-3'>".output($row['fuelCompare'])."</div>".
+      "<div class='col-s-12 col-l-2'><a class='noUnderline' href='/deleteCar?id=".output($row['id'])."'><span class='far icon'>&#xf2ed;</span></a> <a class='noUnderline' href='/editCar?id=".output($row['id'])."'><span class='far icon'>&#xf044;</span></a></div>".
+    "</div>";
+  }
+  $content.= "</section>";
+} else {
+  $content.= "<div class='infobox'>Du hast noch keine KFZs hinzugefügt.</div>";
+}
+$content.= "<div class='spacer-m'></div>";
+
 /**
  * Fahrzeug hinzufügen
  */

@@ -102,6 +102,15 @@ pre {
   font-family: monospace;
 }
 
+code {
+  font-family: monospace;
+  background-color: var(--hrColor);
+}
+
+.help {
+  cursor: help;
+}
+
 .warnbox {
   background-color: rgba(197, 43, 47, 0.5); /* c52b2f, 50% opacity */
   border-left: 5px solid #c52b2f;

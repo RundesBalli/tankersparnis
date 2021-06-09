@@ -26,7 +26,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   "<div class='col-s-12 col-l-9'><input type='email' name='email' id='email' placeholder='E-Mail Adresse' autofocus required tabindex='".$tabindex++."'></div>".
   "</div>";
   $content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-3'><label for='password'>Passwort<br><span class='small'><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></span></label></div>".
+  "<div class='col-s-12 col-l-3'><label for='password'>Passwort<br><span class='small'><span class='fas icon'>&#xf084;</span><a href='/pwReset'>Passwort zurücksetzen</a></span></label></div>".
   "<div class='col-s-12 col-l-9'><input type='password' name='password' id='password' minlength='8' placeholder='Passwort' required tabindex='".$tabindex++."'></div>".
   "</div>";
   $content.= "<div class='row'>".

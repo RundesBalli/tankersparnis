@@ -78,6 +78,7 @@ if(empty($_POST['token'])) {
   if($ok == 1) {
     mysqli_query($dbl, "INSERT INTO `cars` (`userId`, `name`, `fuel`, `fuelCompare`) VALUES (".$userId.", '".$name."', ".$fuel.", ".$fuelCompare.")") OR DIE(MYSQLI_ERROR($dbl));
     if(mysqli_affected_rows($dbl) == 1) {
+      userLog($userId, 6, "KFZ angelegt: `".$name."`, `".$fuel."`, `".$fuelCompare."`");
       $content.= "<div class='successbox'>Das Fahrzeug wurde erfolgreich angelegt.</div>";
       $content.= "<div class='row'>".
         "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Fahrzeug Übersicht</a></div>".

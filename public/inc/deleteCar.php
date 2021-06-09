@@ -28,7 +28,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
    * ID wurde übergeben
    */
   $id = intval(defuse($_GET['id']));
-  $result = mysqli_query($dbl, "SELECT `cars`.*, `fuels`.`name` AS `fuel`, `fuelsCompare`.`name` AS `fuelCompare` FROM `cars` JOIN `fuels` ON `fuels`.`id`=`cars`.`fuel` JOIN `fuelsCompare` ON `fuelsCompare`.`id`=`cars`.`fuelCompare` WHERE `userId`=".$userId." AND `cars`.`id`=".$id." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+  $result = mysqli_query($dbl, "SELECT `cars`.`name`, `cars`.`fuel` AS `fuelId`, `cars`.`fuelCompare` AS `fuelCompareId`, `fuels`.`name` AS `fuel`, `fuelsCompare`.`name` AS `fuelCompare` FROM `cars` JOIN `fuels` ON `fuels`.`id`=`cars`.`fuel` JOIN `fuelsCompare` ON `fuelsCompare`.`id`=`cars`.`fuelCompare` WHERE `userId`=".$userId." AND `cars`.`id`=".$id." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
   if(mysqli_num_rows($result) == 0) {
     /**
      * KFZ existiert nicht
@@ -105,6 +105,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
          */
         mysqli_query($dbl, "DELETE FROM `cars` WHERE `userId`=".$userId." AND `id`=".$id." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
         if(mysqli_affected_rows($dbl) == 1) {
+          userLog($userId, 8, "KFZ gelöscht: `".$row['name']."`, `".$row['fuelId']."`, `".$row['fuelCompareId']."`");
           $content.= "<div class='successbox'>Das Fahrzeug wurde erfolgreich gelöscht.</div>";
           $content.= "<div class='row'>".
             "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Fahrzeug Übersicht</a></div>".

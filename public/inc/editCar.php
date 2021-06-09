@@ -79,6 +79,10 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
         "</div>";
         $content.= "</section>";
       $content.= "</form>";
+      $content.= "<div class='spacer-m'></div>";
+      $content.= "<div class='row'>".
+        "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Übersicht</a></div>".
+      "</div>";
     } else {
       /**
        * Formular wurde abgesendet
@@ -143,7 +147,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
           "</div>";
         }
         if($ok == 1) {
-          mysqli_query($dbl, "UPDATE `cars` SET `name`='".$name."', `fuel`=".$fuel.", `fuelCompare`=".$fuelCompare." WHERE `id`=".$id." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+          mysqli_query($dbl, "UPDATE `cars` SET `name`='".$name."', `fuel`=".$fuel.", `fuelCompare`=".$fuelCompare." WHERE `userId`=".$userId." AND `id`=".$id." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
           if(mysqli_affected_rows($dbl) == 1) {
             $content.= "<div class='successbox'>Das Fahrzeug wurde erfolgreich bearbeitet.</div>";
             $content.= "<div class='row'>".

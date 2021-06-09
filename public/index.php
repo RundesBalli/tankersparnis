@@ -50,6 +50,7 @@ $pageArray = array(
   'addEntry'       => 'addEntry.php',
   'cars'           => 'cars.php',
   'addCar'         => 'addCar.php',
+  'editCar'        => 'editCar.php',
   'settings'       => 'settings.php',
   'changeSettings' => 'changeSettings.php',
   'confirmEmail'   => 'confirmEmail.php',

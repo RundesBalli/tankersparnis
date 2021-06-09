@@ -294,6 +294,10 @@ section .row:not(:last-child) {
   background-color: var(--hrColor);
 }
 
+.breakWord {
+  word-break: break-word;
+}
+
 [class*="col-"] {
   float: left;
   padding: 5px 5px;

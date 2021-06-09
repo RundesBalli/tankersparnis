@@ -30,8 +30,8 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   "<div class='col-s-12 col-l-9'><input type='password' name='password' id='password' minlength='8' placeholder='Passwort' required tabindex='".$tabindex++."'></div>".
   "</div>";
   $content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-3'>Einloggen</div>".
-  "<div class='col-s-12 col-l-9'><input type='submit' name='submit' value='Einloggen' tabindex='".$tabindex++."'></div>".
+  "<div class='col-s-12 col-l-3'><label for='submit'>Einloggen</label></div>".
+  "<div class='col-s-12 col-l-9'><input type='submit' id='submit' name='submit' value='Einloggen' tabindex='".$tabindex++."'></div>".
   "</div>";
   $content.= "</section>";
   $content.= "</form>";

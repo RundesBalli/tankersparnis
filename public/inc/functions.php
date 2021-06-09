@@ -86,4 +86,17 @@ function userLog($userId = NULL, int $logLevel, $text = NULL) {
     return false;
   }
 }
+
+/**
+ * showLog Funktion
+ * Zum Ausgeben eines Logtextes
+ * 
+ * @param string $text Der Log Text
+ */
+function showLog(string $text = NULL){
+  if(empty($text)) {
+    return false;
+  }
+  return nl2br(preg_replace("/`(.*?)`/", "<code>$1</code>", output($text)));
+}
 ?>

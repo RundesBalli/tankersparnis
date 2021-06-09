@@ -49,6 +49,7 @@ $pageArray = array(
   'overview'       => 'overview.php',
   'addEntry'       => 'addEntry.php',
   'cars'           => 'cars.php',
+  'addCar'         => 'addCar.php',
   'settings'       => 'settings.php',
   'changeSettings' => 'changeSettings.php',
   'confirmEmail'   => 'confirmEmail.php',

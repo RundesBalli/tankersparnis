@@ -61,6 +61,10 @@ a:active, a:hover, a:focus {
   text-decoration: none;
 }
 
+a.noUnderline {
+  text-decoration: none;
+}
+
 @font-face {
   /* https://fonts.google.com/specimen/Open+Sans+Condensed */
   font-family: 'OSS-L';
@@ -284,6 +288,10 @@ https://fontawesome.com/
 
 section .row:not(:last-child) {
   border-bottom: 1px solid var(--hrColor);
+}
+
+.hover:hover {
+  background-color: var(--hrColor);
 }
 
 [class*="col-"] {

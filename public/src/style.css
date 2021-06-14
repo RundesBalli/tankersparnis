@@ -439,3 +439,9 @@ label {
   display: inline-block;
   color: var(--fontColor);
 }
+
+#geoButton:disabled, #geoButton[disabled] {
+  cursor: not-allowed;
+  border: 1px solid var(--hrColor);
+  color: var(--hrColor);
+}

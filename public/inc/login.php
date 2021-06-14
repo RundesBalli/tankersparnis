@@ -61,7 +61,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
            */
           $sessionhash = hash('sha256', random_bytes(4096));
           mysqli_query($dbl, "INSERT INTO `sessions` (`userId`, `hash`) VALUES ('".$row['id']."', '".$sessionhash."')") OR DIE(MYSQLI_ERROR($dbl));
-          setcookie($cookieName, $sessionhash, time()+(6*7*86400));
+          setcookie($cookieName, $sessionhash, time()+(6*7*86400), NULL, NULL, TRUE, TRUE);
           userLog($row['id'], 1, "Login");
           header("Location: /overview");
           die();

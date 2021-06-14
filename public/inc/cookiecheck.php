@@ -20,7 +20,7 @@ if(!empty($_COOKIE[$cookieName])) {
        * Wenn eine Sitzung existiert wird der letzte Nutzungszeitpunkt aktualisiert und die E-Mail Adresse in die Variable $email geladen.
        */
       mysqli_query($dbl, "UPDATE `sessions` SET `lastActivity`=CURRENT_TIMESTAMP WHERE `hash`='".$match[0]."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
-      setcookie($cookieName, $match[0], time()+(6*7*86400));
+      setcookie($cookieName, $match[0], time()+(6*7*86400), NULL, NULL, TRUE, TRUE);
       $userRow = mysqli_fetch_array($result);
       $email = $userRow['email'];
       $userId = $userRow['id'];
@@ -29,7 +29,7 @@ if(!empty($_COOKIE[$cookieName])) {
       /**
        * Wenn keine Sitzung mit dem übergebenen Hash existiert wird der User durch Entfernen des Cookies und Umleitung zur Loginseite ausgeloggt.
        */
-      setcookie($cookieName, NULL, 0);
+      setcookie($cookieName, NULL, 0, NULL, NULL, TRUE, TRUE);
       header("Location: /login");
       die();
     }
@@ -37,7 +37,7 @@ if(!empty($_COOKIE[$cookieName])) {
     /**
      * Wenn kein gültiger sha256 Hash übergeben wurde wird der User durch Entfernen des Cookies und Umleitung zur Loginseite ausgeloggt.
      */
-    setcookie($cookieName, NULL, 0);
+    setcookie($cookieName, NULL, 0, NULL, NULL, TRUE, TRUE);
     header("Location: /login");
     die();
   }

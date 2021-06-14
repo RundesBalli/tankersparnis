@@ -58,7 +58,7 @@ if(!isset($_POST['submit'])) {
     /**
      * Entfernen des Cookies und Umleitung zur Loginseite.
      */
-    setcookie($cookieName, NULL, 0);
+    setcookie($cookieName, NULL, 0, NULL, NULL, TRUE, TRUE);
     header("Location: /login");
     die();
   }

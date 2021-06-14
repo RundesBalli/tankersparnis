@@ -108,7 +108,7 @@ if(empty($_POST['action'])) {
       $content.= "<div class='row'>".
         "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Zum Login</a></div>".
       "</div>";
-      setcookie($cookieName, NULL, 0);
+      setcookie($cookieName, NULL, 0, NULL, NULL, TRUE, TRUE);
       unset($_COOKIE[$cookieName]);
       /**
        * E-Mail senden (neuer Empfänger)
@@ -236,7 +236,7 @@ if(empty($_POST['action'])) {
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Zum Login</a></div>".
     "</div>";
-    setcookie($cookieName, NULL, 0);
+    setcookie($cookieName, NULL, 0, NULL, NULL, TRUE, TRUE);
     unset($_COOKIE[$cookieName]);
     /**
      * E-Mail senden

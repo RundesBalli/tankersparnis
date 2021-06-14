@@ -34,6 +34,7 @@ $content.= "<div class='row'>".
 "<div class='col-s-12 col-l-12'>Haftungsausschluss von <a href='http://www.mustervorlage.net/disclaimer-muster' target='_blank' rel='noopener'>mustervorlage.net</a></div>".
 "<div class='col-s-12 col-l-12'>verwendete Farbpaletten: <a href='https://www.color-hex.com/color-palette/1294' target='_blank' rel='noopener'>Hauptfarben</a>, <a href='https://www.color-hex.com/color-palette/110397' target='_blank' rel='noopener'>Warnfarben</a></div>".
 "<div class='col-s-12 col-l-12'><a href='https://github.com/PHPMailer/PHPMailer' target='_blank' rel='noopener'>PHPMailer</a></div>".
+"<div class='col-s-12 col-l-12'>Geolocation Funktion von <a href='https://github.com/NullDev' target='_blank' rel='noopener'>NullDev</a></div>".
 "</div>";
 $content.= "<div class='spacer-m'></div>";
 

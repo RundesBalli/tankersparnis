@@ -1,7 +1,7 @@
 "use strict";
 
 let showPosition = function(position){
-    document.getElementById("geo").value = position.coords.latitude + " " + position.coords.longitude;
+    document.getElementById("geo").value = position.coords.latitude + ";" + position.coords.longitude;
     document.getElementById("geoButton").value = "Erfolgreich gefunden";
     document.getElementById("geoButton").disabled = true;
 };

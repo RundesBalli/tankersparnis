@@ -28,11 +28,12 @@ $content.= "<div class='spacer-m'></div>";
  */
 $content.= "<h2><span class='fas icon'>&#xf0c1;</span>Quellenangaben</h2>";
 $content.= "<div class='row'>".
+"<div class='col-s-12 col-l-12'>Hintergrundbild von <a href='https://php-noise.com' target='_blank' rel='noopener'>PHP-Noise.com</a></div>".
 "<div class='col-s-12 col-l-12'>Icons von <a href='https://fontawesome.com' target='_blank' rel='noopener'>fontawesome</a></div>".
 "<div class='col-s-12 col-l-12'>Schriftart der Überschriften: <a href='https://fonts.google.com/specimen/Open+Sans+Condensed' target='_blank' rel='noopener'>Open Sans Condensed</a></div>".
 "<div class='col-s-12 col-l-12'>Haftungsausschluss von <a href='http://www.mustervorlage.net/disclaimer-muster' target='_blank' rel='noopener'>mustervorlage.net</a></div>".
-"<div class='col-s-12 col-l-12'><a href='https://www.color-hex.com/color-palette/1294' target='_blank' rel='noopener'>verwendete Farbpalette</a></div>".
-"<div class='col-s-12 col-l-12'><a href='https://github.com/PHPMailer/PHPMailer' target='_blank' rel='noopener'>PHPMailer</a> - <a href='https://github.com/PHPMailer/PHPMailer/blob/master/LICENSE' target='_blank' rel='noopener'>Lizenz</a></div>".
+"<div class='col-s-12 col-l-12'>verwendete Farbpaletten: <a href='https://www.color-hex.com/color-palette/1294' target='_blank' rel='noopener'>Hauptfarben</a>, <a href='https://www.color-hex.com/color-palette/110397' target='_blank' rel='noopener'>Warnfarben</a></div>".
+"<div class='col-s-12 col-l-12'><a href='https://github.com/PHPMailer/PHPMailer' target='_blank' rel='noopener'>PHPMailer</a></div>".
 "</div>";
 $content.= "<div class='spacer-m'></div>";
 

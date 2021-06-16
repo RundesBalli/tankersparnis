@@ -28,6 +28,7 @@ $content.= "<div class='spacer-m'></div>";
  */
 $content.= "<h2><span class='fas icon'>&#xf0c1;</span>Quellenangaben</h2>";
 $content.= "<div class='row'>".
+"<div class='col-s-12 col-l-12'><a href='https://creativecommons.tankerkoenig.de/' target='_blank' rel='noopener'>Tankerkönig-API</a></div>".
 "<div class='col-s-12 col-l-12'>Hintergrundbild von <a href='https://php-noise.com' target='_blank' rel='noopener'>PHP-Noise.com</a></div>".
 "<div class='col-s-12 col-l-12'>Icons von <a href='https://fontawesome.com' target='_blank' rel='noopener'>fontawesome</a></div>".
 "<div class='col-s-12 col-l-12'>Schriftart der Überschriften: <a href='https://fonts.google.com/specimen/Open+Sans+Condensed' target='_blank' rel='noopener'>Open Sans Condensed</a></div>".

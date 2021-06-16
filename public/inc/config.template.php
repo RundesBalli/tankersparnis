@@ -33,6 +33,11 @@ date_default_timezone_set("Europe/Berlin");
 $cookieName = "";
 
 /**
+ * Tankerkönig API-Key
+ */
+$tkApiKey = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+
+/**
  * Mail Einstellungen
  * @var string Hostname des Mailservers
  * @var int Port des Mailservers

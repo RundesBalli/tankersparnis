@@ -61,7 +61,7 @@ $content.= "<hr>";
  * Passwort
  */
 $content.= "<h2>Passwort</h2>";
-  $content.= "<form action='/changeSettings' method='post'>";
+$content.= "<form action='/changeSettings' method='post'>";
   /**
    * Sitzungstoken
    */
@@ -89,8 +89,8 @@ $content.= "<h2>Passwort</h2>";
   "<div class='col-s-12 col-l-8'>Du wirst auf allen Geräten ausgeloggt.</div>".
   "</div>";
   $content.= "</section>";
-  $content.= "</form>";
-  $content.= "<div class='spacer-m'></div>";
+$content.= "</form>";
+$content.= "<div class='spacer-m'></div>";
 $content.= "<hr>";
 
 /**

@@ -17,5 +17,6 @@
   --linkColor: #005b96;
   --linkHover: #03396c;
   --highlightColor: #c13923;
+  --highlightPositiveColor: #23c139;
   --hrColor: rgba(0, 91, 150, 0.2); /* #005b96 */
 }

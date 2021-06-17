@@ -21,17 +21,19 @@ if(!isset($_POST['submit'])) {
    * Formular wird angezeigt
    */
   $content.= "<form action='/logout' method='post'>";
-  /**
-   * Sitzungstoken
-   */
-  $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
-  /**
-   * Auswahl
-   */
-  $content.= "<div class='row hover bordered'>".
-  "<div class='col-s-12 col-l-12'>Möchtest du dich ausloggen?</div>".
-  "<div class='col-s-12 col-l-12'><input type='submit' name='submit' value='Ja'></div>".
-  "</div>";
+    $content.= "<section>";
+      /**
+       * Sitzungstoken
+       */
+      $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
+      /**
+       * Auswahl
+       */
+      $content.= "<div class='row'>".
+      "<div class='col-s-12 col-l-12'>Möchtest du dich ausloggen?</div>".
+      "<div class='col-s-12 col-l-12'><input type='submit' name='submit' value='Ja'></div>".
+      "</div>";
+    $content.= "</section>";
   $content.= "</form>";
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Zurück zur Übersicht</a></div>".

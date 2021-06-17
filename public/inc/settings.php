@@ -55,6 +55,7 @@ $content.= "<h2>E-Mail Adresse</h2>";
   $content.= "</section>";
   $content.= "</form>";
 $content.= "<div class='spacer-m'></div>";
+$content.= "<hr>";
 
 /**
  * Passwort
@@ -90,6 +91,7 @@ $content.= "<h2>Passwort</h2>";
   $content.= "</section>";
   $content.= "</form>";
   $content.= "<div class='spacer-m'></div>";
+$content.= "<hr>";
 
 /**
  * Log

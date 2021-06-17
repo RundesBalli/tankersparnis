@@ -34,8 +34,17 @@ $cookieName = "";
 
 /**
  * Tankerkönig API-Key
+ * @var string API-Key, Format: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
  */
 $tkApiKey = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+
+/**
+ * cURL Einstellungen
+ * @var string Interface mit welchem cURL die Verbindung aufbauen soll, z.B. eth0 (sudo ifconfig)
+ * @var string Der UserAgent mit dem die Anfrage gesendet werden soll
+ */
+$cURL['bindTo'] = "";
+$cURL['userAgent'] = "";
 
 /**
  * Mail Einstellungen

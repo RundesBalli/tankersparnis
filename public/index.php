@@ -77,7 +77,6 @@ if(isset($pageArray[$getp])) {
 $a = " class='active'";
 if(!empty($_COOKIE[$cookieName]) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOKIE[$cookieName]), $match) === 1) {
   $nav = "<a href='/overview'".($getp == "overview" ? $a : NULL)."><span class='fas icon'>&#xf0cb;</span>Übersicht</a>";
-  $nav.= "<a href='/addEntry'".($getp == "addEntry" ? $a : NULL)."><span class='far icon'>&#xf044;</span>Eintragen</a>";
   $nav.= "<a href='/cars'".($getp == "cars" ? $a : NULL)."><span class='fas icon'>&#xf1b9;</span>KFZs</a>";
   $nav.= "<a href='/settings'".($getp == "settings" ? $a : NULL)."><span class='fas icon'>&#xf013;</span>Einstellungen</a>";
   $nav.= "<a href='/logout'".($getp == "logout" ? $a : NULL)."><span class='fas icon'>&#xf2f5;</span>Logout</a>";

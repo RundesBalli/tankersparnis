@@ -19,6 +19,39 @@ CREATE EVENT `Sitzungsbereinigung` ON SCHEDULE EVERY 6 HOUR STARTS '2021-06-01 0
 
 DELIMITER ;
 
+DROP TABLE IF EXISTS `cars`;
+CREATE TABLE `cars` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
+  `userId` int(10) unsigned NOT NULL COMMENT 'Querverweis users.id',
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Bezeichnung des Fahrzeugs',
+  `fuel` int(10) unsigned NOT NULL COMMENT 'Querverweis fuels.id',
+  `fuelCompare` int(10) unsigned NOT NULL COMMENT 'Querverweis fuels.id',
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `fuel` (`fuel`),
+  KEY `fuelCompare` (`fuelCompare`),
+  CONSTRAINT `cars_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `cars_ibfk_2` FOREIGN KEY (`fuel`) REFERENCES `fuels` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `cars_ibfk_3` FOREIGN KEY (`fuelCompare`) REFERENCES `fuelsCompare` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Autotabelle';
+
+
+DROP TABLE IF EXISTS `entries`;
+CREATE TABLE `entries` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
+  `userId` int(10) unsigned NOT NULL COMMENT 'Querverweis users.id',
+  `carId` int(10) unsigned NOT NULL COMMENT 'Querverweis cars.id',
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitpunkt des Eintrages',
+  `fuelQuantity` float(7,2) unsigned NOT NULL COMMENT 'Getankte Menge Kraftstoff',
+  `range` float(7,1) unsigned NOT NULL COMMENT 'Gefahrene Kilometer',
+  `cost` float(7,2) unsigned NOT NULL COMMENT 'Kosten für Tankvorgang',
+  `moneySaved` float(7,2) unsigned NOT NULL COMMENT 'Gesparter Betrag gegenüber dem Vergleichskraftstoff',
+  `raw` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Rohergebnis der API Abfrage',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Ersparnistabelle';
+
+TRUNCATE `entries`;
+
 DROP TABLE IF EXISTS `failedEmails`;
 CREATE TABLE `failedEmails` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
@@ -33,6 +66,34 @@ CREATE TABLE `failedEmails` (
   CONSTRAINT `failedEmails_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Fehlgeschlage E-Mail Sendungen';
 
+TRUNCATE `failedEmails`;
+
+DROP TABLE IF EXISTS `fuels`;
+CREATE TABLE `fuels` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Bezeichnung des Kraftstoffs',
+  `energy` float(7,2) unsigned NOT NULL COMMENT 'Energie des Kraftstoffs in kWh/l bzw. kWh/kg',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Kraftstofftabelle';
+
+TRUNCATE `fuels`;
+INSERT INTO `fuels` (`id`, `name`, `energy`) VALUES
+(1,	'Autogas (LPG)',	6.90),
+(2,	'Flüssigerdgas (LNG)',	13.80);
+
+DROP TABLE IF EXISTS `fuelsCompare`;
+CREATE TABLE `fuelsCompare` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Bezeichnung des Kraftstoffs',
+  `energy` float(7,2) unsigned NOT NULL COMMENT 'Energie des Kraftstoffs in kWh/l',
+  `symbol` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Kraftstoffbezeichnung für die API',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Kraftstofftabelle zum Vergleich';
+
+TRUNCATE `fuelsCompare`;
+INSERT INTO `fuelsCompare` (`id`, `name`, `energy`, `symbol`) VALUES
+(1,	'Benzin/Super, e5',	8.60,	'e5'),
+(2,	'Diesel',	9.70,	'diesel');
 
 DROP TABLE IF EXISTS `log`;
 CREATE TABLE `log` (
@@ -46,24 +107,27 @@ CREATE TABLE `log` (
   KEY `loglevel` (`loglevel`),
   CONSTRAINT `log_ibfk_2` FOREIGN KEY (`loglevel`) REFERENCES `logLevel` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `log_ibfk_3` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Log Tabelle';
 
 
 DROP TABLE IF EXISTS `logLevel`;
 CREATE TABLE `logLevel` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
   `title` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Meldungsart',
-  `cssClass` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'HexCode der Meldungsfarbe',
+  `color` varchar(6) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'HexCode der Meldungsfarbe',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Querverweistabelle - Loglevel Farben';
 
 TRUNCATE `logLevel`;
-INSERT INTO `logLevel` (`id`, `title`, `cssClass`) VALUES
-(1,	'User-/Systemaktion',	'log-user'),
-(2,	'Eintrag hinzugefügt',	'log-addEntry'),
-(3,	'Eintrag bearbeitet',	'log-editEntry'),
-(4,	'Eintrag gelöscht',	'log-delEntry'),
-(5,	'Einstellungen geändert',	'log-settings');
+INSERT INTO `logLevel` (`id`, `title`, `color`) VALUES
+(1,	'User-/Systemaktion',	'808080'),
+(2,	'Eintrag hinzugefügt',	'7BFF00'),
+(3,	'Eintrag bearbeitet',	'FFAA00'),
+(4,	'Eintrag gelöscht',	'E80000'),
+(5,	'Einstellungen geändert',	'0088FF'),
+(6,	'KFZ hinzugefügt',	'7BFF00'),
+(7,	'KFZ bearbeitet',	'FFAA00'),
+(8,	'KFZ gelöscht',	'E80000');
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -76,14 +140,13 @@ CREATE TABLE `sessions` (
   KEY `hash` (`hash`),
   KEY `lastActivity` (`lastActivity`),
   CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Sitzungstabelle';
 
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
   `email` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Username',
-  `validEmail` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0 = Unbestätigte Email',
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Passworthash',
   `salt` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Passwortsalt',
   `registered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitpunkt der Registrierung',
@@ -91,9 +154,11 @@ CREATE TABLE `users` (
   `active` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Account aktiviert',
   `preventPasswordReset` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Passwort zurücksetzen verhindern',
   `lastPwReset` datetime DEFAULT NULL COMMENT 'Zeitpunkt des letzten Passwort Resets',
+  `validEmail` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0 = Unbestätigte Email',
+  `emailHash` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Hash zum Aktivieren der neuen E-Mail Adresse',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2021-06-08 14:34:54
+-- 2021-06-17 07:38:51

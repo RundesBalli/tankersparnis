@@ -50,7 +50,7 @@ $content.= "<form action='/addEntry' method='post'>";
   }
   $content.= "<section>";
   $content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-3'><label for='name'>Fahrzeug</label></div>".
+  "<div class='col-s-12 col-l-3'><label for='car'>Fahrzeug</label></div>".
   "<div class='col-s-12 col-l-9'>".$cars."</div>".
   "</div>";
   $content.= "<div class='row'>".

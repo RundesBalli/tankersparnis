@@ -81,6 +81,44 @@ if(mysqli_num_rows($result) > 0) {
   "</div>";
 }
 $content.= "<div class='spacer-m'></div>";
+
+/**
+ * Einträge
+ */
+$result = mysqli_query($dbl, "SELECT `entries`.*, `cars`.`name` FROM `entries` JOIN `cars` ON `cars`.`id`=`entries`.`carId` WHERE `entries`.`userId`=".$userId." ORDER BY `entries`.`timestamp` DESC LIMIT 15") OR DIE(MYSQLI_ERROR($dbl));
+if(mysqli_num_rows($result) > 0) {
+  $content.= "<hr>";
+  $content.= "<h2><span class='fas icon'>&#xf0cb;</span>Einträge</h2>";
+  $content.= "<div class='row breakWord small'>".
+    "<div class='col-s-12 col-l-0 bold highlight'>Hinweis!</div>".
+    "<div class='col-s-12 col-l-0'>Für eine detailliertere Ansicht musst du diese Seite von einem Computer aus aufrufen!</div>".
+    "<div class='col-s-12 col-l-0 spacer-m'></div>".
   "</div>";
+  $content.= "<section>";
+  $content.= "<div class='row bold breakWord small'>".
+    "<div class='col-s-6 col-l-2'>KFZ</div>".
+    "<div class='col-s-6 col-l-2'>Zeitpunkt</div>".
+    "<div class='col-s-0 col-l-1'>Getankt (l/kg)</div>".
+    "<div class='col-s-0 col-l-1'>Reichweite</div>".
+    "<div class='col-s-0 col-l-1'>Verbrauch auf 100km (l/kg)</div>".
+    "<div class='col-s-0 col-l-1'>Preis</div>".
+    "<div class='col-s-0 col-l-1'>Preis/100km</div>".
+    "<div class='col-s-6 col-l-1'>eingespart</div>".
+    "<div class='col-s-6 col-l-2'>Aktion</div>".
+  "</div>";
+  while($row = mysqli_fetch_array($result)) {
+    $content.= "<div class='row hover breakWord small'>".
+      "<div class='col-s-6 col-l-2'>".output($row['name'])."</div>".
+      "<div class='col-s-6 col-l-2'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
+      "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
+      "<div class='col-s-0 col-l-1'>".number_format($row['range'], 1, ",", ".")."km</div>".
+      "<div class='col-s-0 col-l-1'>".number_format(($row['fuelQuantity']/$row['range']*100), 1, ",", ".")."</div>".
+      "<div class='col-s-0 col-l-1'>".number_format($row['cost'], 2, ",", ".")."€</div>".
+      "<div class='col-s-0 col-l-1'>".number_format(($row['cost']/$row['range']*100), 2, ",", ".")."€</div>".
+      "<div class='col-s-6 col-l-1 highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€</div>".
+      "<div class='col-s-6 col-l-2'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."'><span class='far icon'>&#xf2ed;</span></a></div>".
+    "</div>";
+  }
   $content.= "</section>";
+}
 ?>

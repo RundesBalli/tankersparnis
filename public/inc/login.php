@@ -12,10 +12,6 @@ $title = "Login";
 if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   $content.= "<h1><span class='fas icon'>&#xf2f6;</span>Login</h1>";
   /**
-   * Cookiewarnung
-   */
-  $content.= "<div class='infobox'>Ab diesem Punkt werden technisch notwendige Cookies verwendet! Mit dem Fortfahren stimmst du dem zu!</div>";
-  /**
    * Loginformular
    */
   $tabindex = 1;

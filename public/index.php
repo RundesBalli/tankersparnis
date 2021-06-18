@@ -39,6 +39,7 @@ $pageArray = array(
   'imprint'        => 'imprint.php',
   'info'           => 'info.php',
   'privacy'        => 'privacy.php',
+  'changeStyle'    => 'changeStyle.php',
 
   /* Userseiten */
   'register'       => 'register.php',
@@ -73,6 +74,22 @@ if(isset($pageArray[$getp])) {
 }
 
 /**
+ * Stil Auswahl
+ */
+if(empty($style) OR ($style != "dark" AND $style != "light")) {
+  if(empty($_COOKIE[$styleName])) {
+    $style = $defaultStyle;
+  } elseif($_COOKIE[$styleName] == "dark") {
+    $style = "dark";
+  } elseif($_COOKIE[$styleName] == "light") {
+    $style = "light";
+  } else {
+    $style = $defaultStyle;
+    setcookie($styleName, $defaultStyle, time()+(6*7*86400), NULL, NULL, TRUE, TRUE);
+  }
+}
+
+/**
  * Navigation
  * Hinweis: das Toggle-Element ist im Template enthalten.
  */
@@ -98,13 +115,14 @@ $footer.= "<a href='/privacy'".($getp == "privacy" ? $a : NULL)."><span class='f
 $footer.= "<a href='https://github.com/RundesBalli/tankersparnis.net' target='_blank' rel='noopener'><span class='fab icon'>&#xf09b;</span>GitHub</a>";
 $footer.= "<a href='https://RundesBalli.com/' target='_blank' rel='noopener'>🎱 RundesBalli</a>";
 $footer.= "<a href='https://creativecommons.tankerkoenig.de/' target='_blank' rel='noopener'><span class='fas icon'>&#xf52f;</span>Tankerkönig-API</a>";
+$footer.= "<a href='/changeStyle'><span class='fas icon'>&#xf042;</span>Stil wechseln</a>";
 
 /**
  * Templateeinbindung und Einsetzen der Variablen
  */
 $templatefile = __DIR__.DIRECTORY_SEPARATOR."src".DIRECTORY_SEPARATOR."template.tpl";
 $fp = fopen($templatefile, "r");
-$output = preg_replace(array("/{TITLE}/im", "/{NAV}/im", "/{FOOTER}/im", "/{CONTENT}/im"), array((empty($title) ? "" : " - ".$title), $nav, $footer, $content), fread($fp, filesize($templatefile)));
+$output = preg_replace(array("/{TITLE}/im", "/{STYLE}/im", "/{NAV}/im", "/{FOOTER}/im", "/{CONTENT}/im"), array((empty($title) ? "" : " - ".$title), $style, $nav, $footer, $content), fread($fp, filesize($templatefile)));
 fclose($fp);
 
 /**

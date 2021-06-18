@@ -27,10 +27,18 @@ mysqli_set_charset($dbl, "utf8") OR DIE(MYSQLI_ERROR($dbl));
 date_default_timezone_set("Europe/Berlin");
 
 /**
- * Login Cookie
- * @var string Name des Cookies
+ * Standardstil
+ * @var string Darkmode oder Lightmode ('dark' / 'light')
+ */
+$defaultStyle = "dark";
+
+/**
+ * Cookie Bezeichnungen
+ * @var string Name des Login-Cookies
+ * @var string Name des Stil-Cookies
  */
 $cookieName = "";
+$styleName = "";
 
 /**
  * Tankerkönig API-Key

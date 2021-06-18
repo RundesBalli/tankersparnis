@@ -12,7 +12,7 @@ https://github.com/RundesBalli/tankersparnis.net
     <meta name="keywords" content="Tankersparnis, Berechnen, Rechner, Ersparnis, Tanken, Sprit, Gas, Gasoline, Autogas"/>
     <meta name="author" content="RundesBalli"/>
     <meta name="revisit-after" content="3 days"/>
-    <link href="/src/dark.css" rel="stylesheet">
+    <link href="/src/{STYLE}.css" rel="stylesheet">
     <link href="/src/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="/src/favicon.png" type="image/png">
     <meta name="theme-color" content="#ededed">
@@ -21,7 +21,7 @@ https://github.com/RundesBalli/tankersparnis.net
   <body>
     <div class="wrapper">
       <div class="header">
-        <a href="/"><img src="/src/header-dark.png" alt="Header"></a>
+        <a href="/"><img src="/src/header-{STYLE}.png" alt="Header"></a>
       </div>
       <div class="navbar" id="navbar">
         <a class="icon" id="toggle">&#x2630;</a>{NAV}

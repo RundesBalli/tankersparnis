@@ -119,7 +119,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   }
 } else {
   /**
-   * Wenn bereits ein Cookie gesetzt ist wird auf die Übersichts-Seite weitergeleitet.
+   * Wenn bereits ein Cookie gesetzt ist wird auf die Eintragsseite weitergeleitet.
    */
   header("Location: /entry");
   die();

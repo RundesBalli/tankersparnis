@@ -57,7 +57,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
         if($row['validEmail'] == 1) {
           /**
            * Wenn das Passwort verifiziert werden konnte und der Account aktiv und die E-Mail Adresse bestätigt ist,
-           * wird eine Sitzung generiert und im Cookie gespeichert. Danach erfolg eine Weiterleitung zur Übersichts-Seite.
+           * wird eine Sitzung generiert und im Cookie gespeichert. Danach erfolg eine Weiterleitung zur Eintragsseite.
            */
           $sessionhash = hash('sha256', random_bytes(4096));
           mysqli_query($dbl, "INSERT INTO `sessions` (`userId`, `hash`) VALUES ('".$row['id']."', '".$sessionhash."')") OR DIE(MYSQLI_ERROR($dbl));
@@ -111,7 +111,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   }
 } else {
   /**
-   * Wenn bereits ein Cookie gesetzt ist wird auf die Übersichts-Seite weitergeleitet.
+   * Wenn bereits ein Cookie gesetzt ist wird auf die Eintragsseite weitergeleitet.
    */
   header("Location: /entry");
   die();

@@ -13,7 +13,7 @@ require_once('cookiecheck.php');
 /**
  * Titel und Überschrift
  */
-$title = "Übersicht";
+$title = "Eintrag hinzufügen";
 $content.= "<h1><span class='far icon'>&#xf044;</span>Eintrag hinzufügen</h1>";
 
 $tabindex = 1;

@@ -19,7 +19,7 @@ $content.= "<h1><span class='far icon'>&#xf2ed;</span>Eintrag löschen</h1>";
 if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
   /**
    * Wenn der id Parameter leer ist oder gar nicht gesendet wurde, wird der Nutzer
-   * auf die Übersichtsseite zurückgeleitet.
+   * auf die Eintragsseite zurückgeleitet.
    */
   header("Location: /entry");
   die();

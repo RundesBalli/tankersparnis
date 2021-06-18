@@ -59,5 +59,13 @@ if(empty($_POST['submit'])) {
     setcookie($styleName, ($_COOKIE[$styleName] == "dark" ? "light" : "dark"), time()+(6*7*86400), NULL, NULL, TRUE, TRUE);
   }
   $content.= "<div class='successbox'>Stil wurde geändert!</div>";
+  $tabindex = 1;
+  $content.= "<form action='/changeStyle' method='post'>";
+  $content.= "<section>";
+  $content.= "<div class='row'>".
+  "<div class='col-s-12 col-l-12'><input type='submit' id='submit' name='submit' value='wieder in den ".($style == "dark" ? $styleNames['light'] : $styleNames['dark'])." wechseln' tabindex='".$tabindex++."'></div>".
+  "</div>";
+  $content.= "</section>";
+  $content.= "</form>";
 }
 ?>

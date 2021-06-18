@@ -94,6 +94,10 @@ if(mysqli_num_rows($result) > 0) {
     "<div class='col-s-12 col-l-0'>Für eine detailliertere Ansicht musst du diese Seite von einem Computer aus aufrufen!</div>".
     "<div class='col-s-12 col-l-0 spacer-m'></div>".
   "</div>";
+  $content.= "<div class='row'>".
+    "<div class='col-s-12 col-l-12'>Oder schau dir deine <a href='/savings'>ausführlichen Statistiken</a> an.</div>".
+  "</div>";
+  $content.= "<div class='spacer-m'></div>";
   $content.= "<section>";
   $content.= "<div class='row bold breakWord small'>".
     "<div class='col-s-6 col-l-2'>KFZ</div>".

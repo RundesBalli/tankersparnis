@@ -95,11 +95,12 @@ if(empty($style) OR ($style != "dark" AND $style != "light")) {
  */
 $a = " class='active'";
 if(!empty($_COOKIE[$cookieName]) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOKIE[$cookieName]), $match) === 1) {
-  $nav.= "<a href='/cars'".($getp == "cars" ? $a : NULL)."><span class='fas icon'>&#xf1b9;</span>KFZs</a>";
   $nav = "<a href='/entry'".($getp == "entry" ? $a : NULL)."><span class='far icon'>&#xf044;</span>Eintrag hinzufügen</a>";
   $nav.= "<a href='/savings'".($getp == "savings" ? $a : NULL)."><span class='fas icon'>&#xf153;</span>Ersparnisse</a>";
+  $nav.= "<a href='/cars'".($getp == "cars" ? $a : NULL)."><span class='fas icon'>&#xf1b9;</span>KFZs</a>";
   $nav.= "<a href='/settings'".($getp == "settings" ? $a : NULL)."><span class='fas icon'>&#xf013;</span>Einstellungen</a>";
   $nav.= "<a href='/logout'".($getp == "logout" ? $a : NULL)."><span class='fas icon'>&#xf2f5;</span>Logout</a>";
+  $nav.= "<br><span class='small'>Eingeloggt als: <span class='bold'>".output($email)."</span></span>";
 } else {
   $nav = "<a href='/'".($getp == "start" ? $a : NULL)."><span class='fas icon'>&#xf015;</span>Startseite</a>";
   $nav.= "<a href='/login'".($getp == "login" ? $a : NULL)."><span class='fas icon'>&#xf2f6;</span>Login</a>";
@@ -115,7 +116,7 @@ $footer.= "<a href='/privacy'".($getp == "privacy" ? $a : NULL)."><span class='f
 $footer.= "<a href='https://github.com/RundesBalli/tankersparnis.net' target='_blank' rel='noopener'><span class='fab icon'>&#xf09b;</span>GitHub</a>";
 $footer.= "<a href='https://RundesBalli.com/' target='_blank' rel='noopener'>🎱 RundesBalli</a>";
 $footer.= "<a href='https://creativecommons.tankerkoenig.de/' target='_blank' rel='noopener'><span class='fas icon'>&#xf52f;</span>Tankerkönig-API</a>";
-$footer.= "<a href='/changeStyle'><span class='fas icon'>&#xf042;</span>Stil wechseln</a>";
+$footer.= "<a href='/changeStyle'".($getp == "changeStyle" ? $a : NULL)."><span class='fas icon'>&#xf042;</span>Stil wechseln</a>";
 
 /**
  * Templateeinbindung und Einsetzen der Variablen

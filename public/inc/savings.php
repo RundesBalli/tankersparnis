@@ -42,54 +42,65 @@ if($_GET['view'] == 'total') {
   $content.= "<h2>Gesamtansicht</h2>";
   $carResult = mysqli_query($dbl, "SELECT `cars`.`id`, `cars`.`name` FROM `cars` WHERE `userId`=".$userId." ORDER BY `cars`.`id` ASC") OR DIE(MYSQLI_ERROR($dbl));
   if(mysqli_num_rows($carResult) == 0) {
+    /**
+     * Es wurden noch keine KFZs angelegt
+     */
     http_response_code(404);
     $content.= "<div class='infobox'>Du hast noch keine KFZs angelegt.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
     "</div>";
-  }
-  while($carRow = mysqli_fetch_array($carResult)) {
-    $content.= "<h3>".output($carRow['name'])."</h3>";
-    $result = mysqli_query($dbl, "SELECT `entries`.* FROM `entries` WHERE `entries`.`userId`=".$userId." AND `carId`=".$carRow['id']." ORDER BY `entries`.`timestamp` DESC") OR DIE(MYSQLI_ERROR($dbl));
-    $content.= "<section>";
-    $content.= "<div class='row bold breakWord small'>".
-      "<div class='col-s-12 col-l-3'>Zeitpunkt</div>".
-      "<div class='col-s-0 col-l-1'>Getankt (l/kg)</div>".
-      "<div class='col-s-0 col-l-1'>Reichweite</div>".
-      "<div class='col-s-0 col-l-1'>Verbrauch auf 100km (l/kg)</div>".
-      "<div class='col-s-0 col-l-1'>Preis</div>".
-      "<div class='col-s-0 col-l-1'>Preis/100km</div>".
-      "<div class='col-s-6 col-l-1'>eingespart</div>".
-      "<div class='col-s-6 col-l-3'>Aktion</div>".
-    "</div>";
-    $totalFuel = 0;
-    $totalRange = 0;
-    $totalCost = 0;
-    $totalSavings = 0;
-    while($row = mysqli_fetch_array($result)) {
-      $content.= "<div class='row hover breakWord small'>".
-        "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
-        "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
-        "<div class='col-s-0 col-l-1'>".number_format($row['range'], 1, ",", ".")."km</div>".
-        "<div class='col-s-0 col-l-1'>".number_format(($row['fuelQuantity']/$row['range']*100), 1, ",", ".")."</div>".
-        "<div class='col-s-0 col-l-1'>".number_format($row['cost'], 2, ",", ".")."€</div>".
-        "<div class='col-s-0 col-l-1'>".number_format(($row['cost']/$row['range']*100), 2, ",", ".")."€</div>".
-        "<div class='col-s-6 col-l-1 highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€</div>".
-        "<div class='col-s-6 col-l-3'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."'><span class='far icon'>&#xf2ed;</span></a></div>".
-      "</div>";
-      $totalFuel+= $row['fuelQuantity'];
-      $totalRange+= $row['range'];
-      $totalCost+= $row['cost'];
-      $totalSavings+= $row['moneySaved'];
+  } else {
+    /**
+     * Es existieren KFZs
+     */
+    while($carRow = mysqli_fetch_array($carResult)) {
+      $content.= "<h3>".output($carRow['name'])."</h3>";
+      $result = mysqli_query($dbl, "SELECT `entries`.* FROM `entries` WHERE `entries`.`userId`=".$userId." AND `carId`=".$carRow['id']." ORDER BY `entries`.`timestamp` DESC") OR DIE(MYSQLI_ERROR($dbl));
+      if(mysqli_num_rows($result) == 0) {
+        $content.= "<div class='infobox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
+      } else {
+        $content.= "<section>";
+        $content.= "<div class='row bold breakWord small'>".
+          "<div class='col-s-12 col-l-3'>Zeitpunkt</div>".
+          "<div class='col-s-0 col-l-1'>Getankt (l/kg)</div>".
+          "<div class='col-s-0 col-l-1'>Reichweite</div>".
+          "<div class='col-s-0 col-l-1'>Verbrauch auf 100km (l/kg)</div>".
+          "<div class='col-s-0 col-l-1'>Preis</div>".
+          "<div class='col-s-0 col-l-1'>Preis/100km</div>".
+          "<div class='col-s-6 col-l-1'>eingespart</div>".
+          "<div class='col-s-6 col-l-3'>Aktion</div>".
+        "</div>";
+        $totalFuel = 0;
+        $totalRange = 0;
+        $totalCost = 0;
+        $totalSavings = 0;
+        while($row = mysqli_fetch_array($result)) {
+          $content.= "<div class='row hover breakWord small'>".
+            "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
+            "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
+            "<div class='col-s-0 col-l-1'>".number_format($row['range'], 1, ",", ".")."km</div>".
+            "<div class='col-s-0 col-l-1'>".number_format(($row['fuelQuantity']/$row['range']*100), 1, ",", ".")."</div>".
+            "<div class='col-s-0 col-l-1'>".number_format($row['cost'], 2, ",", ".")."€</div>".
+            "<div class='col-s-0 col-l-1'>".number_format(($row['cost']/$row['range']*100), 2, ",", ".")."€</div>".
+            "<div class='col-s-6 col-l-1 highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€</div>".
+            "<div class='col-s-6 col-l-3'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."'><span class='far icon'>&#xf2ed;</span></a></div>".
+          "</div>";
+          $totalFuel+= $row['fuelQuantity'];
+          $totalRange+= $row['range'];
+          $totalCost+= $row['cost'];
+          $totalSavings+= $row['moneySaved'];
+        }
+        $content.= "<div class='row hover breakWord small bold italic'>".
+          "<div class='col-s-0 col-l-3'>Gesamtwerte:</div>".
+          "<div class='col-s-12 col-l-0'>Gesamtersparnis:</div>".
+          "<div class='col-s-0 col-l-1'>".number_format($totalFuel, 2, ",", ".")."</div>".
+          "<div class='col-s-0 col-l-2'>".number_format($totalRange, 1, ",", ".")."km</div>".
+          "<div class='col-s-0 col-l-2'>".number_format($totalCost, 2, ",", ".")."€</div>".
+          "<div class='col-s-12 col-l-4 highlightPositive bold'>".number_format($totalSavings, 2, ",", ".")."€</div>".
+        "</div>";
+        $content.= "</section>";
+      }
     }
-    $content.= "<div class='row hover breakWord small bold italic'>".
-      "<div class='col-s-0 col-l-3'>Gesamtwerte:</div>".
-      "<div class='col-s-12 col-l-0'>Gesamtersparnis:</div>".
-      "<div class='col-s-0 col-l-1'>".number_format($totalFuel, 2, ",", ".")."</div>".
-      "<div class='col-s-0 col-l-2'>".number_format($totalRange, 1, ",", ".")."km</div>".
-      "<div class='col-s-0 col-l-2'>".number_format($totalCost, 2, ",", ".")."€</div>".
-      "<div class='col-s-12 col-l-4 highlightPositive bold'>".number_format($totalSavings, 2, ",", ".")."€</div>".
-    "</div>";
-    $content.= "</section>";
   }
 }

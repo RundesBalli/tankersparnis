@@ -96,7 +96,7 @@ $content.= "<hr>";
 /**
  * Log
  */
-$content.= "<h2>Log</h2>";
+$content.= "<h2>Log, letzte 25 Einträge</h2>";
 $content.= "<section>";
   $content.= "<div class='row bold breakWord' style='border-left: 6px solid #808080;'>".
     "<div class='col-s-12 col-l-3'>Zeitpunkt</div>".

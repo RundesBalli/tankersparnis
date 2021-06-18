@@ -104,6 +104,8 @@ if(empty($_POST['action'])) {
       $emailHash = hash('sha256', random_bytes(4096));
       mysqli_query($dbl, "UPDATE `users` SET `email`='".$emailNew."', `validEmail`=0, `emailHash`='".$emailHash."' WHERE `id`='".$userId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       userLog($userId, 5, "E-Mail Adresse geändert. Alt: ".defuse($email));
+      mysqli_query($dbl, "DELETE FROM `sessions` WHERE `userId`=".$userId) OR DIE(MYSQLI_ERROR($dbl));
+      userLog($userId, 1, "Alle Sitzungen beendet.");
       $content.= "<div class='successbox'>Deine E-Mail Adresse wurde geändert. Du musst dich jetzt neu einloggen.</div>";
       $content.= "<div class='row'>".
         "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Zum Login</a></div>".

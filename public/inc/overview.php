@@ -88,7 +88,7 @@ $content.= "<div class='spacer-m'></div>";
 $result = mysqli_query($dbl, "SELECT `entries`.*, `cars`.`name` FROM `entries` JOIN `cars` ON `cars`.`id`=`entries`.`carId` WHERE `entries`.`userId`=".$userId." ORDER BY `entries`.`timestamp` DESC LIMIT 15") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) > 0) {
   $content.= "<hr>";
-  $content.= "<h2><span class='fas icon'>&#xf0cb;</span>Einträge</h2>";
+  $content.= "<h2><span class='fas icon'>&#xf0cb;</span>Die letzten 15 Einträge</h2>";
   $content.= "<div class='row breakWord small'>".
     "<div class='col-s-12 col-l-0 bold highlight'>Hinweis!</div>".
     "<div class='col-s-12 col-l-0'>Für eine detailliertere Ansicht musst du diese Seite von einem Computer aus aufrufen!</div>".

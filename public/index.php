@@ -116,7 +116,7 @@ $footer.= "<a href='/privacy'".($getp == "privacy" ? $a : NULL)."><span class='f
 $footer.= "<a href='https://github.com/RundesBalli/tankersparnis.net' target='_blank' rel='noopener'><span class='fab icon'>&#xf09b;</span>GitHub</a>";
 $footer.= "<a href='https://RundesBalli.com/' target='_blank' rel='noopener'>🎱 RundesBalli</a>";
 $footer.= "<a href='https://creativecommons.tankerkoenig.de/' target='_blank' rel='noopener'><span class='fas icon'>&#xf52f;</span>Tankerkönig-API</a>";
-$footer.= "<a href='/changeStyle'".($getp == "changeStyle" ? $a : NULL)."><span class='fas icon'>&#xf042;</span>Stil wechseln</a>";
+$footer.= "<a href='/changeStyle?back=".$getp."'><span class='fas icon'>&#xf042;</span>Stil wechseln</a>";
 
 /**
  * Templateeinbindung und Einsetzen der Variablen

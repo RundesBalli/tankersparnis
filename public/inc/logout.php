@@ -31,6 +31,7 @@ if(!isset($_POST['submit'])) {
        */
       $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'>Möchtest du dich ausloggen?</div>".
+      "<div class='col-s-12 col-l-12'><input type='radio' id='killAll-1' name='killAll' value='1'><label for='killAll-1'>Alle Sitzungen, auf allen Geräten beenden</label><br><input type='radio' id='killAll-0' name='killAll' value='0' checked><label for='killAll-0'>Nur diese Sitzung beenden</label></div>".
       "<div class='col-s-12 col-l-12'><input type='submit' name='submit' value='Ja'></div>".
       "</div>";
     $content.= "</section>";
@@ -55,7 +56,12 @@ if(!isset($_POST['submit'])) {
     /**
      * Löschen der Sitzung.
      */
-    mysqli_query($dbl, "DELETE FROM `sessions` WHERE `hash`='".$match[0]."'") OR DIE(MYSQLI_ERROR($dbl));
+    if($_POST['killAll'] == 1) {
+      $where = "`userId`=".$userId;
+    } else {
+      $where = "`hash`='".$sessionhash."'";
+    }
+    mysqli_query($dbl, "DELETE FROM `sessions` WHERE ".$where) OR DIE(MYSQLI_ERROR($dbl));
     userLog($userId, 1, "Logout");
     /**
      * Entfernen des Cookies und Umleitung zur Loginseite.

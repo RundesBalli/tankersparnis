@@ -96,7 +96,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
          */
         mysqli_query($dbl, "DELETE FROM `entries` WHERE `userId`=".$userId." AND `id`=".$id." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
         if(mysqli_affected_rows($dbl) == 1) {
-          userLog($userId, 8, "Eintrag gelöscht: `".number_format($row['moneySaved'], 2, ",", ".")."€`, `".date("d.m.Y, H:i", strtotime($row['timestamp']))."`");
+          userLog($userId, 4, "Eintrag gelöscht: `".number_format($row['moneySaved'], 2, ",", ".")."€`, `".date("d.m.Y, H:i", strtotime($row['timestamp']))."`");
           $content.= "<div class='successbox'>Der Eintrag wurde erfolgreich gelöscht.</div>";
           $content.= "<div class='row'>".
             "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Zurück zur Übersicht</a></div>".

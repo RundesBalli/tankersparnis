@@ -48,6 +48,7 @@ $pageArray = array(
   'logout'         => 'logout.php',
   'overview'       => 'overview.php',
   'addEntry'       => 'addEntry.php',
+  'deleteEntry'    => 'deleteEntry.php',
   'cars'           => 'cars.php',
   'addCar'         => 'addCar.php',
   'editCar'        => 'editCar.php',

@@ -107,6 +107,7 @@ if($_GET['view'] == 'total') {
   /**
    * Monatswerte
    */
+  $content.= "<h2>Monatswerte</h2>";
   $carResult = mysqli_query($dbl, "SELECT `cars`.`id`, `cars`.`name` FROM `cars` WHERE `userId`=".$userId." ORDER BY `cars`.`id` ASC") OR DIE(MYSQLI_ERROR($dbl));
   if(mysqli_num_rows($carResult) == 0) {
     /**

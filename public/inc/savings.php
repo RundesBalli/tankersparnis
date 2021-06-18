@@ -25,10 +25,10 @@ $content.= "<div class='row breakWord small'>".
 /**
  * Anzeigevarianten
  */
-$content.= "<h2>Anzeigevarianten</h2>";
+$content.= "<h2>Anzeigevarianten, unterteilt nach KFZs</h2>";
 $content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-12'><a href='/savings?view=total'>Gesamtansicht, unterteilt nach KFZs</a></div>".
-  "<div class='col-s-12 col-l-12'><a href='/savings?view=monthly'>Monatswerte, unterteilt nach KFZs</a></div>".
+  "<div class='col-s-12 col-l-12'><a href='/savings?view=total'>Gesamtansicht</a></div>".
+  "<div class='col-s-12 col-l-12'><a href='/savings?view=monthly'>Monatswerte</a></div>".
   "<div class='col-s-12 col-l-12'><a href='/savings?view=maxSaved'>Am meisten gespart (Betrag)</a></div>".
   "<div class='col-s-12 col-l-12'><a href='/savings?view=minUsed'>Am wenigsten verbraucht (100km)</a></div>".
   "<div class='col-s-12 col-l-12 small'>Vorschläge für weitere Anzeigevarianten gerne per <a href='mailto:info@tankersparnis.net'>Mail</a> oder <a href='https://github.com/RundesBalli/tankersparnis/issues' target='_blank' rel='noopener'>Issue</a>.</div>".

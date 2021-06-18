@@ -220,6 +220,58 @@ if(!empty($_GET['view'])) {
         }
       }
     }
+  } elseif($_GET['view'] == 'minUsed') {
+    /**
+     * Am wenigsten verbraucht (100km), unterteilt nach KFZs
+     */
+    $content.= "<h2>Am wenigsten verbraucht (100km)</h2>";
+    $carResult = mysqli_query($dbl, "SELECT `cars`.`id`, `cars`.`name` FROM `cars` WHERE `userId`=".$userId." ORDER BY `cars`.`id` ASC") OR DIE(MYSQLI_ERROR($dbl));
+    if(mysqli_num_rows($carResult) == 0) {
+      /**
+       * Es wurden noch keine KFZs angelegt
+       */
+      http_response_code(404);
+      $content.= "<div class='infobox'>Du hast noch keine KFZs angelegt.</div>";
+      $content.= "<div class='row'>".
+        "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
+      "</div>";
+    } else {
+      /**
+       * Es existieren KFZs
+       */
+      while($carRow = mysqli_fetch_array($carResult)) {
+        $content.= "<h3>".output($carRow['name'])."</h3>";
+        $result = mysqli_query($dbl, "SELECT `entries`.*, ROUND((`fuelQuantity`/`range`*100), 1) AS `consumption` FROM `entries` WHERE `userId`=".$userId." AND `carId`=".$carRow['id']." ORDER BY `consumption` ASC LIMIT 10") OR DIE(MYSQLI_ERROR($dbl));
+        if(mysqli_num_rows($result) == 0) {
+          $content.= "<div class='infobox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
+        } else {
+          $content.= "<section>";
+          $content.= "<div class='row bold breakWord small'>".
+            "<div class='col-s-12 col-l-3'>Zeitpunkt</div>".
+            "<div class='col-s-0 col-l-1'>Getankt (l/kg)</div>".
+            "<div class='col-s-0 col-l-1'>Reichweite</div>".
+            "<div class='col-s-0 col-l-1'>Verbrauch auf 100km (l/kg)</div>".
+            "<div class='col-s-0 col-l-1'>Preis</div>".
+            "<div class='col-s-0 col-l-1'>Preis/100km</div>".
+            "<div class='col-s-6 col-l-1'>eingespart</div>".
+            "<div class='col-s-6 col-l-3'>Aktion</div>".
+          "</div>";
+          while($row = mysqli_fetch_array($result)) {
+            $content.= "<div class='row hover breakWord small'>".
+              "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
+              "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
+              "<div class='col-s-0 col-l-1'>".number_format($row['range'], 1, ",", ".")."km</div>".
+              "<div class='col-s-0 col-l-1'>".number_format(($row['fuelQuantity']/$row['range']*100), 1, ",", ".")."</div>".
+              "<div class='col-s-0 col-l-1'>".number_format($row['cost'], 2, ",", ".")."€</div>".
+              "<div class='col-s-0 col-l-1'>".number_format(($row['cost']/$row['range']*100), 2, ",", ".")."€</div>".
+              "<div class='col-s-6 col-l-1 highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€</div>".
+              "<div class='col-s-6 col-l-3'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."'><span class='far icon'>&#xf2ed;</span></a></div>".
+            "</div>";
+          }
+          $content.= "</section>";
+        }
+      }
+    }
   } else {
     http_response_code(404);
     $content.= "<h2>Nicht gefunden</h2>";

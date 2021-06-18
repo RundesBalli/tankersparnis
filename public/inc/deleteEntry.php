@@ -21,7 +21,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
    * Wenn der id Parameter leer ist oder gar nicht gesendet wurde, wird der Nutzer
    * auf die Übersichtsseite zurückgeleitet.
    */
-  header("Location: /overview");
+  header("Location: /entry");
   die();
 } else {
   /**
@@ -36,7 +36,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
     http_response_code(403);
     $content.= "<div class='warnbox'>Es existiert kein Eintrag mit dieser ID oder er ist nicht deinem Nutzerkonto zugewiesen.</div>";
     $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Zurück zur Übersicht</a></div>".
+      "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></div>".
     "</div>";
   } else {
     /**
@@ -66,7 +66,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
       $content.= "</form>";
       $content.= "<div class='spacer-m'></div>";
       $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Nein, nicht löschen</a></div>".
+      "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Nein, nicht löschen</a></div>".
       "</div>";
     } else {
       /**
@@ -99,13 +99,13 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
           userLog($userId, 4, "Eintrag gelöscht: `".number_format($row['moneySaved'], 2, ",", ".")."€`, `".date("d.m.Y, H:i", strtotime($row['timestamp']))."`");
           $content.= "<div class='successbox'>Der Eintrag wurde erfolgreich gelöscht.</div>";
           $content.= "<div class='row'>".
-            "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Zurück zur Übersicht</a></div>".
+            "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></div>".
           "</div>";
         } else {
           http_response_code(403);
           $content.= "<div class='warnbox'>Das Fahrzeug konnte nicht gelöscht werden. Bitte wende dich an den <a href='/imprint'>Plattformbetreiber</a>.</div>";
           $content.= "<div class='row'>".
-            "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Erneut versuchen</a></div>".
+            "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</a></div>".
           "</div>";
         }
       }

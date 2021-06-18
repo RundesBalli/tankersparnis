@@ -1,8 +1,8 @@
 <?php
 /**
- * overview.php
+ * entry.php
  * 
- * Übersichtsseite
+ * Eintrag hinzufügen
  */
 
 /**
@@ -14,21 +14,9 @@ require_once('cookiecheck.php');
  * Titel und Überschrift
  */
 $title = "Übersicht";
-$content.= "<h1><span class='fas icon'>&#xf0cb;</span>Übersicht</h1>";
+$content.= "<h1><span class='far icon'>&#xf044;</span>Eintrag hinzufügen</h1>";
 
-/**
- * Allgemeine Infos
- */
-$content.= "<div class='row'>".
-"<div class='col-x-12 col-s-12 col-m-12 col-l-12 col-xl-12'>Eingeloggt als: <span class='highlight'>".output($email)."</span> - (<a href='/logout'>Ausloggen</a>)</div>".
-"</div>";
-$content.= "<div class='spacer-m'></div>";
-
-/**
- * Eintrag hinzufügen
- */
 $tabindex = 1;
-$content.= "<h2><span class='far icon'>&#xf044;</span>Eintrag hinzufügen</h2>";
 
 $result = mysqli_query($dbl, "SELECT `cars`.*, `fuels`.`name` AS `fuel` FROM `cars` JOIN `fuels` ON `fuels`.`id`=`cars`.`fuel` WHERE `userId`=".$userId." ORDER BY `cars`.`id` ASC") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) > 0) {

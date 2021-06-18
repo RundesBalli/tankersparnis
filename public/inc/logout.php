@@ -37,7 +37,7 @@ if(!isset($_POST['submit'])) {
     $content.= "</section>";
   $content.= "</form>";
   $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Zurück zur Übersicht</a></div>".
+    "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></div>".
   "</div>";
 } else {
   /**
@@ -50,7 +50,7 @@ if(!isset($_POST['submit'])) {
     http_response_code(403);
     $content.= "<div class='warnbox'>Ungültiges Token.</div>";
     $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/overview'>Zurück zur Übersicht</a></div>".
+    "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></div>".
     "</div>";
   } else {
     /**

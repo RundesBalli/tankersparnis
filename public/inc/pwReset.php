@@ -121,7 +121,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   /**
    * Wenn bereits ein Cookie gesetzt ist wird auf die Übersichts-Seite weitergeleitet.
    */
-  header("Location: /overview");
+  header("Location: /entry");
   die();
 }
 

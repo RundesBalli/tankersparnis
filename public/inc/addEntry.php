@@ -23,7 +23,7 @@ if(empty($_POST['token'])) {
   http_response_code(403);
   $content.= "<div class='warnbox'>Es wurde kein Token übergeben.</div>";
   $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Erneut versuchen</div>".
+    "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
   "</div>";
 } elseif($_POST['token'] != $sessionhash) {
   /**
@@ -32,7 +32,7 @@ if(empty($_POST['token'])) {
   http_response_code(403);
   $content.= "<div class='warnbox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
   $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Erneut versuchen</div>".
+    "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
   "</div>";
 } elseif(empty($_POST['car']) OR empty($_POST['fuel']) OR empty($_POST['range']) OR empty($_POST['cost'])) {
   /**
@@ -41,7 +41,7 @@ if(empty($_POST['token'])) {
   http_response_code(403);
   $content.= "<div class='warnbox'>Du musst alle Felder ausfüllen.</div>";
   $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Erneut versuchen</div>".
+    "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
   "</div>";
 } else {
   /**
@@ -53,7 +53,7 @@ if(empty($_POST['token'])) {
     http_response_code(403);
     $content.= "<div class='warnbox'>Das übergebene Fahrzeug ist ungültig.</div>";
     $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Erneut versuchen</div>".
+      "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
     "</div>";
   } else {
     /**
@@ -67,7 +67,7 @@ if(empty($_POST['token'])) {
       http_response_code(403);
       $content.= "<div class='warnbox'>Die Eingaben sind ungültig.</div>";
       $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Erneut versuchen</div>".
+        "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
       "</div>";
     } else {
       /**
@@ -135,7 +135,7 @@ if(empty($_POST['token'])) {
         http_response_code(403);
         $content.= "<div class='warnbox'>Es konnte kein Vergleichspreis ermittelt werden.</div>";
         $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Erneut versuchen</div>".
+          "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
         "</div>";
       } else {
         /**
@@ -149,7 +149,8 @@ if(empty($_POST['token'])) {
         userLog($userId, 2, "Eintrag hinzugefügt. ".number_format($moneySaved, 2, ",", ".")."€ gespart");
         $content.= "<div class='successbox'>Eintrag hinzugefügt. Du hast ".number_format($moneySaved, 2, ",", ".")."€ gespart!</div>";
         $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/overview'><span class='fas icon'>&#xf0cb;</span>Zurück zur Übersicht</div>".
+          "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</div>".
+          "<div class='col-s-12 col-l-12'><a href='/savings'><span class='fas icon'>&#xf153;</span>Ersparnisse ansehen</div>".
         "</div>";
       }
     }

@@ -63,7 +63,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
           mysqli_query($dbl, "INSERT INTO `sessions` (`userId`, `hash`) VALUES ('".$row['id']."', '".$sessionhash."')") OR DIE(MYSQLI_ERROR($dbl));
           setcookie($cookieName, $sessionhash, time()+(6*7*86400), NULL, NULL, TRUE, TRUE);
           userLog($row['id'], 1, "Login");
-          header("Location: /overview");
+          header("Location: /entry");
           die();
         } else {
           /**
@@ -113,7 +113,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
   /**
    * Wenn bereits ein Cookie gesetzt ist wird auf die Übersichts-Seite weitergeleitet.
    */
-  header("Location: /overview");
+  header("Location: /entry");
   die();
 }
 ?>

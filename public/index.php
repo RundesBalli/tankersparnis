@@ -40,14 +40,15 @@ $pageArray = array(
   'info'           => 'info.php',
   'privacy'        => 'privacy.php',
   'changeStyle'    => 'changeStyle.php',
-
-  /* Userseiten */
   'register'       => 'register.php',
   'activate'       => 'activate.php',
-  'login'          => 'login.php',
   'pwReset'        => 'pwReset.php',
+  'confirmEmail'   => 'confirmEmail.php',
+  
+  /* Userseiten */
+  'login'          => 'login.php',
   'logout'         => 'logout.php',
-  'overview'       => 'overview.php',
+  'entry'          => 'entry.php',
   'addEntry'       => 'addEntry.php',
   'deleteEntry'    => 'deleteEntry.php',
   'cars'           => 'cars.php',
@@ -56,7 +57,6 @@ $pageArray = array(
   'deleteCar'      => 'deleteCar.php',
   'settings'       => 'settings.php',
   'changeSettings' => 'changeSettings.php',
-  'confirmEmail'   => 'confirmEmail.php',
   'savings'        => 'savings.php',
 
   /* Fehlerseiten */

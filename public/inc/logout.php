@@ -62,7 +62,7 @@ if(!isset($_POST['submit'])) {
       $where = "`hash`='".$sessionhash."'";
     }
     mysqli_query($dbl, "DELETE FROM `sessions` WHERE ".$where) OR DIE(MYSQLI_ERROR($dbl));
-    userLog($userId, 1, "Logout");
+    userLog($userId, 1, "Logout, ".($_POST['killAll'] == 1 ? "alle Sitzungen" : "Einzelsitzung"));
     /**
      * Entfernen des Cookies und Umleitung zur Loginseite.
      */

@@ -125,7 +125,6 @@ TRUNCATE `logLevel`;
 INSERT INTO `logLevel` (`id`, `title`, `color`) VALUES
 (1,	'User-/Systemaktion',	'808080'),
 (2,	'Eintrag hinzugefügt',	'7BFF00'),
-(3,	'Eintrag bearbeitet',	'FFAA00'),
 (4,	'Eintrag gelöscht',	'E80000'),
 (5,	'Einstellungen geändert',	'0088FF'),
 (6,	'KFZ hinzugefügt',	'7BFF00'),

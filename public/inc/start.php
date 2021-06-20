@@ -30,10 +30,4 @@ $content.= "<div class='row'>".
   "<div class='col-s-12 col-l-12'>tankersparnis.net ist natürlich komplett kostenfrei und kommt ohne Werbung, Premium Funktionen oder versteckte Kosten aus.</div>".
   "<div class='col-s-12 col-l-12'>Deine Daten werden nicht verkauft und die Aussage <span class='italic'>«Wenn es kostenlos ist, bist du die Ware»</span> gilt hier nicht, da es sich um ein reines Hobbyprojekt handelt, welches der Autor auch für sich selbst nutzt.</div>".
 "</div>";
-
-$content.= "<h2>Warum?</h2>";
-$content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-12'>Warum nicht? Wenn du dich für Statistiken interessierst und gerne den Überblick über deinen Kraftstoffverbrauch behalten möchtest, ist diese Seite genau das Richtige für dich!</div>".
-"</div>";
-
 ?>

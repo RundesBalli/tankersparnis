@@ -5,7 +5,7 @@
  * @author    RundesBalli <webspam@rundesballi.com>
  * @copyright 2021 RundesBalli
  * @version   1.0
- * @see       https://github.com/RundesBalli/tankersparnis.net
+ * @see       https://github.com/RundesBalli/tankersparnis
  */
 
 /**
@@ -113,7 +113,7 @@ if(!empty($_COOKIE[$cookieName]) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOK
  */
 $footer = "<a href='/imprint'".($getp == "imprint" ? $a : NULL)."><span class='fas icon'>&#xf21b;</span>Impressum</a>";
 $footer.= "<a href='/privacy'".($getp == "privacy" ? $a : NULL)."><span class='fas icon'>&#xf1c0;</span>Datenschutz</a>";
-$footer.= "<a href='https://github.com/RundesBalli/tankersparnis.net' target='_blank' rel='noopener'><span class='fab icon'>&#xf09b;</span>GitHub</a>";
+$footer.= "<a href='https://github.com/RundesBalli/tankersparnis' target='_blank' rel='noopener'><span class='fab icon'>&#xf09b;</span>GitHub</a>";
 $footer.= "<a href='https://RundesBalli.com/' target='_blank' rel='noopener'>🎱 RundesBalli</a>";
 $footer.= "<a href='https://creativecommons.tankerkoenig.de/' target='_blank' rel='noopener'><span class='fas icon'>&#xf52f;</span>Tankerkönig-API</a>";
 $footer.= "<a href='/changeStyle?back=".$getp."'><span class='fas icon'>&#xf042;</span>Stil wechseln</a>";

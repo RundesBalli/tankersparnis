@@ -1,6 +1,6 @@
 <!--
 https://Tankersparnis.net
-https://github.com/RundesBalli/tankersparnis.net
+https://github.com/RundesBalli/tankersparnis
 -->
 <!DOCTYPE html>
 <html lang="de">

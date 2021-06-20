@@ -47,10 +47,14 @@ CREATE TABLE `entries` (
   `cost` float(7,2) unsigned NOT NULL COMMENT 'Kosten für Tankvorgang',
   `moneySaved` float(7,2) unsigned NOT NULL COMMENT 'Gesparter Betrag gegenüber dem Vergleichskraftstoff',
   `raw` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Rohergebnis der API Abfrage',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `carId` (`carId`),
+  KEY `timestamp` (`timestamp`),
+  CONSTRAINT `entries_ibfk_1` FOREIGN KEY (`carId`) REFERENCES `cars` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `entries_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Ersparnistabelle';
 
-TRUNCATE `entries`;
 
 DROP TABLE IF EXISTS `failedEmails`;
 CREATE TABLE `failedEmails` (
@@ -66,7 +70,6 @@ CREATE TABLE `failedEmails` (
   CONSTRAINT `failedEmails_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Fehlgeschlage E-Mail Sendungen';
 
-TRUNCATE `failedEmails`;
 
 DROP TABLE IF EXISTS `fuels`;
 CREATE TABLE `fuels` (
@@ -161,4 +164,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2021-06-17 07:38:51
+-- 2021-06-20 18:01:31

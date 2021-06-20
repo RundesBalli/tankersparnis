@@ -410,7 +410,7 @@ section .row:not(:last-child) {
   6. Forms
 */
 input[type=text], input[type=password], input[type=number], input[type=email], select, textarea {
-  min-width: 30%;
+  width: 30%;
   border: 1px solid var(--fontColor);
   padding: 8px;
   background-color: transparent;
@@ -428,7 +428,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, in
 }
 
 input[type=submit], input[type=reset], input[type=button] {
-  min-width: 30%;
+  width: 30%;
   cursor: pointer;
   padding: 8px 12px;
   background-color: transparent;

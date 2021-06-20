@@ -4,6 +4,7 @@
  * 
  * Datei zum Nachsenden gescheiterter E-Mails.
  * (bspw. wenn der Mailserver nicht erreichbar war)
+ * Cron: * * * * * /usr/bin/php /path/to/cliScripts/failedEmails.php > /dev/null
  */
 
 /**

@@ -48,6 +48,10 @@ img {
   height: auto;
 }
 
+img.bordered {
+  border: 2px solid var(--fontColor);
+}
+
 a {
   outline: none;
   color: var(--linkColor);
@@ -142,6 +146,10 @@ code {
 
 .italic {
   font-style: italic;
+}
+
+.center {
+  text-align: center;
 }
 
 .highlight {

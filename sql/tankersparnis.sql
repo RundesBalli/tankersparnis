@@ -82,7 +82,8 @@ CREATE TABLE `fuels` (
 TRUNCATE `fuels`;
 INSERT INTO `fuels` (`id`, `name`, `energy`) VALUES
 (1,	'Autogas (LPG)',	6.90),
-(2,	'Flüssigerdgas (LNG)',	13.80);
+(2,	'Flüssigerdgas (LNG)',	13.80),
+(3,	'Erdgas (CNG)',	13.30);
 
 DROP TABLE IF EXISTS `fuelsCompare`;
 CREATE TABLE `fuelsCompare` (
@@ -163,4 +164,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2021-06-20 18:01:31
+-- 2021-06-21 19:50:12

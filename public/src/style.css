@@ -459,3 +459,9 @@ label {
   border: 1px solid var(--hrColor);
   color: var(--hrColor);
 }
+
+@media only screen and (max-width: 600px) {
+  input[type=text], input[type=password], input[type=number], input[type=email], select, textarea, input[type=submit], input[type=reset], input[type=button] {
+    width: 100%;
+  }
+}

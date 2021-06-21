@@ -21,7 +21,7 @@ $content.= "<div class='row'>".
 
 $content.= "<h2>Was ist das hier?</h2>";
 $content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-12'>Wenn du ein Auto mit Autogas (LPG) oder Erdgas (LNG) fährst, dann kannst du auf tankersparnis.net deine Verbräuche eintragen um zu erfahren, wie viel Geld du gegenüber herkömmlichem, fossilem Kraftstoff eingespart hast.</div>".
+  "<div class='col-s-12 col-l-12'>Wenn du ein Auto mit LPG, LNG oder CNG fährst, dann kannst du auf tankersparnis.net deine Verbräuche eintragen um zu erfahren, wie viel Geld du gegenüber herkömmlichem Kraftstoff eingespart hast.</div>".
   "<div class='col-s-12 col-l-12'>Außerdem hast du die Möglichkeit verschiedene Auswertungen anzusehen um z.B. deine monatlichen Verbräuche und Kosten im Auge zu behalten.</div>".
 "</div>";
 

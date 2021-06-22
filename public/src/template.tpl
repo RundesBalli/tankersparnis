@@ -7,7 +7,7 @@ https://github.com/RundesBalli/tankersparnis
   <head>
     <title>Tankersparnis.net{TITLE}</title>
     <meta charset="utf-8">
-    <meta name="description" content="Tankersparnis"/>
+    <meta name="description" content="Tankersparnis.net ist ein Portal zur einfachen Berechnung des gesparten Geldes beim Tanken von Gas gegenüber herkömmlichen Kraftstoffen."/>
     <meta name="robots" content="index, follow"/>
     <meta name="keywords" content="Tankersparnis, Berechnen, Rechner, Ersparnis, Tanken, Sprit, Gas, Gasoline, Autogas"/>
     <meta name="author" content="RundesBalli"/>
@@ -15,7 +15,7 @@ https://github.com/RundesBalli/tankersparnis
     <link href="/src/{STYLE}.css" rel="stylesheet">
     <link href="/src/style.css" rel="stylesheet">
     <link rel="shortcut icon" href="/src/favicon.png" type="image/png">
-    <meta name="theme-color" content="#ededed">
+    <meta name="theme-color" content="#323232">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>

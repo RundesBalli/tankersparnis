@@ -20,7 +20,7 @@ $tabindex = 1;
 
 $result = mysqli_query($dbl, "SELECT `cars`.*, `fuels`.`name` AS `fuel` FROM `cars` JOIN `fuels` ON `fuels`.`id`=`cars`.`fuel` WHERE `userId`=".$userId." ORDER BY `cars`.`id` ASC") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) > 0) {
-  $content.= "<form action='/addEntry' method='post'>";
+  $content.= "<form action='/addEntry' method='post' autocomplete='off'>";
     $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
     if(mysqli_num_rows($result) == 1) {
       $row = mysqli_fetch_array($result);

@@ -50,7 +50,7 @@ $content.= "<hr>";
 $content.= "<h2><span class='far icon'>&#xf0fe;</span>KFZ hinzufügen</h2>";
 
 $tabindex = 1;
-$content.= "<form action='/addCar' method='post'>";
+$content.= "<form action='/addCar' method='post' autocomplete='off'>";
   $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
   $content.= "<section>";
   $content.= "<div class='row'>".

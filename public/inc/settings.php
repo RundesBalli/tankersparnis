@@ -21,7 +21,7 @@ $tabindex = 1;
  * E-Mail Adresse
  */
 $content.= "<h2>E-Mail Adresse</h2>";
-  $content.= "<form action='/changeSettings' method='post'>";
+  $content.= "<form action='/changeSettings' method='post' autocomplete='off'>";
   /**
    * Sitzungstoken
    */
@@ -61,7 +61,7 @@ $content.= "<hr>";
  * Passwort
  */
 $content.= "<h2>Passwort</h2>";
-$content.= "<form action='/changeSettings' method='post'>";
+$content.= "<form action='/changeSettings' method='post' autocomplete='off'>";
   /**
    * Sitzungstoken
    */

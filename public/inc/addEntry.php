@@ -89,35 +89,27 @@ if(empty($_POST['token'])) {
             'sort' => 'price'
           )
         );
-        if($response === FALSE OR empty($response['stations']) OR $response['ok'] != TRUE) {
-          /**
-           * Wenn es keine Tankstellen in der Umgebung gibt, dann wird der bundesweite Medianwert genommen.
-           */
-          $response = apiCall(
-            "https://creativecommons.tankerkoenig.de/api/v4/stats",
-            NULL
-          );
-          if($response !== FALSE) {
-            $response = array_change_key_case($response, CASE_LOWER);
-            $priceCompare = $response[$row['symbol']]['median'];
-            $pricing = $response;
-          } else {
-            $ok = 0;
-          }
-        } else {
-          /**
-           * Es gibt Tankstellen in der Umgebung. Jetzt wird die erste Tankstelle genommen,
-           * da der günstigste Preis im Array als erstes erscheint.
-           */
-          $priceCompare = $response['stations'][0]['price'];
-          /**
-           * Der Rohwert der Tankstelle wird in der Datenbank gespeichert.
-           */
-          $pricing = $response['stations'][0];
-        }
-      } else {
         /**
-         * Geo Auswertung konnte nicht erfolgen. Nehme bundesweiten Durchschnittspreis.
+         * Preisfindung anhand der nächstgelegenen Tankstelle. Sofern keine Tankstelle geöffnet hat oder keine Tankstelle in der Umgebung
+         * den Vergleichskraftstoff führt, wird kein Vergleichspreis gespeichert und der bundesweite Median wird genommen.
+         */
+        if(!empty($response) AND is_array($response['stations']) AND $response['ok'] === TRUE) {
+          foreach($response['stations'] AS $key => $val) {
+            $content.= "<div class='row'>".
+              "<div class='col-s-0 col-l-0'>".var_export($val, TRUE)."</div>".
+            "</div>";
+            if($val['isOpen'] === TRUE AND $val['price'] !== NULL) {
+              $priceCompare = $val['price'];
+              $pricing = $val;
+              break;
+            }
+          }
+        }
+      }
+      
+      if(empty($priceCompare)) {
+        /**
+         * Geo Auswertung wurde nicht übergeben oder konnte nicht erfolgen. Nehme bundesweiten Durchschnittspreis.
          */
         $response = apiCall(
           "https://creativecommons.tankerkoenig.de/api/v4/stats",
@@ -131,6 +123,7 @@ if(empty($_POST['token'])) {
           $ok = 0;
         }
       }
+      
       if($ok == 0) {
         http_response_code(403);
         $content.= "<div class='warnbox'>Es konnte kein Vergleichspreis ermittelt werden.</div>";

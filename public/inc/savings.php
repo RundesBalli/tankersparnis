@@ -136,7 +136,8 @@ if(!empty($_GET['view'])) {
             "<div class='col-s-0 col-l-2'>Getankt (l/kg)</div>".
             "<div class='col-s-0 col-l-2'>Reichweite</div>".
             "<div class='col-s-0 col-l-2'>Preis</div>".
-            "<div class='col-s-6 col-l-2'>eingespart</div>".
+            "<div class='col-s-0 col-l-2'>Preis/100km</div>".
+            "<div class='col-s-6 col-l-1'>eingespart</div>".
           "</div>";
           $totalFuel = 0;
           $totalRange = 0;
@@ -149,7 +150,8 @@ if(!empty($_GET['view'])) {
               "<div class='col-s-0 col-l-2'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
               "<div class='col-s-0 col-l-2'>".number_format($row['range'], 1, ",", ".")."km</div>".
               "<div class='col-s-0 col-l-2'>".number_format($row['cost'], 2, ",", ".")."€</div>".
-              "<div class='col-s-6 col-l-3 highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€</div>".
+              "<div class='col-s-0 col-l-2'>".number_format(($row['cost']/$row['range']*100), 2, ",", ".")."€</div>".
+              "<div class='col-s-6 col-l-1 highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€</div>".
             "</div>";
             $totalFuel+= $row['fuelQuantity'];
             $totalRange+= $row['range'];
@@ -162,7 +164,8 @@ if(!empty($_GET['view'])) {
             "<div class='col-s-0 col-l-2'>".number_format($totalFuel, 2, ",", ".")."</div>".
             "<div class='col-s-0 col-l-2'>".number_format($totalRange, 1, ",", ".")."km</div>".
             "<div class='col-s-0 col-l-2'>".number_format($totalCost, 2, ",", ".")."€</div>".
-            "<div class='col-s-12 col-l-3 highlightPositive bold'>".number_format($totalSavings, 2, ",", ".")."€</div>".
+            "<div class='col-s-0 col-l-2'>".number_format(($totalCost/$totalRange*100), 2, ",", ".")."€</div>".
+            "<div class='col-s-12 col-l-1 highlightPositive bold'>".number_format($totalSavings, 2, ",", ".")."€</div>".
           "</div>";
           $content.= "</section>";
         }

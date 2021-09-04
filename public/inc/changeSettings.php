@@ -141,7 +141,7 @@ if(empty($_POST['action'])) {
         $content.= "<div class='infobox'>Der Mailserver ist gerade ausgelastet. Es kann ein paar Minuten dauern, bis du die Aktivierungsmail bekommst.</div>";
       }
       /**
-       * E-Mail senden (neuer Empfänger)
+       * E-Mail senden (alter Empfänger)
        */
       $mail1 = new PHPMailer();
       $mail1->isSMTP();

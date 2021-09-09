@@ -58,6 +58,7 @@ $pageArray = array(
   'settings'       => 'settings.php',
   'changeSettings' => 'changeSettings.php',
   'savings'        => 'savings.php',
+  'import'         => 'import.php',
 
   /* Fehlerseiten */
   '404'            => '404.php',
@@ -99,6 +100,7 @@ if(!empty($_COOKIE[$cookieName]) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOK
   $nav.= "<a href='/savings'".($getp == "savings" ? $a : NULL)."><span class='fas icon'>&#xf153;</span>Ersparnisse</a>";
   $nav.= "<a href='/cars'".($getp == "cars" ? $a : NULL)."><span class='fas icon'>&#xf1b9;</span>KFZs</a>";
   $nav.= "<a href='/settings'".($getp == "settings" ? $a : NULL)."><span class='fas icon'>&#xf013;</span>Einstellungen</a>";
+  $nav.= "<a href='/import'".($getp == "import" ? $a : NULL)."><span class='fas icon'>&#xf56f;</span>Importieren</a>";
   $nav.= "<a href='/logout'".($getp == "logout" ? $a : NULL)."><span class='fas icon'>&#xf2f5;</span>Logout</a>";
 } else {
   $nav = "<a href='/'".($getp == "start" ? $a : NULL)."><span class='fas icon'>&#xf015;</span>Startseite</a>";

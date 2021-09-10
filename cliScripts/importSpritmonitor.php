@@ -67,8 +67,8 @@ $averages['e5'][2017] = [NULL, 1.3882, 1.3939, 1.3628, 1.3939, 1.3599, 1.3444, 1
 $averages['e5'][2018] = [NULL, 1.3684, 1.3727, 1.3415, 1.3896, 1.4562, 1.4760, 1.4745, 1.4944, 1.5326, 1.5340, 1.5679, 1.4689];
 $averages['e5'][2019] = [NULL, 1.3574, 1.3477, 1.3700, 1.4633, 1.5316, 1.5093, 1.4884, 1.4480, 1.4257, 1.4173, 1.4159, 1.4076];
 $averages['e5'][2020] = [NULL, 1.4257, 1.4076, 1.3435, 1.2194, 1.1971, 1.2668, 1.2933, 1.2822, 1.2794, 1.2891, 1.2417, 1.2654];
-$averages['e5'][2021] = [NULL, 1.3964, 1.4396, 1.5149, 1.5233, 1.5358, 1.5595, 1.6027, 1.639];
-// letzter Durchschnittswert ist nur ungefähr, da die Quelle noch keinen Durchschnittspreis veröffentlicht hat. Daher ohne Gewähr.
+$averages['e5'][2021] = [NULL, 1.3964, 1.4396, 1.5149, 1.5233, 1.5358, 1.5595, 1.6027, 1.639, 1.689];
+// letzten beiden Durchschnittswerte sind nur ungefähr, da die Quelle noch keinen Durchschnittspreis veröffentlicht hat. Daher ohne Gewähr.
 
 $averages['diesel'][2010] = [NULL, 1.1704, 1.1344, 1.2064, 1.2394, 1.2454, 1.2444, 1.2214, 1.2104, 1.2264, 1.2394, 1.2534, 1.3074];
 $averages['diesel'][2011] = [NULL, 1.3334, 1.3694, 1.4374, 1.4604, 1.4094, 1.4234, 1.4234, 1.3924, 1.4343, 1.4439, 1.4674, 1.4324];
@@ -81,8 +81,8 @@ $averages['diesel'][2017] = [NULL, 1.1876, 1.1827, 1.1656, 1.1729, 1.1374, 1.110
 $averages['diesel'][2018] = [NULL, 1.2048, 1.1950, 1.1803, 1.2109, 1.2721, 1.2941, 1.2892, 1.3003, 1.3456, 1.3799, 1.4509, 1.3407];
 $averages['diesel'][2019] = [NULL, 1.2425, 1.2542, 1.2706, 1.2812, 1.3116, 1.2695, 1.2648, 1.2460, 1.2613, 1.2718, 1.2683, 1.2648];
 $averages['diesel'][2020] = [NULL, 1.3187, 1.2496, 1.1805, 1.1067, 1.0575, 1.0926, 1.0950, 1.0961, 1.0634, 1.0634, 1.0610, 1.1067];
-$averages['diesel'][2021] = [NULL, 1.2437, 1.2812, 1.3351, 1.3257, 1.3444, 1.3737, 1.4030, 1.429];
-// letzter Durchschnittswert ist nur ungefähr, da die Quelle noch keinen Durchschnittspreis veröffentlicht hat. Daher ohne Gewähr.
+$averages['diesel'][2021] = [NULL, 1.2437, 1.2812, 1.3351, 1.3257, 1.3444, 1.3737, 1.4030, 1.429, 1.439];
+// letzten beiden Durchschnittswerte sind nur ungefähr, da die Quelle noch keinen Durchschnittspreis veröffentlicht hat. Daher ohne Gewähr.
 
 foreach($input AS $key => $val) {
   /**

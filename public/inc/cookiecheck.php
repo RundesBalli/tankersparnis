@@ -25,6 +25,7 @@ if(!empty($_COOKIE[$cookieName])) {
       $email = $userRow['email'];
       $userId = $userRow['id'];
       $sessionhash = $match[0];
+      mysqli_query($dbl, "UPDATE `users` SET `lastActivity`=CURRENT_TIMESTAMP WHERE `id`=".$userId." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
     } else {
       /**
        * Wenn keine Sitzung mit dem übergebenen Hash existiert wird der User durch Entfernen des Cookies und Umleitung zur Loginseite ausgeloggt.

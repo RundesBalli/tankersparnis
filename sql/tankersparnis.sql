@@ -1,4 +1,4 @@
--- Adminer 4.7.3 MySQL dump
+-- Adminer 4.8.1 MySQL 5.5.5-10.1.48-MariaDB-0+deb9u2 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
@@ -155,6 +155,7 @@ CREATE TABLE `users` (
   `registered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitpunkt der Registrierung',
   `registerHash` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Hash zum Aktivieren des Accounts',
   `active` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Account aktiviert',
+  `lastActivity` datetime DEFAULT NULL COMMENT 'Zeitpunkt der letzten Aktivität',
   `preventPasswordReset` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT 'Passwort zurücksetzen verhindern',
   `lastPwReset` datetime DEFAULT NULL COMMENT 'Zeitpunkt des letzten Passwort Resets',
   `validEmail` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0 = Unbestätigte Email',
@@ -164,4 +165,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2021-06-21 19:50:12
+-- 2021-09-12 17:40:35

@@ -23,6 +23,7 @@ $content.= "<h2>Anzeigevarianten, unterteilt nach KFZs</h2>";
 $content.= "<div class='row'>".
   "<div class='col-s-12 col-l-12'><a href='/savings?view=total'>Gesamtansicht</a></div>".
   "<div class='col-s-12 col-l-12'><a href='/savings?view=monthly'>Monatswerte</a></div>".
+  "<div class='col-s-12 col-l-12'><a href='/savings?view=annual'>Jahreswerte</a></div>".
   "<div class='col-s-12 col-l-12'><a href='/savings?view=maxSaved'>Die 10 größten Sparbeträge</a></div>".
   "<div class='col-s-12 col-l-12'><a href='/savings?view=minUsed'>Am wenigsten verbraucht (100km)</a></div>".
   "<div class='col-s-12 col-l-12 small'>Vorschläge für weitere Anzeigevarianten gerne per <a href='mailto:info@tankersparnis.net'>Mail</a>, <a href='https://github.com/RundesBalli/tankersparnis/issues' target='_blank' rel='noopener'>Issue</a> oder <a href='https://github.com/RundesBalli/tankersparnis/pulls' target='_blank' rel='noopener'>PR</a>.</div>".
@@ -166,6 +167,71 @@ if(!empty($_GET['view'])) {
             "<div class='col-s-0 col-l-2'>".number_format($totalCost, 2, ",", ".")."€</div>".
             "<div class='col-s-0 col-l-2'>".number_format(($totalCost/$totalRange*100), 2, ",", ".")."€</div>".
             "<div class='col-s-12 col-l-1 highlightPositive bold'>".number_format($totalSavings, 2, ",", ".")."€</div>".
+          "</div>";
+          $content.= "</section>";
+        }
+      }
+    }
+  }  elseif($_GET['view'] == 'annual') {
+    /**
+     * Jahreswerte
+     */
+    $content.= "<h2>Jahreswerte</h2>";
+    $carResult = mysqli_query($dbl, "SELECT `cars`.`id`, `cars`.`name` FROM `cars` WHERE `userId`=".$userId." ORDER BY `cars`.`id` ASC") OR DIE(MYSQLI_ERROR($dbl));
+    if(mysqli_num_rows($carResult) == 0) {
+      /**
+       * Es wurden noch keine KFZs angelegt
+       */
+      http_response_code(404);
+      $content.= "<div class='infobox'>Du hast noch keine KFZs angelegt.</div>";
+      $content.= "<div class='row'>".
+        "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
+      "</div>";
+    } else {
+      /**
+       * Es existieren KFZs
+       */
+      while($carRow = mysqli_fetch_array($carResult)) {
+        $content.= "<h3>".output($carRow['name'])."</h3>";
+        $result = mysqli_query($dbl, "SELECT YEAR(`timestamp`) AS `y`, SUM(`fuelQuantity`) AS `fuelQuantity`, SUM(`range`) AS `range`, SUM(`cost`) AS `cost`, SUM(`moneySaved`) AS `moneySaved` FROM `entries` WHERE `carId`=".$carRow['id']." AND `userId`=".$userId." GROUP BY `y` ORDER BY `y` DESC") OR DIE(MYSQLI_ERROR($dbl));
+        if(mysqli_num_rows($result) == 0) {
+          $content.= "<div class='infobox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
+        } else {
+          $content.= "<section>";
+          $content.= "<div class='row bold breakWord small'>".
+            "<div class='col-s-6 col-l-2'>Jahr</div>".
+            "<div class='col-s-0 col-l-2'>Getankt (l/kg)</div>".
+            "<div class='col-s-0 col-l-2'>Reichweite</div>".
+            "<div class='col-s-0 col-l-2'>Preis</div>".
+            "<div class='col-s-0 col-l-2'>Preis/100km</div>".
+            "<div class='col-s-6 col-l-2'>eingespart</div>".
+          "</div>";
+          $totalFuel = 0;
+          $totalRange = 0;
+          $totalCost = 0;
+          $totalSavings = 0;
+          while($row = mysqli_fetch_array($result)) {
+            $content.= "<div class='row hover breakWord small'>".
+              "<div class='col-s-6 col-l-2'>".output($row['y'])."</div>".
+              "<div class='col-s-0 col-l-2'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
+              "<div class='col-s-0 col-l-2'>".number_format($row['range'], 1, ",", ".")."km</div>".
+              "<div class='col-s-0 col-l-2'>".number_format($row['cost'], 2, ",", ".")."€</div>".
+              "<div class='col-s-0 col-l-2'>".number_format(($row['cost']/$row['range']*100), 2, ",", ".")."€</div>".
+              "<div class='col-s-6 col-l-2 highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€</div>".
+            "</div>";
+            $totalFuel+= $row['fuelQuantity'];
+            $totalRange+= $row['range'];
+            $totalCost+= $row['cost'];
+            $totalSavings+= $row['moneySaved'];
+          }
+          $content.= "<div class='row hover breakWord small bold italic'>".
+            "<div class='col-s-0 col-l-2'>Gesamtwerte:</div>".
+            "<div class='col-s-6 col-l-0'>Gesamtersparnis:</div>".
+            "<div class='col-s-0 col-l-2'>".number_format($totalFuel, 2, ",", ".")."</div>".
+            "<div class='col-s-0 col-l-2'>".number_format($totalRange, 1, ",", ".")."km</div>".
+            "<div class='col-s-0 col-l-2'>".number_format($totalCost, 2, ",", ".")."€</div>".
+            "<div class='col-s-0 col-l-2'>".number_format(($totalCost/$totalRange*100), 2, ",", ".")."€</div>".
+            "<div class='col-s-6 col-l-2 highlightPositive bold'>".number_format($totalSavings, 2, ",", ".")."€</div>".
           "</div>";
           $content.= "</section>";
         }

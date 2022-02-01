@@ -25,6 +25,7 @@ $content.= "<div class='spacer-m'></div>";
 
 $content.= "<h2>Bisher unterstützte Imports:</h2>";
 $content.= "<div class='row'>".
+  "<div class='col-s-12 col-l-12'>Deine eigene Excel-Tabelle oder CSV-Datei</div>".
   "<div class='col-s-12 col-l-12'>CSV Export von Spritmonitor.de</div>".
   "<div class='col-s-12 col-l-12 small italic'><span class='highlight bold'>Hinweis:</span> Sollte deine Plattform nicht aufgeführt sein, dann macht das nichts. Schicke uns einfach den Export und wir versuchen es zu importieren.</div>".
 "</div>";

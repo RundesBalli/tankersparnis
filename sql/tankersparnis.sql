@@ -161,8 +161,14 @@ CREATE TABLE `users` (
   `validEmail` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0 = Unbestätigte Email',
   `emailHash` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Hash zum Aktivieren der neuen E-Mail Adresse',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
+  UNIQUE KEY `email` (`email`),
+  KEY `active` (`active`),
+  KEY `lastActivity` (`lastActivity`),
+  KEY `preventPasswordReset` (`preventPasswordReset`),
+  KEY `lastPwReset` (`lastPwReset`),
+  KEY `validEmail` (`validEmail`),
+  KEY `emailHash` (`emailHash`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2021-09-12 17:40:35
+-- 2022-02-01 23:28:08

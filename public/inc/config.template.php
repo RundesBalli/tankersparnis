@@ -79,6 +79,12 @@ $mailConfig['conf']['replyToName'] = "Example.com";
 $mailConfig['conf']['closingGreeting'] = "Viele Grüße\nDein Team von Example.com\nWeb: https://example.com - E-Mail: info@example.com";
 
 /**
+ * Mail Texte
+ * @var string Hostname für CLI Mailversand. Sollte sich mit $_SERVER['HTTP_HOST'] decken. Beispiel: example.com
+ */
+$mailConfig['text']['HTTP_HOST'] = "example.com";
+
+/**
  * Mail Betreffe
  * @var string Betreff der Registrierungsmail
  * @var string Betreff der Aktivierungsmail (nach Klicken des Aktivierungslinks in der Registrierungsmail)

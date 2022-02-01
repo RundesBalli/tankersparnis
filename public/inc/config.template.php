@@ -63,6 +63,8 @@ $cURL['userAgent'] = "";
  * 
  * @var string Angezeigte "Von:" E-Mail Adresse
  * @var string Angezeigter "Von:" Name
+ * @var string "Antworten an:" E-Mail Adresse
+ * @var string Angezeigter "Antworten an:" Name
  * @var string Abschließende Grußformel am Ende jeder E-Mail
  */
 $mailConfig['conn']['host'] = "mail.example.com";

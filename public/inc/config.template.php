@@ -72,6 +72,8 @@ $mailConfig['conn']['smtpPass'] = "";
 
 $mailConfig['conf']['fromEmail'] = "noreply@example.com";
 $mailConfig['conf']['fromName'] = "Example.com";
+$mailConfig['conf']['replyToEmail'] = "info@example.com";
+$mailConfig['conf']['replyToName'] = "Example.com";
 $mailConfig['conf']['closingGreeting'] = "Viele Grüße\nDein Team von Example.com\nWeb: https://example.com - E-Mail: info@example.com";
 
 /**

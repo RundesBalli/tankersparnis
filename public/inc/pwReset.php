@@ -90,6 +90,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
       $mail->Username = $mailConfig['conn']['smtpUser'];
       $mail->Password = $mailConfig['conn']['smtpPass'];
       $mail->setFrom($mailConfig['conf']['fromEmail'], $mailConfig['conf']['fromName']);
+      $mail->addReplyTo($mailConfig['conf']['replyToEmail'], $mailConfig['conf']['replyToName']);
       $mail->addAddress($row['email']);
       $mail->Subject = $mailConfig['subject']['passwordResetted'];
       $mail->isHTML(FALSE);

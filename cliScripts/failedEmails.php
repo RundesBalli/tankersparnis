@@ -40,6 +40,7 @@ while($row = mysqli_fetch_array($result)) {
   $mail->Username = $mailConfig['conn']['smtpUser'];
   $mail->Password = $mailConfig['conn']['smtpPass'];
   $mail->setFrom($mailConfig['conf']['fromEmail'], $mailConfig['conf']['fromName']);
+  $mail->addReplyTo($mailConfig['conf']['replyToEmail'], $mailConfig['conf']['replyToName']);
   $mail->addAddress($row['to']);
   $mail->Subject = $row['subject'];
   $mail->isHTML(FALSE);

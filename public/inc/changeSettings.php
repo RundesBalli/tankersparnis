@@ -126,6 +126,7 @@ if(empty($_POST['action'])) {
       $mail->Username = $mailConfig['conn']['smtpUser'];
       $mail->Password = $mailConfig['conn']['smtpPass'];
       $mail->setFrom($mailConfig['conf']['fromEmail'], $mailConfig['conf']['fromName']);
+      $mail->addReplyTo($mailConfig['conf']['replyToEmail'], $mailConfig['conf']['replyToName']);
       $mail->addAddress($emailNew);
       $mail->Subject = $mailConfig['subject']['emailChanged'];
       $mail->isHTML(FALSE);
@@ -152,6 +153,7 @@ if(empty($_POST['action'])) {
       $mail1->Username = $mailConfig['conn']['smtpUser'];
       $mail1->Password = $mailConfig['conn']['smtpPass'];
       $mail1->setFrom($mailConfig['conf']['fromEmail'], $mailConfig['conf']['fromName']);
+      $mail1->addReplyTo($mailConfig['conf']['replyToEmail'], $mailConfig['conf']['replyToName']);
       $mail1->addAddress($email);
       $mail1->Subject = $mailConfig['subject']['emailChanged'];
       $mail1->isHTML(FALSE);
@@ -254,6 +256,7 @@ if(empty($_POST['action'])) {
     $mail->Username = $mailConfig['conn']['smtpUser'];
     $mail->Password = $mailConfig['conn']['smtpPass'];
     $mail->setFrom($mailConfig['conf']['fromEmail'], $mailConfig['conf']['fromName']);
+    $mail->addReplyTo($mailConfig['conf']['replyToEmail'], $mailConfig['conf']['replyToName']);
     $mail->addAddress($email);
     $mail->Subject = $mailConfig['subject']['passwordChanged'];
     $mail->isHTML(FALSE);

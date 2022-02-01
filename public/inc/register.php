@@ -79,6 +79,7 @@ if(isset($_POST['submit'])) {
       $mail->Username = $mailConfig['conn']['smtpUser'];
       $mail->Password = $mailConfig['conn']['smtpPass'];
       $mail->setFrom($mailConfig['conf']['fromEmail'], $mailConfig['conf']['fromName']);
+      $mail->addReplyTo($mailConfig['conf']['replyToEmail'], $mailConfig['conf']['replyToName']);
       $mail->addAddress($email);
       $mail->Subject = $mailConfig['subject']['register'];
       $mail->isHTML(FALSE);

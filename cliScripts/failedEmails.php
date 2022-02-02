@@ -56,6 +56,12 @@ while($row = mysqli_fetch_array($result)) {
   if($mail->send()) {
     mysqli_query($dbl, "DELETE FROM `failedEmails` WHERE `id`=".$row['id']." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
   } else {
+    if(stripos($mail->ErrorInfo, "Recipient address rejected") !== FALSE) {
+      mysqli_query($dbl, "DELETE FROM `failedEmails` WHERE `id`=".$row['id']." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+      mysqli_query($dbl, "UPDATE `users` SET `active`=0, `validEmail`=0 WHERE `id`=".$row['userId']." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+      userLog($row['userId'], 1, "Mail-Adresse fehlerhaft. User inaktiv gesetzt.");
+    } else {
+      mysqli_query($dbl, "UPDATE `failedEmails` SET `retryCounter` = `retryCounter` + 1, `retryAt` = DATE_ADD(`retryAt`, INTERVAL 1 HOUR) WHERE `id`=".$row['id']." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
     }
   }
   $mail->clearAddresses();

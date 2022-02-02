@@ -90,13 +90,17 @@ $mailConfig['text']['HTTP_HOST'] = "example.com";
  * @var string Betreff der Aktivierungsmail (nach Klicken des Aktivierungslinks in der Registrierungsmail)
  * @var string Betreff der "Passwort wurde zurückgesetzt" Mail
  * @var string Betreff der "E-Mail Adresse wurde geändert" Mail
- * @var string Betreff der "Passwort wurde geänder" Mail
+ * @var string Betreff der "Passwort wurde geändert" Mail
+ * @var string Betreff der "Dein Account ist inaktiv" Mail nach 6 Monaten Inaktivität
+ * @var string Betreff der Mail die nach Accountlöschung durch Inaktivität versendet wird
  */
 $mailConfig['subject']['register'] = "Deine Registrierung";
 $mailConfig['subject']['accountActivated'] = "Dein Account wurde aktiviert";
 $mailConfig['subject']['passwordResetted'] = "Passwort wurde zurückgesetzt";
 $mailConfig['subject']['emailChanged'] = "E-Mail Adresse wurde geändert";
 $mailConfig['subject']['passwordChanged'] = "Passwort wurde geändert";
+$mailConfig['subject']['reminder'] = "Account inaktiv";
+$mailConfig['subject']['inactiveDeletion'] = "Account gelöscht";
 
 /**
  * Monatsnamen

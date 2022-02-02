@@ -27,35 +27,49 @@ require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_
 require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
 
 /**
- * Durchlaufen aller User, die inaktiv sind und Versenden der Email.
+ * Konfiguration der Mailfunktion
  */
 
+$mail = new PHPMailer();
+$mail->isSMTP();
+$mail->SMTPDebug = SMTP::DEBUG_OFF;
+$mail->Host = $mailConfig['conn']['host'];
+$mail->Port = $mailConfig['conn']['port'];
+$mail->SMTPAuth = TRUE;
+$mail->SMTPKeepAlive = true;
+$mail->Username = $mailConfig['conn']['smtpUser'];
+$mail->Password = $mailConfig['conn']['smtpPass'];
+$mail->setFrom($mailConfig['conf']['fromEmail'], $mailConfig['conf']['fromName']);
+$mail->addReplyTo($mailConfig['conf']['replyToEmail'], $mailConfig['conf']['replyToName']);
+$mail->Subject = $mailConfig['subject']['reminder'];
+$mail->isHTML(FALSE);
+$mail->CharSet = "UTF-8";
+$mailBody = "Hallo!\n\n".
+"Du bist auf https://".$mailConfig['text']['HTTP_HOST']." registriert und warst ein halbes Jahr nicht mehr bei uns eingeloggt :-(\n\n".
+"Unter dem oben genannten Link kannst du dich wieder einloggen, wenn du möchtest. Solltest du keinen Bedarf mehr für deinen Account haben, wird dieser automatisch einen Monat nach Versand dieser E-Mail restlos gelöscht. Wir möchten dir damit den größtmöglichen Datenschutz und beste Datensparsamkeit bieten.\n\n".
+"Bei Rückfragen oder wenn du deinen Account sofort entfernen lassen möchtest, kannst du gerne auf diese E-Mail antworten.\n\n".
+$mailConfig['conf']['closingGreeting'];
+$mail->Body = $mailBody;
+
+/**
+ * Durchlaufen aller User, die inaktiv sind und Versenden der Email.
+ */
 while($row = mysqli_fetch_array($result)) {
-  $mail = new PHPMailer();
-  $mail->isSMTP();
-  $mail->SMTPDebug = SMTP::DEBUG_OFF;
-  $mail->Host = $mailConfig['conn']['host'];
-  $mail->Port = $mailConfig['conn']['port'];
-  $mail->SMTPAuth = TRUE;
-  $mail->Username = $mailConfig['conn']['smtpUser'];
-  $mail->Password = $mailConfig['conn']['smtpPass'];
-  $mail->setFrom($mailConfig['conf']['fromEmail'], $mailConfig['conf']['fromName']);
-  $mail->addReplyTo($mailConfig['conf']['replyToEmail'], $mailConfig['conf']['replyToName']);
   $mail->addAddress($row['email']);
-  $mail->Subject = $mailConfig['subject']['reminder'];
-  $mail->isHTML(FALSE);
-  $mail->CharSet = "UTF-8";
-  $mailBody = "Hallo!\n\n".
-  "Du bist auf https://".$mailConfig['text']['HTTP_HOST']." registriert und warst ein halbes Jahr nicht mehr bei uns eingeloggt :-(\n\n".
-  "Unter dem oben genannten Link kannst du dich wieder einloggen, wenn du möchtest. Solltest du keinen Bedarf mehr für deinen Account haben, wird dieser automatisch einen Monat nach Versand dieser E-Mail restlos gelöscht. Wir möchten dir damit den größtmöglichen Datenschutz und beste Datensparsamkeit bieten.\n\n".
-  "Bei Rückfragen oder wenn du deinen Account sofort entfernen lassen möchtest, kannst du gerne auf diese E-Mail antworten.\n\n".
-  $mailConfig['conf']['closingGreeting'];
-  $mail->Body = $mailBody;
+
   mysqli_query($dbl, "UPDATE `users` SET `reminderDate`=NOW() WHERE `id`=".$row['id']." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
   userLog($row['id'], 1, "Erinnerungsmail geschickt");
   if (!$mail->send()) {
-    mysqli_query($dbl, "INSERT INTO `failedEmails` (`userId`, `to`, `subject`, `message`) VALUES ('".$row['id']."', '".$row['email']."', '".$mailConfig['subject']['reminder']."', '".defuse($mailBody)."')") OR DIE(MYSQLI_ERROR($dbl));
+    // https://github.com/PHPMailer/PHPMailer/blob/d4bf3504b93c38c7bfebc9c686471f48e6f84c06/examples/mailing_list.phps#L73
+    if(stripos($mail->ErrorInfo, "Recipient address rejected") !== FALSE) {
+      mysqli_query($dbl, "UPDATE `users` SET `active`=0, `validEmail`=0 WHERE `id`=".$row['id']." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+      userLog($row['id'], 1, "Mail-Adresse fehlerhaft. User inaktiv gesetzt.");
+    } else {
+      mysqli_query($dbl, "INSERT INTO `failedEmails` (`userId`, `to`, `subject`, `message`) VALUES ('".$row['id']."', '".$row['email']."', '".$mailConfig['subject']['reminder']."', '".defuse($mailBody)."')") OR DIE(MYSQLI_ERROR($dbl));
+    }
+    $mail->getSMTPInstance()->reset();
   }
-  unset($mail);
+  $mail->clearAddresses();
 }
+unset($mail);
 ?>

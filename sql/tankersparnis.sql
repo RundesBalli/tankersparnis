@@ -64,6 +64,8 @@ CREATE TABLE `failedEmails` (
   `subject` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Betreff',
   `message` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Nachrichteninhalt',
   `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitpunkt des Zustellversuchs',
+  `retryAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitpunkt des frühesten nächsten Zustellversuchs',
+  `retryCounter` int(2) unsigned NOT NULL DEFAULT '0' COMMENT 'Anzahl der Zustellversuche',
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
   KEY `timestamp` (`timestamp`),
@@ -173,4 +175,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2022-02-01 23:28:08
+-- 2022-02-02 19:23:31

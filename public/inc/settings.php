@@ -110,4 +110,14 @@ $content.= "<section>";
     "</div>";
   }
 $content.= "</section>";
+
+/**
+ * Datenexport
+ */
+$content.= "<h2>Datenexport</h2>";
+$content.= "<section>";
+  $content.= "<div class='row'>".
+  "<div class='col-s-12 col-l-12'>Du kannst dir die über dich gespeicherten Daten als JSON <a href='/myData' target='_blank'>exportieren</a>.</div>".
+  "</div>";
+$content.= "</section>";
 ?>

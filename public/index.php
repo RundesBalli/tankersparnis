@@ -59,6 +59,7 @@ $pageArray = array(
   'changeSettings' => 'changeSettings.php',
   'savings'        => 'savings.php',
   'import'         => 'import.php',
+  'myData'         => 'myData.php',
 
   /* Fehlerseiten */
   '404'            => '404.php',

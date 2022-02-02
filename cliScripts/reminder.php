@@ -29,7 +29,6 @@ require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_
 /**
  * Konfiguration der Mailfunktion
  */
-
 $mail = new PHPMailer();
 $mail->isSMTP();
 $mail->SMTPDebug = SMTP::DEBUG_OFF;

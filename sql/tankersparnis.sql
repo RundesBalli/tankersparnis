@@ -15,6 +15,8 @@ DELIMITER ;;
 
 CREATE EVENT `Nicht aktivierte Accounts löschen` ON SCHEDULE EVERY 1 HOUR STARTS '2021-06-01 00:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Löscht 1x stündlich alle nicht aktivierten Accounts, 24 Stunden' DO DELETE FROM `users` WHERE `active`=0 AND `registered` < DATE_SUB(NOW(), INTERVAL 1 DAY);;
 
+CREATE EVENT `Rohdaten entfernen` ON SCHEDULE EVERY 1 HOUR STARTS '2022-02-03 22:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Rohdatenbereinigung. Erhalten des Preises' DO UPDATE `entries` SET `raw`=REGEXP_REPLACE(REGEXP_REPLACE(REGEXP_REPLACE(`raw`, '.+dist.+?,', ''), ',.+', ''), '\"', '') WHERE `raw` LIKE '{\"id\":%' AND `timestamp` < DATE_SUB(NOW(), INTERVAL 1 MONTH);;
+
 CREATE EVENT `Sitzungsbereinigung` ON SCHEDULE EVERY 6 HOUR STARTS '2021-06-01 00:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Löscht 4x täglich abgelaufene Sitzungen nach sechs Wochen' DO DELETE FROM `sessions` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 6 WEEK);;
 
 DELIMITER ;
@@ -175,4 +177,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2022-02-02 19:23:31
+-- 2022-02-03 21:26:19

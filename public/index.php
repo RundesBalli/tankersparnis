@@ -78,18 +78,16 @@ if(isset($pageArray[$getp])) {
 /**
  * Stil Auswahl
  */
-if(empty($style) OR ($style != "dark" AND $style != "light")) {
-  if(empty($_COOKIE[$styleName])) {
-    $style = $defaultStyle;
-  } elseif($_COOKIE[$styleName] == "dark") {
-    $style = "dark";
-  } elseif($_COOKIE[$styleName] == "light") {
-    $style = "light";
-  } else {
-    $style = $defaultStyle;
-    setcookie($styleName, $defaultStyle, time()+(6*7*86400), NULL, NULL, TRUE, TRUE);
-  }
+if(empty($_COOKIE[$styleName])) {
+  $style = $defaultStyle;
+} elseif($_COOKIE[$styleName] == "dark") {
+  $style = "dark";
+} elseif($_COOKIE[$styleName] == "light") {
+  $style = "light";
+} else {
+  $style = $defaultStyle;
 }
+setcookie($styleName, $style, time()+(6*7*86400), NULL, NULL, TRUE, TRUE);
 
 /**
  * Navigation

@@ -26,6 +26,15 @@ if(!empty($_COOKIE[$cookieName])) {
       $userId = $userRow['id'];
       $sessionhash = $match[0];
       mysqli_query($dbl, "UPDATE `users` SET `lastActivity`=CURRENT_TIMESTAMP, `reminderDate`=NULL WHERE `id`=".$userId." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+      /**
+       * Es wird zusätzlich noch geprüft, ob der User etwaige Sonderberechtigungen hat.
+       */
+      $permRes = mysqli_query($dbl, "SELECT `permissions`.`name` FROM `userPermissions` JOIN `permissions` ON `userPermissions`.`permissionId`=`permissions`.`id` WHERE `userPermissions`.`userId` = ".$userId) OR DIE(MYSQLI_ERROR($dbl));
+      if(mysqli_num_rows($permRes) > 0) {
+        while($permRow = mysqli_fetch_array($permRes)) {
+          define('perm-'.$permRow['name'], TRUE);
+        }
+      }
     } else {
       /**
        * Wenn keine Sitzung mit dem übergebenen Hash existiert wird der User durch Entfernen des Cookies und Umleitung zur Loginseite ausgeloggt.

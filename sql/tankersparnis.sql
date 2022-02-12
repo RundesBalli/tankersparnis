@@ -136,6 +136,16 @@ INSERT INTO `logLevel` (`id`, `title`, `color`) VALUES
 (7,	'KFZ bearbeitet',	'FFAA00'),
 (8,	'KFZ gelöscht',	'E80000');
 
+DROP TABLE IF EXISTS `permissions`;
+CREATE TABLE `permissions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Name der Berechtigung',
+  `description` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Beschreibung der Berechtigung',
+  PRIMARY KEY (`id`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Berechtigungen';
+
+
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
@@ -148,6 +158,19 @@ CREATE TABLE `sessions` (
   KEY `lastActivity` (`lastActivity`),
   CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Sitzungstabelle';
+
+
+DROP TABLE IF EXISTS `userPermissions`;
+CREATE TABLE `userPermissions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
+  `userId` int(10) unsigned NOT NULL COMMENT 'Querverweis users.id',
+  `permissionId` int(10) unsigned NOT NULL COMMENT 'Querverweis permissions.id',
+  PRIMARY KEY (`id`),
+  KEY `userId` (`userId`),
+  KEY `permissionId` (`permissionId`),
+  CONSTRAINT `userPermissions_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `userPermissions_ibfk_2` FOREIGN KEY (`permissionId`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Userberechtigungen';
 
 
 DROP TABLE IF EXISTS `users`;
@@ -177,4 +200,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2022-02-12 18:53:41
+-- 2022-02-12 22:49:58

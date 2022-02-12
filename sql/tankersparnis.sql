@@ -44,10 +44,10 @@ CREATE TABLE `entries` (
   `userId` int(10) unsigned NOT NULL COMMENT 'Querverweis users.id',
   `carId` int(10) unsigned NOT NULL COMMENT 'Querverweis cars.id',
   `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Zeitpunkt des Eintrages',
-  `fuelQuantity` float(7,2) unsigned NOT NULL COMMENT 'Getankte Menge Kraftstoff',
-  `range` float(7,1) unsigned NOT NULL COMMENT 'Gefahrene Kilometer',
-  `cost` float(7,2) unsigned NOT NULL COMMENT 'Kosten für Tankvorgang',
-  `moneySaved` float(7,2) unsigned NOT NULL COMMENT 'Gesparter Betrag gegenüber dem Vergleichskraftstoff',
+  `fuelQuantity` double(7,2) unsigned NOT NULL COMMENT 'Getankte Menge Kraftstoff',
+  `range` double(7,1) unsigned NOT NULL COMMENT 'Gefahrene Kilometer',
+  `cost` double(7,2) unsigned NOT NULL COMMENT 'Kosten für Tankvorgang',
+  `moneySaved` double(7,2) unsigned NOT NULL COMMENT 'Gesparter Betrag gegenüber dem Vergleichskraftstoff',
   `raw` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Rohergebnis der API Abfrage',
   PRIMARY KEY (`id`),
   KEY `userId` (`userId`),
@@ -79,7 +79,7 @@ DROP TABLE IF EXISTS `fuels`;
 CREATE TABLE `fuels` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Bezeichnung des Kraftstoffs',
-  `energy` float(7,2) unsigned NOT NULL COMMENT 'Energie des Kraftstoffs in kWh/l bzw. kWh/kg',
+  `energy` double(7,2) unsigned NOT NULL COMMENT 'Energie des Kraftstoffs in kWh/l bzw. kWh/kg',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Kraftstofftabelle';
 
@@ -93,7 +93,7 @@ DROP TABLE IF EXISTS `fuelsCompare`;
 CREATE TABLE `fuelsCompare` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Laufende ID',
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Bezeichnung des Kraftstoffs',
-  `energy` float(7,2) unsigned NOT NULL COMMENT 'Energie des Kraftstoffs in kWh/l',
+  `energy` double(7,2) unsigned NOT NULL COMMENT 'Energie des Kraftstoffs in kWh/l',
   `symbol` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Kraftstoffbezeichnung für die API',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Kraftstofftabelle zum Vergleich';
@@ -177,4 +177,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2022-02-03 21:26:19
+-- 2022-02-12 18:53:41

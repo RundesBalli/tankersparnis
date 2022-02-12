@@ -21,11 +21,11 @@ $content.= "<h1><span class='fas icon'>&#xf153;</span>Ersparnisse</h1>";
  */
 $content.= "<h2>Anzeigevarianten, unterteilt nach KFZs</h2>";
 $content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-12'><a href='/savings?view=total'>Gesamtansicht</a></div>".
-  "<div class='col-s-12 col-l-12'><a href='/savings?view=monthly'>Monatswerte</a></div>".
-  "<div class='col-s-12 col-l-12'><a href='/savings?view=annual'>Jahreswerte</a></div>".
-  "<div class='col-s-12 col-l-12'><a href='/savings?view=maxSaved'>Die 10 größten Sparbeträge</a></div>".
-  "<div class='col-s-12 col-l-12'><a href='/savings?view=minUsed'>Am wenigsten verbraucht (100km)</a></div>".
+  "<div class='col-s-12 col-l-12'><span class='fas icon'>&#xf35a;</span><a href='/savings?view=total'>Gesamtansicht</a></div>".
+  "<div class='col-s-12 col-l-12'><span class='fas icon'>&#xf35a;</span><a href='/savings?view=monthly'>Monatswerte</a></div>".
+  "<div class='col-s-12 col-l-12'><span class='fas icon'>&#xf35a;</span><a href='/savings?view=annual'>Jahreswerte</a></div>".
+  "<div class='col-s-12 col-l-12'><span class='fas icon'>&#xf35a;</span><a href='/savings?view=maxSaved'>Die 10 größten Sparbeträge</a></div>".
+  "<div class='col-s-12 col-l-12'><span class='fas icon'>&#xf35a;</span><a href='/savings?view=minUsed'>Am wenigsten verbraucht (100km)</a></div>".
   "<div class='col-s-12 col-l-12 small'>Vorschläge für weitere Anzeigevarianten gerne per <a href='mailto:info@tankersparnis.net'>Mail</a>, <a href='https://github.com/RundesBalli/tankersparnis/issues' target='_blank' rel='noopener'>Issue</a> oder <a href='https://github.com/RundesBalli/tankersparnis/pulls' target='_blank' rel='noopener'>PR</a>.</div>".
 "</div>";
 $content.= "<div class='spacer-m'></div>";

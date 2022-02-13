@@ -30,4 +30,10 @@ $content.= "<div class='row'>".
   "<div class='col-s-12 col-l-12'>tankersparnis.net ist natürlich komplett kostenfrei und kommt ohne Werbung, Premium Funktionen oder versteckte Kosten aus. Das wird auch in Zukunft so bleiben, versprochen!</div>".
   "<div class='col-s-12 col-l-12'>Deine Daten werden nicht verkauft und die Aussage <span class='italic'>«Wenn es kostenlos ist, bist du die Ware»</span> gilt hier nicht, da es sich um ein reines Hobbyprojekt handelt, welches der Autor auch für sich selbst nutzt.</div>".
 "</div>";
+
+$content.= "<h2>Dankeschön!</h2>";
+$content.= "<div class='row'>".
+  "<div class='col-s-12 col-l-12'>Ein riesiges Dankeschön geht an den YouTuber <a href='https://www.youtube.com/user/Fahrnuenftig' target='_blank' rel='noopener'>Sascha Fahrnünftig</a>!</div>".
+  "<div class='col-s-12 col-l-12'>Er hat dieses Portal auf seinem Kanal <a href='https://www.youtube.com/c/EureVideosFahrn%C3%BCnftig' target='_blank' rel='noopener'>Eure Videos Fahrnünftig</a> in der <a href='https://www.youtube.com/watch?v=Igin5YvnZ7A&t=664s' target='_blank' rel='noopener'>Folge 185</a> vorgestellt und nutzt es auch selbst sehr aktiv!</div>".
+"</div>";
 ?>

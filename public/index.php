@@ -60,6 +60,7 @@ $pageArray = array(
   'savings'        => 'savings.php',
   'import'         => 'import.php',
   'myData'         => 'myData.php',
+  'statistics'     => 'statistics.php',
 
   /* Fehlerseiten */
   '404'            => '404.php',
@@ -101,6 +102,9 @@ if(!empty($_COOKIE[$cookieName]) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOK
   $nav.= "<a href='/settings'".($getp == "settings" ? $a : NULL)."><span class='fas icon'>&#xf013;</span>Einstellungen</a>";
   $nav.= "<a href='/import'".($getp == "import" ? $a : NULL)."><span class='fas icon'>&#xf56f;</span>Importieren</a>";
   $nav.= "<a href='/logout'".($getp == "logout" ? $a : NULL)."><span class='fas icon'>&#xf2f5;</span>Logout</a>";
+  if(defined("perm-showStatistics")) {
+    $nav.= "<a href='/statistics'".($getp == "statistics" ? $a : NULL)."><span class='fas icon highlight'>&#xf201;</span>Statistiken</a>";
+  }
 } else {
   $nav = "<a href='/'".($getp == "start" ? $a : NULL)."><span class='fas icon'>&#xf015;</span>Startseite</a>";
   $nav.= "<a href='/login'".($getp == "login" ? $a : NULL)."><span class='fas icon'>&#xf2f6;</span>Login</a>";

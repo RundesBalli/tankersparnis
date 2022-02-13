@@ -145,6 +145,14 @@ CREATE TABLE `permissions` (
   KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Berechtigungen';
 
+TRUNCATE `permissions`;
+INSERT INTO `permissions` (`id`, `name`, `description`) VALUES
+(1,	'showStatistics',	'Zeigt das Navigationselement für die Statistikseite an und erlaubt den Zugriff auf die Unterseite'),
+(2,	'showRegisterStatistics',	'Berechtigung zur Anzeige der Registrierungsstatistiken'),
+(3,	'showLastEntries',	'Berechtigung zur Anzeige der letzten Usereinträge'),
+(4,	'showEntriesStatistics',	'Berechtigung zur Anzeige der Eintragsstatistik'),
+(5,	'showLastLogEntries',	'Berechtigung zur Anzeige der letzten Logeinträge der User'),
+(6,	'showEmails',	'Berechtigung zur Anzeige der Email-Adressen');
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -200,4 +208,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2022-02-12 22:49:58
+-- 2022-02-13 00:53:21

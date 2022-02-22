@@ -36,7 +36,7 @@ $input = [];
 while($input[] = fgetcsv(
   $fp,
   0, // Length, 0=unlimited
-  ",", // Delimeter
+  ";", // Delimeter
   '"', // Enclosure
   "\\" // Escape
 )) {

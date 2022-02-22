@@ -25,7 +25,7 @@ $content.= "<div class='row'>".
 $content.= "<h2>Server-Log-Files</h2>";
 $content.= "<div class='row'>".
   "<div class='col-s-12 col-l-12'>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log Files, die Ihr Browser automatisch an uns übermittelt. Dies sind:</div>".
-  "<div class='col-s-12 col-l-12'>Browsertyp und Browserversion, verwendetes Betriebssystem, Refferer URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage</div>".
+  "<div class='col-s-12 col-l-12'>Browsertyp und Browserversion, verwendetes Betriebssystem, Referrer URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage</div>".
   "<div class='col-s-12 col-l-12'>Diese Daten sind nicht bestimmten Personen zuordenbar. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Wir behalten uns vor, diese Daten nachträglich zu prüfen, wenn uns konkrete Anhaltspunkte für eine rechtswidrige Nutzung bekannt werden.</div>".
 "</div>";
 

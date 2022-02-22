@@ -34,6 +34,6 @@ $content.= "<div class='row'>".
 $content.= "<h2>Dankeschön!</h2>";
 $content.= "<div class='row'>".
   "<div class='col-s-12 col-l-12'>Ein riesiges Dankeschön geht an den YouTuber <a href='https://www.youtube.com/user/Fahrnuenftig' target='_blank' rel='noopener'>Sascha Fahrnünftig</a>!</div>".
-  "<div class='col-s-12 col-l-12'>Er hat dieses Portal auf seinem Kanal <a href='https://www.youtube.com/c/EureVideosFahrn%C3%BCnftig' target='_blank' rel='noopener'>Eure Videos Fahrnünftig</a> in der <a href='https://www.youtube.com/watch?v=Igin5YvnZ7A&t=664s' target='_blank' rel='noopener'>Folge 185</a> vorgestellt und nutzt es auch selbst sehr aktiv!</div>".
+  "<div class='col-s-12 col-l-12'>Er hat dieses Portal auf seinem Kanal <a href='https://www.youtube.com/c/EureVideosFahrn%C3%BCnftig' target='_blank' rel='noopener'>Eure Videos Fahrnünftig</a> in den Folgen <a href='https://www.youtube.com/watch?v=Igin5YvnZ7A&t=664s' target='_blank' rel='noopener'>185</a> und <a href='https://www.youtube.com/watch?v=cGMxy8QqsRI&t=712' target='_blank' rel='noopener'>222</a> vorgestellt und nutzt es auch selbst sehr aktiv!</div>".
 "</div>";
 ?>

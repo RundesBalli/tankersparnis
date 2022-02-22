@@ -152,7 +152,8 @@ INSERT INTO `permissions` (`id`, `name`, `description`) VALUES
 (3,	'showLastEntries',	'Berechtigung zur Anzeige der letzten Usereinträge'),
 (4,	'showEntriesStatistics',	'Berechtigung zur Anzeige der Eintragsstatistik'),
 (5,	'showLastLogEntries',	'Berechtigung zur Anzeige der letzten Logeinträge der User'),
-(6,	'showEmails',	'Berechtigung zur Anzeige der Email-Adressen');
+(6,	'showEmails',	'Berechtigung zur Anzeige der Email-Adressen'),
+(7,	'showUserStatistics',	'Berechtigung zur Anzeige der Userstatistiken');
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -208,4 +209,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2022-02-13 00:53:21
+-- 2022-02-22 10:38:58

@@ -66,7 +66,7 @@ $content.= "<form action='/addCar' method='post' autocomplete='off'>";
   "<div class='col-s-12 col-l-3 breakWord'><label for='fuel'>getankter Kraftstoff</label></div>".
   "<div class='col-s-12 col-l-9'><select name='fuel' id='fuel' tabindex='".$tabindex++."' required>".$options."</select></div>".
   "</div>";
-  $result = mysqli_query($dbl, "SELECT * FROM `fuelsCompare` ORDER BY `name` ASC") OR DIE(MYSQLI_ERROR($dbl));
+  $result = mysqli_query($dbl, "SELECT * FROM `fuelsCompare` ORDER BY `sortIndex` ASC") OR DIE(MYSQLI_ERROR($dbl));
   $options = "<option value='' selected disabled hidden>-- Bitte auswählen --</option>";
   while($row = mysqli_fetch_array($result)) {
     $options.= "<option value='".output($row['id'])."'>".output($row['name'])."</option>";

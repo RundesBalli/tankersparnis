@@ -95,6 +95,7 @@ CREATE TABLE `fuelsCompare` (
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Bezeichnung des Kraftstoffs',
   `energy` double(7,2) unsigned NOT NULL COMMENT 'Energie des Kraftstoffs in kWh/l',
   `symbol` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Kraftstoffbezeichnung für die API',
+  `sortIndex` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT 'Sortierindex',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Kraftstofftabelle zum Vergleich';
 

@@ -97,8 +97,10 @@ if(!empty($_GET['view'])) {
             "<div class='col-s-0 col-l-3'>Gesamtwerte:</div>".
             "<div class='col-s-12 col-l-0'>Gesamtersparnis:</div>".
             "<div class='col-s-0 col-l-1'>".number_format($totalFuel, 2, ",", ".")."</div>".
-            "<div class='col-s-0 col-l-2'>".number_format($totalRange, 1, ",", ".")."km</div>".
-            "<div class='col-s-0 col-l-2'>".number_format($totalCost, 2, ",", ".")."€</div>".
+            "<div class='col-s-0 col-l-1'>".number_format($totalRange, 1, ",", ".")."km</div>".
+            "<div class='col-s-0 col-l-1'>".number_format(($totalFuel/$totalRange*100), 1, ",", ".")."</div>".
+            "<div class='col-s-0 col-l-1'>".number_format($totalCost, 2, ",", ".")."€</div>".
+            "<div class='col-s-0 col-l-1'>".number_format(($totalCost/$totalRange*100), 2, ",", ".")."€</div>".
             "<div class='col-s-12 col-l-4 highlightPositive bold'>".number_format($totalSavings, 2, ",", ".")."€</div>".
           "</div>";
           $content.= "</section>";

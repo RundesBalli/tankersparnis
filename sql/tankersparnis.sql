@@ -100,9 +100,10 @@ CREATE TABLE `fuelsCompare` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Kraftstofftabelle zum Vergleich';
 
 TRUNCATE `fuelsCompare`;
-INSERT INTO `fuelsCompare` (`id`, `name`, `energy`, `symbol`) VALUES
-(1,	'Benzin/Super, e5',	8.60,	'e5'),
-(2,	'Diesel',	9.70,	'diesel');
+INSERT INTO `fuelsCompare` (`id`, `name`, `energy`, `symbol`, `sortIndex`) VALUES
+(1,	'Benzin/Super, e5',	8.60,	'e5',	10),
+(2,	'Diesel',	9.70,	'diesel',	30),
+(3,	'Benzin/Super, e10',	8.38,	'e10',	20);
 
 DROP TABLE IF EXISTS `log`;
 CREATE TABLE `log` (
@@ -210,4 +211,4 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Usertabelle';
 
 
--- 2022-02-22 10:38:58
+-- 2022-02-23 16:22:41

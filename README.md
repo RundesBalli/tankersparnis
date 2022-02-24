@@ -1,7 +1,7 @@
 # ⛽ [Tankersparnis.net](https://tankersparnis.net)
 
 Tankersparnis.net ist ein Portal zur einfachen Berechnung des gesparten Geldes beim Tanken von Gas gegenüber herkömmlichen Kraftstoffen.  
-:bulb: Empfohlen vom YouTuber [Sascha Fahrnünftig](https://www.youtube.com/user/Fahrnuenftig) auf dem ["Eure Videos Fahrnünftig"-YouTube-Kanal](https://www.youtube.com/c/EureVideosFahrnünftig) in [Folge 185](https://www.youtube.com/watch?v=Igin5YvnZ7A&t=664s).
+:bulb: Empfohlen vom YouTuber [Sascha Fahrnünftig](https://www.youtube.com/user/Fahrnuenftig) auf dem ["Eure Videos Fahrnünftig"-YouTube-Kanal](https://www.youtube.com/c/EureVideosFahrnünftig) in den Folgen [185](https://www.youtube.com/watch?v=Igin5YvnZ7A&t=664s) und [222](https://www.youtube.com/watch?v=cGMxy8QqsRI&t=712).
 
 ## Berechnung
 

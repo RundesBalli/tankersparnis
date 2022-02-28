@@ -300,6 +300,7 @@ https://fontawesome.com/
   margin: 40px auto;
   border-radius: 20px;
   background-color: var(--wrapperColor);
+  box-shadow: 2px 2px 10px 2px #000000;
 }
 
 .content {

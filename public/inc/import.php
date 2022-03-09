@@ -31,4 +31,10 @@ $content.= "<div class='row'>".
 "</div>";
 $content.= "<div class='spacer-m'></div>";
 
+$content.= "<h2>Derzeit (noch) nicht unterstützte Imports:</h2>";
+$content.= "<div class='row'>".
+  "<div class='col-s-12 col-l-12'><span class='fas icon'>&#xf057;</span>Mehr-Tanken App, siehe <a href='https://github.com/RundesBalli/tankersparnis/issues/4' target='_blank' rel='noopener'>Issue</a>.</div>".
+"</div>";
+$content.= "<div class='spacer-m'></div>";
+
 ?>

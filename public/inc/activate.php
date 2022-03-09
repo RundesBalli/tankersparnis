@@ -13,7 +13,7 @@ if(!empty($_GET['hash'])) {
     $hash = defuse($match[0]);
     $result = mysqli_query($dbl, "SELECT * FROM `users` WHERE `registerHash`='".$hash."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
     if(mysqli_num_rows($result) == 1) {
-      mysqli_query($dbl, "UPDATE `users` SET `registerHash`=NULL, `active`=1, `validEmail`=1 WHERE `registerHash`='".$hash."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+      mysqli_query($dbl, "UPDATE `users` SET `registerHash`=NULL, `lastActivity`=NOW(), `active`=1, `validEmail`=1 WHERE `registerHash`='".$hash."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       if(mysqli_affected_rows($dbl) == 1) {
         $row = mysqli_fetch_array($result);
         userLog($row['id'], 1, "Aktiviert");

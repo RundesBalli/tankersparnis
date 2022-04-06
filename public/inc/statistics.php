@@ -65,7 +65,7 @@ if(!defined("perm-showStatistics")) {
       $perm = 1;
     }
     $content.= "<h2>Userstatistiken</h2>";
-    $result = mysqli_query($dbl, "SELECT (SELECT count(`id`) FROM `users`) AS `totalUsers`, (SELECT count(`id`) FROM `users` WHERE `registerHash` IS NOT NULL) AS `totalUsersNotActivated`, (SELECT count(`id`) FROM `users` WHERE `lastActivity` > DATE_SUB(NOW(), INTERVAL 10 DAY)) AS `totalUsersActive`, (SELECT count(`id`) FROM `users` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 6 MONTH)) AS `totalUsersBeforeDeletion`, (SELECT count(`id`) FROM `cars`) AS `totalCars`, (SELECT count(`id`) FROM `sessions`) AS `totalSessions`") OR DIE(MYSQLI_ERROR($dbl));
+    $result = mysqli_query($dbl, "SELECT (SELECT count(`id`) FROM `users`) AS `totalUsers`, (SELECT count(`id`) FROM `users` WHERE `registerHash` IS NOT NULL) AS `totalUsersNotActivated`, (SELECT count(`id`) FROM `users` WHERE `lastActivity` > DATE_SUB(NOW(), INTERVAL 10 DAY)) AS `totalUsersActive`, (SELECT count(`users`.`id`) FROM `users` WHERE `users`.`lastActivity` > DATE_SUB(NOW(), INTERVAL 10 DAY) AND `users`.`id` IN (SELECT `entries`.`userId` FROM `entries` WHERE `entries`.`timestamp` > DATE_SUB(NOW(), INTERVAL 10 DAY))) AS `totalUsersActiveWithEntry`, (SELECT count(`id`) FROM `users` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 6 MONTH)) AS `totalUsersBeforeDeletion`, (SELECT count(`id`) FROM `cars`) AS `totalCars`, (SELECT count(`id`) FROM `sessions`) AS `totalSessions`") OR DIE(MYSQLI_ERROR($dbl));
     $row = mysqli_fetch_array($result);
     $content.= "<section>";
       $content.= "<div class='row bold breakWord'>".
@@ -86,6 +86,11 @@ if(!defined("perm-showStatistics")) {
         "<div class='col-s-6 col-l-3'>User aktiv (10 Tage)</div>".
         "<div class='col-s-6 col-l-3'>".output($row['totalUsersActive'])."</div>".
         "<div class='col-s-0 col-l-6'>".str_repeat("#", $row['totalUsersActive'])."</div>".
+      "</div>";
+      $content.= "<div class='row hover breakWord'>".
+        "<div class='col-s-6 col-l-3'>User aktiv mit Eintrag (10 Tage)</div>".
+        "<div class='col-s-6 col-l-3'>".output($row['totalUsersActiveWithEntry'])."</div>".
+        "<div class='col-s-0 col-l-6'>".str_repeat("#", $row['totalUsersActiveWithEntry'])."</div>".
       "</div>";
       $content.= "<div class='row hover breakWord'>".
         "<div class='col-s-6 col-l-3'>Fahrzeuge</div>".

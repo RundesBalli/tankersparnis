@@ -15,7 +15,7 @@ require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIREC
 /**
  * Selektieren aller User, die seit 6 Monaten nicht online waren und noch keine Erinnerungs-Email bekommen haben. Abbruch wenn kein User benachrichtigt werden muss.
  */
-$result = mysqli_query($dbl, "SELECT * FROM `users` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 6 MONTH) AND `reminderDate` IS NULL") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT * FROM `users` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 4 MONTH) AND `reminderDate` IS NULL") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) == 0) {
   die();
 }
@@ -44,7 +44,7 @@ $mail->Subject = $mailConfig['subject']['reminder'];
 $mail->isHTML(FALSE);
 $mail->CharSet = "UTF-8";
 $mailBody = "Hallo!\n\n".
-"Du bist auf https://".$mailConfig['text']['HTTP_HOST']." registriert und warst ein halbes Jahr nicht mehr bei uns eingeloggt :-(\n\n".
+"Du bist auf https://".$mailConfig['text']['HTTP_HOST']." registriert und warst vier Monate nicht mehr bei uns eingeloggt :-(\n\n".
 "Unter dem oben genannten Link kannst du dich wieder einloggen, wenn du möchtest. Solltest du keinen Bedarf mehr für deinen Account haben, wird dieser automatisch einen Monat nach Versand dieser E-Mail restlos gelöscht. Wir möchten dir damit den größtmöglichen Datenschutz und beste Datensparsamkeit bieten.\n\n".
 "Bei Rückfragen oder wenn du deinen Account sofort entfernen lassen möchtest, kannst du gerne auf diese E-Mail antworten.\n\n".
 $mailConfig['conf']['closingGreeting'];

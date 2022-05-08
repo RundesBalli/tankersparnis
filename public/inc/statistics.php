@@ -72,6 +72,7 @@ if(!defined("perm-showStatistics")) {
     (SELECT count(`users`.`id`) FROM `users` WHERE `users`.`lastActivity` > DATE_SUB(NOW(), INTERVAL 14 DAY) AND `users`.`id` IN (SELECT `entries`.`userId` FROM `entries` WHERE `entries`.`timestamp` > DATE_SUB(NOW(), INTERVAL 14 DAY))) AS `totalUsersActiveWithEntry`,
     (SELECT count(`users`.`id`) FROM `users` WHERE `users`.`lastActivity` > DATE_SUB(NOW(), INTERVAL 14 DAY) AND `users`.`registered` < DATE_SUB(NOW(), INTERVAL 14 DAY) AND `users`.`id` IN (SELECT `entries`.`userId` FROM `entries` WHERE `entries`.`timestamp` > DATE_SUB(NOW(), INTERVAL 14 DAY))) AS `totalUsersActiveWithEntryNotNew`,
     (SELECT count(`id`) FROM `users` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 3 MONTH)) AS `totalUsersBeforeDeletion`,
+    (SELECT count(`id`) FROM `users` WHERE `lastActivity` < DATE_ADD(`registered`, INTERVAL 1 HOUR)) AS `totalUsersWithoutActivity`,
     (SELECT count(`id`) FROM `cars`) AS `totalCars`,
     (SELECT count(`id`) FROM `sessions`) AS `totalSessions`") OR DIE(MYSQLI_ERROR($dbl));
     $row = mysqli_fetch_assoc($result);
@@ -116,13 +117,19 @@ if(!defined("perm-showStatistics")) {
         "<div class='col-s-0 col-l-6'>".str_repeat("#", $row['totalUsersBeforeDeletion'])."</div>".
       "</div>";
       $content.= "<div class='row hover breakWord'>".
-        "<div class='col-s-6 col-l-3'>Anzahl eingeloggter Sitzungen**</div>".
+        "<div class='col-s-6 col-l-3'>User dessen letzte Aktivität maximal 1 Stunde nach der Registrierung war**</div>".
+        "<div class='col-s-6 col-l-3'>".output($row['totalUsersWithoutActivity'])."</div>".
+        "<div class='col-s-0 col-l-6'>".str_repeat("#", $row['totalUsersWithoutActivity'])."</div>".
+      "</div>";
+      $content.= "<div class='row hover breakWord'>".
+        "<div class='col-s-6 col-l-3'>Anzahl eingeloggter Sitzungen***</div>".
         "<div class='col-s-6 col-l-3'>".output($row['totalSessions'])."</div>".
         "<div class='col-s-0 col-l-6'>".str_repeat("#", $row['totalSessions'])."</div>".
       "</div>";
       $content.= "<div class='row small breakWord'>".
         "<div class='col-s-12 col-l-12'>* nach einem weiteren Monat erfolgt die Löschung.</div>".
-        "<div class='col-s-12 col-l-12'>** ein User kann auch mehrere Sitzungen einloggen.</div>".
+        "<div class='col-s-12 col-l-12'>** maximal einen Monat, dann Löschung.</div>".
+        "<div class='col-s-12 col-l-12'>*** ein User kann auch mehrere Sitzungen einloggen.</div>".
       "</div>";
     $content.= "</section>";
   }

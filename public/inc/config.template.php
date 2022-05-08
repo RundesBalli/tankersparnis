@@ -101,6 +101,7 @@ $mailConfig['subject']['emailChanged'] = "E-Mail Adresse wurde geändert";
 $mailConfig['subject']['passwordChanged'] = "Passwort wurde geändert";
 $mailConfig['subject']['reminder'] = "Account inaktiv";
 $mailConfig['subject']['inactiveDeletion'] = "Account gelöscht";
+$mailConfig['subject']['inactiveDeletionWithoutActivity'] = "Account gelöscht";
 
 /**
  * Monatsnamen

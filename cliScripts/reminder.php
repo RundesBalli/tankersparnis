@@ -46,7 +46,7 @@ $mail->CharSet = "UTF-8";
 $mailBody = "Hallo!\n\n".
 "Du bist auf https://".$mailConfig['text']['HTTP_HOST']." registriert und warst drei Monate nicht mehr bei uns eingeloggt :-(\n\n".
 "Unter dem oben genannten Link kannst du dich wieder einloggen, wenn du möchtest. Solltest du keinen Bedarf mehr für deinen Account haben, wird dieser automatisch einen Monat nach Versand dieser E-Mail restlos gelöscht. Wir möchten dir damit den größtmöglichen Datenschutz und beste Datensparsamkeit bieten.\n\n".
-"Bei Rückfragen oder wenn du deinen Account sofort entfernen lassen möchtest, kannst du gerne auf diese E-Mail antworten.\n\n".
+"Bei Rückfragen, für Feedback oder wenn du deinen Account sofort entfernen lassen möchtest, kannst du gerne auf diese E-Mail antworten. Wir bedanken uns für dein Interesse am Projekt!\n\n".
 $mailConfig['conf']['closingGreeting'];
 $mail->Body = $mailBody;
 

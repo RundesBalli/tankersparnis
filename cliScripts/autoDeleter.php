@@ -47,7 +47,7 @@ $mailBody = "Hallo!\n\n".
 "Du warst auf https://".$mailConfig['text']['HTTP_HOST']." registriert. Dein Account wurde wegen drei Monaten Inaktivität und einem Monat nach Erinnerung gelöscht :-(\n\n".
 "Da wir dir damit den größtmöglichen Datenschutz und beste Datensparsamkeit bieten möchten, haben wir uns für diesen Schritt entschieden. Nach Versand dieser E-Mail sind all deine Daten von unseren Servern gelöscht.\n\n".
 "Solltest du irgendwann wieder einen Account anlegen wollen, bist du herzlich dazu eingeladen dir einen neuen anzulegen :-)\n\n".
-"Bei Rückfragen kannst du gerne auf diese E-Mail antworten.\n\n".
+"Bei Rückfragen oder für Feedback kannst du gerne auf diese E-Mail antworten. Wir bedanken uns für dein Interesse am Projekt!\n\n".
 $mailConfig['conf']['closingGreeting'];
 $mail->Body = $mailBody;
 

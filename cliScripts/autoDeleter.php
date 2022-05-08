@@ -13,9 +13,9 @@ require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIREC
 require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."functions.php");
 
 /**
- * Selektieren aller User, die seit 6 Monaten + 1 Monat nach Benachrichtigung nicht online waren. Abbruch wenn kein User gelöscht werden muss.
+ * Selektieren aller User, die seit 3 Monaten + 1 Monat nach Benachrichtigung nicht online waren. Abbruch wenn kein User gelöscht werden muss.
  */
-$result = mysqli_query($dbl, "SELECT * FROM `users` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 4 MONTH) AND (`reminderDate` IS NOT NULL AND `reminderDate` < DATE_SUB(NOW(), INTERVAL 1 MONTH))") OR DIE(MYSQLI_ERROR($dbl));
+$result = mysqli_query($dbl, "SELECT * FROM `users` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 3 MONTH) AND (`reminderDate` IS NOT NULL AND `reminderDate` < DATE_SUB(NOW(), INTERVAL 1 MONTH))") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) == 0) {
   die();
 }
@@ -44,7 +44,7 @@ $mail->Subject = $mailConfig['subject']['inactiveDeletion'];
 $mail->isHTML(FALSE);
 $mail->CharSet = "UTF-8";
 $mailBody = "Hallo!\n\n".
-"Du warst auf https://".$mailConfig['text']['HTTP_HOST']." registriert. Dein Account wurde wegen vier Monaten Inaktivität und einem Monat nach Erinnerung gelöscht :-(\n\n".
+"Du warst auf https://".$mailConfig['text']['HTTP_HOST']." registriert. Dein Account wurde wegen drei Monaten Inaktivität und einem Monat nach Erinnerung gelöscht :-(\n\n".
 "Da wir dir damit den größtmöglichen Datenschutz und beste Datensparsamkeit bieten möchten, haben wir uns für diesen Schritt entschieden. Nach Versand dieser E-Mail sind all deine Daten von unseren Servern gelöscht.\n\n".
 "Solltest du irgendwann wieder einen Account anlegen wollen, bist du herzlich dazu eingeladen dir einen neuen anzulegen :-)\n\n".
 "Bei Rückfragen kannst du gerne auf diese E-Mail antworten.\n\n".

@@ -56,7 +56,7 @@ if(!empty($_GET['view'])) {
       /**
        * Es existieren KFZs
        */
-      while($carRow = mysqli_fetch_array($carResult)) {
+      while($carRow = mysqli_fetch_assoc($carResult)) {
         $content.= "<h3>".output($carRow['name'])."</h3>";
         $result = mysqli_query($dbl, "SELECT `entries`.* FROM `entries` WHERE `entries`.`userId`=".$userId." AND `carId`=".$carRow['id']." ORDER BY `entries`.`timestamp` DESC") OR DIE(MYSQLI_ERROR($dbl));
         if(mysqli_num_rows($result) == 0) {
@@ -78,7 +78,7 @@ if(!empty($_GET['view'])) {
           $totalRange = 0;
           $totalCost = 0;
           $totalSavings = 0;
-          while($row = mysqli_fetch_array($result)) {
+          while($row = mysqli_fetch_assoc($result)) {
             $content.= "<div class='row hover breakWord small'>".
               "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
               "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
@@ -129,7 +129,7 @@ if(!empty($_GET['view'])) {
       /**
        * Es existieren KFZs
        */
-      while($carRow = mysqli_fetch_array($carResult)) {
+      while($carRow = mysqli_fetch_assoc($carResult)) {
         $content.= "<h3>".output($carRow['name'])."</h3>";
         $result = mysqli_query($dbl, "SELECT YEAR(`timestamp`) AS `y`, MONTH(`timestamp`) AS `m`, SUM(`fuelQuantity`) AS `fuelQuantity`, SUM(`range`) AS `range`, SUM(`cost`) AS `cost`, SUM(`moneySaved`) AS `moneySaved` FROM `entries` WHERE `carId`=".$carRow['id']." AND `userId`=".$userId." GROUP BY `y`, `m` ORDER BY `y` DESC, `m` DESC") OR DIE(MYSQLI_ERROR($dbl));
         if(mysqli_num_rows($result) == 0) {
@@ -151,7 +151,7 @@ if(!empty($_GET['view'])) {
           $totalRange = 0;
           $totalCost = 0;
           $totalSavings = 0;
-          while($row = mysqli_fetch_array($result)) {
+          while($row = mysqli_fetch_assoc($result)) {
             $content.= "<div class='row hover breakWord small'>".
               "<div class='col-s-6 col-l-1'>".output($row['y'])."</div>".
               "<div class='col-s-6 col-l-2'>".$monthNames[$row['m']]."</div>".
@@ -202,7 +202,7 @@ if(!empty($_GET['view'])) {
       /**
        * Es existieren KFZs
        */
-      while($carRow = mysqli_fetch_array($carResult)) {
+      while($carRow = mysqli_fetch_assoc($carResult)) {
         $content.= "<h3>".output($carRow['name'])."</h3>";
         $result = mysqli_query($dbl, "SELECT YEAR(`timestamp`) AS `y`, SUM(`fuelQuantity`) AS `fuelQuantity`, SUM(`range`) AS `range`, SUM(`cost`) AS `cost`, SUM(`moneySaved`) AS `moneySaved` FROM `entries` WHERE `carId`=".$carRow['id']." AND `userId`=".$userId." GROUP BY `y` ORDER BY `y` DESC") OR DIE(MYSQLI_ERROR($dbl));
         if(mysqli_num_rows($result) == 0) {
@@ -223,7 +223,7 @@ if(!empty($_GET['view'])) {
           $totalRange = 0;
           $totalCost = 0;
           $totalSavings = 0;
-          while($row = mysqli_fetch_array($result)) {
+          while($row = mysqli_fetch_assoc($result)) {
             $content.= "<div class='row hover breakWord small'>".
               "<div class='col-s-6 col-l-3'>".output($row['y'])."</div>".
               "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
@@ -273,7 +273,7 @@ if(!empty($_GET['view'])) {
       /**
        * Es existieren KFZs
        */
-      while($carRow = mysqli_fetch_array($carResult)) {
+      while($carRow = mysqli_fetch_assoc($carResult)) {
         $content.= "<h3>".output($carRow['name'])."</h3>";
         $result = mysqli_query($dbl, "SELECT `entries`.* FROM `entries` WHERE `entries`.`userId`=".$userId." AND `carId`=".$carRow['id']." ORDER BY `entries`.`moneySaved` DESC LIMIT 10") OR DIE(MYSQLI_ERROR($dbl));
         if(mysqli_num_rows($result) == 0) {
@@ -291,7 +291,7 @@ if(!empty($_GET['view'])) {
             "<div class='col-s-6 col-l-1'>eingespart in %</div>".
             "<div class='col-s-6 col-l-2'>Aktion</div>".
           "</div>";
-          while($row = mysqli_fetch_array($result)) {
+          while($row = mysqli_fetch_assoc($result)) {
             $content.= "<div class='row hover breakWord small'>".
               "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
               "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
@@ -327,7 +327,7 @@ if(!empty($_GET['view'])) {
       /**
        * Es existieren KFZs
        */
-      while($carRow = mysqli_fetch_array($carResult)) {
+      while($carRow = mysqli_fetch_assoc($carResult)) {
         $content.= "<h3>".output($carRow['name'])."</h3>";
         $result = mysqli_query($dbl, "SELECT `entries`.*, ROUND((`fuelQuantity`/`range`*100), 1) AS `consumption` FROM `entries` WHERE `userId`=".$userId." AND `carId`=".$carRow['id']." ORDER BY `consumption` ASC LIMIT 10") OR DIE(MYSQLI_ERROR($dbl));
         if(mysqli_num_rows($result) == 0) {
@@ -345,7 +345,7 @@ if(!empty($_GET['view'])) {
             "<div class='col-s-6 col-l-1'>eingespart in %</div>".
             "<div class='col-s-6 col-l-2'>Aktion</div>".
           "</div>";
-          while($row = mysqli_fetch_array($result)) {
+          while($row = mysqli_fetch_assoc($result)) {
             $content.= "<div class='row hover breakWord small'>".
               "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
               "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".

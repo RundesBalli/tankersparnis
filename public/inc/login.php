@@ -47,7 +47,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
     /**
      * Wenn der User existiert, muss der Passworthash validiert werden.
      */
-    $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_assoc($result);
     if(password_verify($_POST['password'].$row['salt'], $row['password'])) {
       if($row['active'] == 1) {
         if($row['validEmail'] == 1) {

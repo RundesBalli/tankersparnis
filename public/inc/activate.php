@@ -15,7 +15,7 @@ if(!empty($_GET['hash'])) {
     if(mysqli_num_rows($result) == 1) {
       mysqli_query($dbl, "UPDATE `users` SET `registerHash`=NULL, `lastActivity`=NOW(), `active`=1, `validEmail`=1 WHERE `registerHash`='".$hash."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       if(mysqli_affected_rows($dbl) == 1) {
-        $row = mysqli_fetch_array($result);
+        $row = mysqli_fetch_assoc($result);
         userLog($row['id'], 1, "Aktiviert");
         $content.= "<div class='successbox'>Nutzerkonto aktiviert.</div>";
         require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");

@@ -29,7 +29,7 @@ if(mysqli_num_rows($result) > 0) {
     "<div class='col-s-6 col-l-3'>Vergleichskraftstoff</div>".
     "<div class='col-s-12 col-l-2'>Aktion</div>".
   "</div>";
-  while($row = mysqli_fetch_array($result)) {
+  while($row = mysqli_fetch_assoc($result)) {
     $content.= "<div class='row hover'>".
       "<div class='col-s-12 col-l-4'>".output($row['name'])."</div>".
       "<div class='col-s-6 col-l-3'>".output($row['fuel'])."</div>".
@@ -59,7 +59,7 @@ $content.= "<form action='/addCar' method='post' autocomplete='off'>";
   "</div>";
   $result = mysqli_query($dbl, "SELECT * FROM `fuels` ORDER BY `name` ASC") OR DIE(MYSQLI_ERROR($dbl));
   $options = "<option value='' selected disabled hidden>-- Bitte auswählen --</option>";
-  while($row = mysqli_fetch_array($result)) {
+  while($row = mysqli_fetch_assoc($result)) {
     $options.= "<option value='".output($row['id'])."'>".output($row['name'])."</option>";
   }
   $content.= "<div class='row'>".
@@ -68,7 +68,7 @@ $content.= "<form action='/addCar' method='post' autocomplete='off'>";
   "</div>";
   $result = mysqli_query($dbl, "SELECT * FROM `fuelsCompare` ORDER BY `sortIndex` ASC") OR DIE(MYSQLI_ERROR($dbl));
   $options = "<option value='' selected disabled hidden>-- Bitte auswählen --</option>";
-  while($row = mysqli_fetch_array($result)) {
+  while($row = mysqli_fetch_assoc($result)) {
     $options.= "<option value='".output($row['id'])."'>".output($row['name'])."</option>";
   }
   $content.= "<div class='row'>".

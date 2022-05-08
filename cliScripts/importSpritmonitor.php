@@ -24,7 +24,7 @@ $result = mysqli_query($dbl, "SELECT `cars`.*, `fuels`.`energy` AS `energy`, `fu
 if(mysqli_num_rows($result) == 0) {
   die("User/Auto Kombination ungültig.");
 } else {
-  $row = mysqli_fetch_array($result);
+  $row = mysqli_fetch_assoc($result);
 }
 
 /**

@@ -23,12 +23,12 @@ if(mysqli_num_rows($result) > 0) {
   $content.= "<form action='/addEntry' method='post' autocomplete='off'>";
     $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
     if(mysqli_num_rows($result) == 1) {
-      $row = mysqli_fetch_array($result);
+      $row = mysqli_fetch_assoc($result);
       $content.= "<input type='hidden' name='car' value='".output($row['id'])."'>";
       $cars = output($row['name'])." - ".output($row['fuel']);
     } else {
       $cars = "<select name='car' id='car' tabindex='".$tabindex++."' required><option value='' selected disabled hidden>-- Bitte auswählen --</option>";
-      while($row = mysqli_fetch_array($result)) {
+      while($row = mysqli_fetch_assoc($result)) {
         $cars.= "<option value='".output($row['id'])."'>".output($row['name'])." - ".output($row['fuel'])."</option>";
       }
       $cars.= "</select>";
@@ -98,7 +98,7 @@ if(mysqli_num_rows($result) > 0) {
     "<div class='col-s-6 col-l-1'>eingespart</div>".
     "<div class='col-s-6 col-l-2'>Aktion</div>".
   "</div>";
-  while($row = mysqli_fetch_array($result)) {
+  while($row = mysqli_fetch_assoc($result)) {
     $content.= "<div class='row hover breakWord small'>".
       "<div class='col-s-6 col-l-2'>".output($row['name'])."</div>".
       "<div class='col-s-6 col-l-2'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".

@@ -15,7 +15,7 @@ if(!empty($_GET['hash'])) {
     if(mysqli_num_rows($result) == 1) {
       mysqli_query($dbl, "UPDATE `users` SET `emailHash`=NULL, `validEmail`=1 WHERE `emailHash`='".$hash."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       if(mysqli_affected_rows($dbl) == 1) {
-        $row = mysqli_fetch_array($result);
+        $row = mysqli_fetch_assoc($result);
         userLog($row['id'], 1, "Neue E-Mail Adresse bestätigt");
         $content.= "<div class='successbox'>Neue E-Mail Adresse bestätigt.</div>";
         $content.= "<div class='row'>".

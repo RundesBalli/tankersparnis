@@ -53,7 +53,7 @@ $mail->Body = $mailBody;
 /**
  * Durchlaufen aller User, die inaktiv sind und Versenden der Email.
  */
-while($row = mysqli_fetch_array($result)) {
+while($row = mysqli_fetch_assoc($result)) {
   $mail->addAddress($row['email']);
 
   mysqli_query($dbl, "UPDATE `users` SET `reminderDate`=NOW() WHERE `id`=".$row['id']." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));

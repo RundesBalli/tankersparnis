@@ -21,7 +21,7 @@ if(!empty($_COOKIE[$cookieName])) {
        */
       mysqli_query($dbl, "UPDATE `sessions` SET `lastActivity`=CURRENT_TIMESTAMP WHERE `hash`='".$match[0]."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
       setcookie($cookieName, $match[0], time()+(6*7*86400), NULL, NULL, TRUE, TRUE);
-      $userRow = mysqli_fetch_array($result);
+      $userRow = mysqli_fetch_assoc($result);
       $email = $userRow['email'];
       $userId = $userRow['id'];
       $sessionhash = $match[0];
@@ -31,7 +31,7 @@ if(!empty($_COOKIE[$cookieName])) {
        */
       $permRes = mysqli_query($dbl, "SELECT `permissions`.`name` FROM `userPermissions` JOIN `permissions` ON `userPermissions`.`permissionId`=`permissions`.`id` WHERE `userPermissions`.`userId` = ".$userId) OR DIE(MYSQLI_ERROR($dbl));
       if(mysqli_num_rows($permRes) > 0) {
-        while($permRow = mysqli_fetch_array($permRes)) {
+        while($permRow = mysqli_fetch_assoc($permRes)) {
           define('perm-'.$permRow['name'], TRUE);
         }
       }

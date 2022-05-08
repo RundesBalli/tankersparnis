@@ -43,7 +43,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
     /**
      * Wenn der User existiert, wird geprüft, ob er für das Zurücksetzen des Passworts gesperrt ist.
      */
-    $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_assoc($result);
     if($row['preventPasswordReset'] == 1) {
       /**
        * Der Nutzer ist für das Zurücksetzen des Passworts gesperrt.

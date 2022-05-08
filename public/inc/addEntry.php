@@ -59,7 +59,7 @@ if(empty($_POST['token'])) {
     /**
      * Das KFZ ist gültig. Nun werden die restlichen übergebenen Werte entschärft und aufgewertet.
      */
-    $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_assoc($result);
     $fuel = round(floatval(str_replace(",", ".", defuse($_POST['fuel']))), 2);
     $range = round(floatval(str_replace(",", ".", defuse($_POST['range']))), 1);
     $cost = round(floatval(str_replace(",", ".", defuse($_POST['cost']))), 2);

@@ -42,7 +42,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
     /**
      * KFZ existiert
      */
-    $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_assoc($result);
     if(empty($_POST['submit'])) {
       /**
        * Formular wurde noch nicht abgesendet
@@ -57,7 +57,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
         "</div>";
         $fuelResult = mysqli_query($dbl, "SELECT * FROM `fuels` ORDER BY `name` ASC") OR DIE(MYSQLI_ERROR($dbl));
         $options = "";
-        while($fuelRow = mysqli_fetch_array($fuelResult)) {
+        while($fuelRow = mysqli_fetch_assoc($fuelResult)) {
           $options.= "<option value='".output($fuelRow['id'])."'".($row['fuel'] == $fuelRow['id'] ? " selected" : NULL).">".output($fuelRow['name'])."</option>";
         }
         $content.= "<div class='row'>".
@@ -66,7 +66,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
         "</div>";
         $fuelResult = mysqli_query($dbl, "SELECT * FROM `fuelsCompare` ORDER BY `name` ASC") OR DIE(MYSQLI_ERROR($dbl));
         $options = "";
-        while($fuelRow = mysqli_fetch_array($fuelResult)) {
+        while($fuelRow = mysqli_fetch_assoc($fuelResult)) {
           $options.= "<option value='".output($fuelRow['id'])."'".($row['fuelCompare'] == $fuelRow['id'] ? " selected" : NULL).">".output($fuelRow['name'])."</option>";
         }
         $content.= "<div class='row'>".

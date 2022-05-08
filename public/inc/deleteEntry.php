@@ -42,7 +42,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
     /**
      * Eintrag existiert
      */
-    $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_assoc($result);
     if(empty($_POST['submit'])) {
       /**
        * Formular wurde noch nicht abgesendet

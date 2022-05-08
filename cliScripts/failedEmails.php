@@ -47,7 +47,7 @@ $mail->CharSet = "UTF-8";
 /**
  * Durchlaufen aller gescheiterten Mails.
  */
-while($row = mysqli_fetch_array($result)) {
+while($row = mysqli_fetch_assoc($result)) {
   $mail->addAddress($row['email']);
   $mail->Subject = $row['subject'];
   $mailBody = $row['message'];

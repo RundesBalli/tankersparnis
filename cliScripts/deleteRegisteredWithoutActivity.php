@@ -54,7 +54,7 @@ $mail->Body = $mailBody;
 /**
  * Durchlaufen aller User, die inaktiv sind und Versenden der Email.
  */
-while($row = mysqli_fetch_array($result)) {
+while($row = mysqli_fetch_assoc($result)) {
   $mail->addAddress($row['email']);
   if (!$mail->send()) {
     $mail->getSMTPInstance()->reset();

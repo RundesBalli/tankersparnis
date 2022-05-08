@@ -43,7 +43,7 @@ if(!defined("perm-showStatistics")) {
         "<div class='col-s-6 col-l-3'>Datum</div>".
         "<div class='col-s-6 col-l-9'>Anzahl Registrierungen</div>".
       "</div>";
-      while($row = mysqli_fetch_array($result)) {
+      while($row = mysqli_fetch_assoc($result)) {
         $content.= "<div class='row hover breakWord'>".
           "<div class='col-s-6 col-l-3'>".date("d.m.Y", strtotime($row['d']))."</div>".
           "<div class='col-s-6 col-l-3'>".output($row['c'])."</div>".
@@ -66,7 +66,7 @@ if(!defined("perm-showStatistics")) {
     }
     $content.= "<h2>Userstatistiken</h2>";
     $result = mysqli_query($dbl, "SELECT (SELECT count(`id`) FROM `users`) AS `totalUsers`, (SELECT count(`id`) FROM `users` WHERE `registerHash` IS NOT NULL) AS `totalUsersNotActivated`, (SELECT count(`id`) FROM `users` WHERE `lastActivity` > DATE_SUB(NOW(), INTERVAL 10 DAY)) AS `totalUsersActive`, (SELECT count(`users`.`id`) FROM `users` WHERE `users`.`lastActivity` > DATE_SUB(NOW(), INTERVAL 10 DAY) AND `users`.`id` IN (SELECT `entries`.`userId` FROM `entries` WHERE `entries`.`timestamp` > DATE_SUB(NOW(), INTERVAL 10 DAY))) AS `totalUsersActiveWithEntry`, (SELECT count(`users`.`id`) FROM `users` WHERE `users`.`lastActivity` > DATE_SUB(NOW(), INTERVAL 10 DAY) AND `users`.`registered` < DATE_SUB(NOW(), INTERVAL 10 DAY) AND `users`.`id` IN (SELECT `entries`.`userId` FROM `entries` WHERE `entries`.`timestamp` > DATE_SUB(NOW(), INTERVAL 10 DAY))) AS `totalUsersActiveWithEntryNotNew`,(SELECT count(`id`) FROM `users` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 3 MONTH)) AS `totalUsersBeforeDeletion`, (SELECT count(`id`) FROM `cars`) AS `totalCars`, (SELECT count(`id`) FROM `sessions`) AS `totalSessions`") OR DIE(MYSQLI_ERROR($dbl));
-    $row = mysqli_fetch_array($result);
+    $row = mysqli_fetch_assoc($result);
     $content.= "<section>";
       $content.= "<div class='row bold breakWord'>".
         "<div class='col-s-6 col-l-3'>Bezeichnung</div>".
@@ -139,7 +139,7 @@ if(!defined("perm-showStatistics")) {
         "<div class='col-s-6 col-l-3'>Datum</div>".
         "<div class='col-s-6 col-l-9'>Anzahl Einträge</div>".
       "</div>";
-      while($row = mysqli_fetch_array($result)) {
+      while($row = mysqli_fetch_assoc($result)) {
         $content.= "<div class='row hover breakWord'>".
           "<div class='col-s-6 col-l-3'>".date("d.m.Y", strtotime($row['t']))."</div>".
           "<div class='col-s-6 col-l-3'>".output($row['c'])."</div>".
@@ -175,7 +175,7 @@ if(!defined("perm-showStatistics")) {
         "<div class='col-s-0 col-l-1'>Preis/100km</div>".
         "<div class='col-s-6 col-l-3'>eingespart</div>".
       "</div>";
-      while($row = mysqli_fetch_array($result)) {
+      while($row = mysqli_fetch_assoc($result)) {
         $content.= "<div class='row hover breakWord small'>".
           "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
           "<div class='col-s-0 col-l-1'>".output($row['id'])."</div>".
@@ -208,7 +208,7 @@ if(!defined("perm-showStatistics")) {
         "<div class='col-s-12 col-l-6'>Text</div>".
       "</div>";
       $result = mysqli_query($dbl, "SELECT `log`.*, `users`.`email`, `logLevel`.`title` AS `logTitle`, `logLevel`.`color` FROM `log` JOIN `users` ON `log`.`userId`=`users`.`id` JOIN `logLevel` ON `log`.`logLevel`=`logLevel`.`id` WHERE `log`.`timestamp` > DATE_SUB(NOW(), INTERVAL 2 WEEK) ORDER BY `log`.`timestamp` DESC") OR DIE(MYSQLI_ERROR($dbl));
-      while($row = mysqli_fetch_array($result)) {
+      while($row = mysqli_fetch_assoc($result)) {
         $content.= "<div class='row breakWord hover' style='border-left: 6px solid #".output($row['color']).";' title='".output($row['logTitle'])."'>".
           "<div class='col-s-12 col-l-3 help'>".date("d.m.Y, H:i:s", strtotime($row['timestamp']))."</div>".
           "<div class='col-s-12 col-l-3'>".(defined("perm-showEmails") ? output($row['email']) : "<span class='italic'>REDACTED</span>")."</div>".

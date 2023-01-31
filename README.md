@@ -18,4 +18,4 @@ Interessierte und Programmierer können sich die genaue Berechnung [hier](https:
 <img src="/public/img/totalSavings.png" alt="Gesamtwerte"/>   
 
 ### Danke
-Danke an meinen Freund [NullDev](https://github.com/NullDev) für die GeoLocation Funktion, danke an meinen Freund [Soldiermelly](https://github.com/Soldiermelly) für das Logo und die Banner und danke an [Tankerkönig](https://creativecommons.tankerkoenig.de/) für die Spritpreis-API.
+Danke an meinen Freund [NullDev](https://github.com/NullDev) für die GeoLocation Funktion, danke an meinen Freund Soldiermelly für das Logo und die Banner und danke an [Tankerkönig](https://creativecommons.tankerkoenig.de/) für die Spritpreis-API.

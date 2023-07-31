@@ -2,7 +2,7 @@
 /**
  * deleteCar.php
  * 
- * Löschseite für KFZs
+ * Löschseite für Einträge
  */
 
 /**

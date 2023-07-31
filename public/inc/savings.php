@@ -93,7 +93,7 @@ if($view == 'total') {
             "<div class='col-s-0 col-l-1'>".number_format(($row['cost']/$row['range']*100), 2, ",", ".")."€</div>".
             "<div class='col-s-6 col-l-1 highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€</div>".
             "<div class='col-s-6 col-l-1 highlightPositive'>".number_format(((1-($row['cost']/($row['cost']+$row['moneySaved'])))*100), 2, ",", ".")."%</div>".
-            "<div class='col-s-12 col-l-2'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."'><span class='far icon'>&#xf2ed;</span></a></div>".
+            "<div class='col-s-12 col-l-2'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."' title='Eintrag löschen'><span class='far icon'>&#xf2ed;</span></a><a class='noUnderline' href='/rawData?id=".output($row['id'])."' title='Rohdaten (Vergleichswert)'><span class='fas icon'>&#xf05a;</span></a></div>".
           "</div>";
           $totalFuel+= $row['fuelQuantity'];
           $totalRange+= $row['range'];
@@ -306,7 +306,7 @@ if($view == 'total') {
             "<div class='col-s-0 col-l-1'>".number_format(($row['cost']/$row['range']*100), 2, ",", ".")."€</div>".
             "<div class='col-s-6 col-l-1 highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€</div>".
             "<div class='col-s-6 col-l-1 highlightPositive'>".number_format(((1-($row['cost']/($row['cost']+$row['moneySaved'])))*100), 2, ",", ".")."%</div>".
-            "<div class='col-s-12 col-l-2'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."'><span class='far icon'>&#xf2ed;</span></a></div>".
+            "<div class='col-s-12 col-l-2'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."' title='Eintrag löschen'><span class='far icon'>&#xf2ed;</span></a><a class='noUnderline' href='/rawData?id=".output($row['id'])."' title='Rohdaten (Vergleichswert)'><span class='fas icon'>&#xf05a;</span></a></div>".
           "</div>";
         }
         $content.= "</section>";
@@ -360,7 +360,7 @@ if($view == 'total') {
             "<div class='col-s-0 col-l-1'>".number_format(($row['cost']/$row['range']*100), 2, ",", ".")."€</div>".
             "<div class='col-s-6 col-l-1 highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€</div>".
             "<div class='col-s-6 col-l-1 highlightPositive'>".number_format(((1-($row['cost']/($row['cost']+$row['moneySaved'])))*100), 2, ",", ".")."%</div>".
-            "<div class='col-s-12 col-l-2'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."'><span class='far icon'>&#xf2ed;</span></a></div>".
+            "<div class='col-s-12 col-l-2'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."' title='Eintrag löschen'><span class='far icon'>&#xf2ed;</span></a><a class='noUnderline' href='/rawData?id=".output($row['id'])."' title='Rohdaten (Vergleichswert)'><span class='fas icon'>&#xf05a;</span></a></div>".
           "</div>";
         }
         $content.= "</section>";

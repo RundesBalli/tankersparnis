@@ -61,6 +61,7 @@ $pageArray = array(
   'import'         => 'import.php',
   'myData'         => 'myData.php',
   'statistics'     => 'statistics.php',
+  'rawData'        => 'rawData.php',
 
   /* Fehlerseiten */
   '404'            => '404.php',

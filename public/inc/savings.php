@@ -99,7 +99,7 @@ if($view == 'total') {
           "</div>";
 
           $excelExport.=
-          date("d.m.Y, H:i", strtotime($row['timestamp'])).";".
+          date("Y-m-d H:i", strtotime($row['timestamp'])).";".
           number_format($row['fuelQuantity'], 2, ",", "").";".
           number_format($row['range'], 1, ",", ".").";".
           number_format(($row['fuelQuantity']/$row['range']*100), 1, ",", "").";".

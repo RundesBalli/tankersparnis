@@ -67,6 +67,7 @@ if($view == 'total') {
       if(mysqli_num_rows($result) == 0) {
         $content.= "<div class='infobox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
       } else {
+        $excelExport = '';
         $content.= "<section>";
         $content.= "<div class='row bold breakWord small'>".
           "<div class='col-s-12 col-l-3'>Zeitpunkt</div>".
@@ -79,6 +80,7 @@ if($view == 'total') {
           "<div class='col-s-6 col-l-1'>eingespart in %</div>".
           "<div class='col-s-6 col-l-2'>Aktion</div>".
         "</div>";
+        $excelExport.= "Zeitpunkt;Getankt (l/kg);Reichweite;Verbrauch auf 100km (l/kg);Preis;Preis/100km;eingespart;eingespart in %\n";
         $totalFuel = 0;
         $totalRange = 0;
         $totalCost = 0;
@@ -95,6 +97,16 @@ if($view == 'total') {
             "<div class='col-s-6 col-l-1 highlightPositive'>".number_format(((1-($row['cost']/($row['cost']+$row['moneySaved'])))*100), 2, ",", ".")."%</div>".
             "<div class='col-s-12 col-l-2'><a class='noUnderline' href='/deleteEntry?id=".output($row['id'])."' title='Eintrag löschen'><span class='far icon'>&#xf2ed;</span></a><a class='noUnderline' href='/rawData?id=".output($row['id'])."' title='Rohdaten (Vergleichswert)'><span class='fas icon'>&#xf05a;</span></a></div>".
           "</div>";
+
+          $excelExport.=
+          date("d.m.Y, H:i", strtotime($row['timestamp'])).";".
+          number_format($row['fuelQuantity'], 2, ",", "").";".
+          number_format($row['range'], 1, ",", ".").";".
+          number_format(($row['fuelQuantity']/$row['range']*100), 1, ",", "").";".
+          number_format($row['cost'], 2, ",", "").";".
+          number_format(($row['cost']/$row['range']*100), 2, ",", "").";".
+          number_format($row['moneySaved'], 2, ",", ".").";".number_format(((1-($row['cost']/($row['cost']+$row['moneySaved'])))*100), 2, ",", "")."\n";
+
           $totalFuel+= $row['fuelQuantity'];
           $totalRange+= $row['range'];
           $totalCost+= $row['cost'];
@@ -112,6 +124,10 @@ if($view == 'total') {
           "<div class='col-s-6 col-l-3 highlightPositive bold'>".number_format(((1-($totalCost/($totalCost+$totalSavings)))*100), 2, ",", ".")."%</div>".
         "</div>";
         $content.= "</section>";
+        $content.= "<details>".
+          "<summary>Excel Export</summary>".
+          "<textarea readonly>".$excelExport."</textarea>".
+        "</details>";
       }
     }
   }

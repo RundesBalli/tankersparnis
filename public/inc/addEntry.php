@@ -84,7 +84,7 @@ if(empty($_POST['token'])) {
           array(
             'lat' => floatval($matches[1]),
             'lng' => floatval($matches[2]),
-            'rad' => 10,
+            'rad' => $userRow['radius'],
             'type' => $row['symbol'],
             'sort' => 'price'
           )

@@ -270,6 +270,48 @@ if(empty($_POST['action'])) {
       mysqli_query($dbl, "INSERT INTO `failedEmails` (`userId`, `to`, `subject`, `message`) VALUES ('".$userId."', '".$email."', '".$mailConfig['subject']['passwordChanged']."', '".defuse($mailBody)."')") OR DIE(MYSQLI_ERROR($dbl));
     }
   }
+} elseif($_POST['action'] == "radius") {
+  /**
+   * Radius ändern
+   */
+  if($_POST['token'] != $sessionhash) {
+    /**
+     * Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.
+     */
+    http_response_code(403);
+    $content.= "<div class='warnbox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
+    $content.= "<div class='row'>".
+      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
+    "</div>";
+  } elseif(empty($_POST['radius']) OR !is_numeric($_POST['radius'])) {
+    /**
+     * Radius ist leer.
+     */
+    http_response_code(403);
+    $content.= "<div class='warnbox'>Du musst einen Radius eingeben.</div>";
+    $content.= "<div class='row'>".
+      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
+    "</div>";
+  } elseif(intval($_POST['radius']) < 1 OR intval($_POST['radius']) > 25) {
+    /**
+     * Der Radius ist zu klein oder zu groß.
+     */
+    http_response_code(403);
+    $content.= "<div class='warnbox'>Der Radius muss zwischen 1 und 25km liegen.</div>";
+    $content.= "<div class='row'>".
+      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
+    "</div>";
+  } else {
+    /**
+     * Änderung kann durchgeführt werden.
+     */
+    mysqli_query($dbl, "UPDATE `users` SET `radius`='".defuse(intval($_POST['radius']))."' WHERE `id`='".$userId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
+    userLog($userId, 5, "Radius geändert von `".$userRow['radius']."` auf `".intval($_POST['radius'])."`");
+    $content.= "<div class='successbox'>Der Radius wurde geändert.</div>";
+    $content.= "<div class='row'>".
+      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Zurück zu den Einstellungen</a></div>".
+    "</div>";
+  }
 } else {
   /**
    * Wenn der action Parameter nicht leer ist aber keine action zutrifft, wird der Nutzer

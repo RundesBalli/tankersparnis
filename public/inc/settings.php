@@ -94,6 +94,30 @@ $content.= "<div class='spacer-m'></div>";
 $content.= "<hr>";
 
 /**
+ * Radius
+ */
+$content.= "<h2>Radius</h2>";
+  $content.= "<form action='/changeSettings' method='post' autocomplete='off'>";
+  /**
+   * Sitzungstoken
+   */
+  $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
+  $content.= "<input type='hidden' name='action' value='radius'>";
+  $content.= "<section>";
+  $content.= "<div class='row'>".
+  "<div class='col-s-12 col-l-4'>Radius für Vergleichspreise, wenn ein Standort übermittelt wurde. (1-25km)</div>".
+  "<div class='col-s-12 col-l-8'><input type='number' name='radius' id='radius' step='1' min='1' max='25' required tabindex='".$tabindex++."' value='".output($userRow['radius'])."'></div>".
+  "</div>";
+  $content.= "<div class='row'>".
+  "<div class='col-s-12 col-l-4'>Ändern</div>".
+  "<div class='col-s-12 col-l-8'><input type='submit' name='submit' value='Ändern' tabindex='".$tabindex++."'></div>".
+  "</div>";
+  $content.= "</section>";
+  $content.= "</form>";
+$content.= "<div class='spacer-m'></div>";
+$content.= "<hr>";
+
+/**
  * Log
  */
 $content.= "<h2>Log, letzte 25 Einträge</h2>";

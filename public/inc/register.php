@@ -52,7 +52,15 @@ if(isset($_POST['submit'])) {
     $form = 1;
     $content.= "<div class='warnbox'>Du musst die Datenschutzerklärung lesen, verstehen und akzeptieren um dir ein Nutzerkonto anzulegen.</div>";
   }
-  
+
+  /**
+   * Spam"schutz"
+   */
+  if(empty($_POST['spam']) OR empty($_COOKIE['spam']) OR $_POST['spam'] != $_COOKIE['spam']) {
+    $form = 1;
+    $content.= "<div class='warnbox'>Ungültiges Token.</div>";
+  }
+
   /**
    * Wenn durch die Postdaten-Validierung die Inhalte geprüft und entschärft wurden, kann der Query erzeugt und ausgeführt werden.
    */
@@ -111,8 +119,11 @@ if(isset($_POST['submit'])) {
 }
 
 if($form == 1) {
+  $spam = md5(random_bytes(4096));
+  setcookie('spam', $spam, time()+300, NULL, NULL, TRUE, TRUE);
   $content.= "<form action='/register' method='post'>";
   $content.= "<section>";
+  $content.= '<input type="hidden" name="spam" value="'.$spam.'">';
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-3'><label for='email'><span class='fas icon'>&#xf1fa;</span>E-Mail Adresse</label></div>".
     "<div class='col-s-12 col-l-9'><input type='email' id='email' name='email' placeholder='john@example.com'".(!empty($email) ? " value='".output($email)."'" : NULL)." autofocus required tabindex='1'></div>".

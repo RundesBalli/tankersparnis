@@ -8,7 +8,7 @@
 /**
  * Einbinden der Cookieüberprüfung.
  */
-require_once('cookiecheck.php');
+require_once(INCLUDE_DIR.'cookieCheck.php');
 
 /**
  * Titel und Überschrift

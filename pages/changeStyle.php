@@ -11,18 +11,6 @@ if(empty($_COOKIE[$styleName])) {
   setcookie($styleName, ($_COOKIE[$styleName] == "dark" ? "light" : "dark"), time()+COOKIE_DURATION, NULL, NULL, TRUE, TRUE);
 }
 
-if(!empty($_GET['back'])) {
-  preg_match("/([\d\w-]+)/i", $_GET['back'], $match);
-  $redirect = $match[1];
-  if(isset($pageArray[$redirect])) {
-    header("Location: /".$redirect);
-    die();
-  } else {
-    header("Location: /start");
-    die();
-  }
-} else {
-  header("Location: /start");
-  die();
-}
+header('Location: /'.$route);
+die();
 ?>

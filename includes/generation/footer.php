@@ -56,7 +56,7 @@ $footerElements = [
   [
     'faSet' => 'fas',
     'faIcon' => 'f042',
-    'url' => '/changeStyle?back='.$route,
+    'url' => '/changeStyle',
     'route' => NULL,
     'text' => 'Stil wechseln',
     'newTab' => FALSE,

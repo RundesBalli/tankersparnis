@@ -18,8 +18,6 @@ if(!empty($_GET['hash'])) {
         $row = mysqli_fetch_assoc($result);
         userLog($row['id'], 1, "Aktiviert");
         $content.= "<div class='successBox'>Nutzerkonto aktiviert.</div>";
-        require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
-        require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->SMTPDebug = SMTP::DEBUG_OFF;

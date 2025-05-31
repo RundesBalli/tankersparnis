@@ -115,8 +115,6 @@ if(empty($_POST['action'])) {
       /**
        * E-Mail senden (neuer Empfänger)
        */
-      require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
-      require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
       $mail = new PHPMailer();
       $mail->isSMTP();
       $mail->SMTPDebug = SMTP::DEBUG_OFF;
@@ -245,8 +243,6 @@ if(empty($_POST['action'])) {
     /**
      * E-Mail senden
      */
-    require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
-    require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
     $mail = new PHPMailer();
     $mail->isSMTP();
     $mail->SMTPDebug = SMTP::DEBUG_OFF;

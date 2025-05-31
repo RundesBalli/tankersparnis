@@ -79,8 +79,6 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
       /**
        * Mail
        */
-      require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
-      require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
       $mail = new PHPMailer();
       $mail->isSMTP();
       $mail->SMTPDebug = SMTP::DEBUG_OFF;

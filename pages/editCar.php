@@ -122,7 +122,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
         $fuel = defuse(intval($_POST['fuel']));
         $fuelCompare = defuse(intval($_POST['fuelCompare']));
         $ok = 1;
-        $result = mysqli_query($dbl, "SELECT `id` FROM `fuels` WHERE `id`=".$fuel." LIMIT 1") OR DIE(MYSQL_ERROR($dbl));
+        $result = mysqli_query($dbl, "SELECT `id` FROM `fuels` WHERE `id`=".$fuel." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
         if(mysqli_num_rows($result) != 1) {
           /**
            * Die übergebene Kraftstoffart ist ungültig.
@@ -134,7 +134,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
             "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
           "</div>";
         }
-        $result = mysqli_query($dbl, "SELECT `id` FROM `fuelsCompare` WHERE `id`=".$fuelCompare." LIMIT 1") OR DIE(MYSQL_ERROR($dbl));
+        $result = mysqli_query($dbl, "SELECT `id` FROM `fuelsCompare` WHERE `id`=".$fuelCompare." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
         if(mysqli_num_rows($result) != 1) {
           /**
            * Die übergebene Kraftstoffart ist ungültig.

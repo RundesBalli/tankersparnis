@@ -3,8 +3,8 @@
  * Tankersparnis.net
  * 
  * @author    RundesBalli <webspam@rundesballi.com>
- * @copyright 2021 RundesBalli
- * @version   1.0
+ * @copyright 2025 RundesBalli
+ * @version   1.1
  * @see       https://github.com/RundesBalli/tankersparnis
  */
 

@@ -6,9 +6,9 @@
  */
 
 if(empty($_COOKIE[$styleName])) {
-  setcookie($styleName, ($defaultStyle == "dark" ? "light" : "dark"), time()+(6*7*86400), NULL, NULL, TRUE, TRUE);
+  setcookie($styleName, ($defaultStyle == "dark" ? "light" : "dark"), time()+COOKIE_DURATION, NULL, NULL, TRUE, TRUE);
 } else {
-  setcookie($styleName, ($_COOKIE[$styleName] == "dark" ? "light" : "dark"), time()+(6*7*86400), NULL, NULL, TRUE, TRUE);
+  setcookie($styleName, ($_COOKIE[$styleName] == "dark" ? "light" : "dark"), time()+COOKIE_DURATION, NULL, NULL, TRUE, TRUE);
 }
 
 if(!empty($_GET['back'])) {

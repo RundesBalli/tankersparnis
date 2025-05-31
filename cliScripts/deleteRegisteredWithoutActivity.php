@@ -2,15 +2,15 @@
 /**
  * deleteRegisteredWithoutActivity.php
  * 
- * Datei zum Entfernen der User, die sich nur aus Interesse mal angemeldet haben und dessen Account seit einem Monat ungenutzt ohne Aktivität nach Registrierung ist.
+ * Script to remove users who have only registered out of interest and whose account has been unused for
+ * a month without activity after registration.
  * Cron: 28 7-22 * * * /usr/bin/php /path/to/cliScripts/deleteRegisteredWithoutActivity.php > /dev/null
  */
 
 /**
- * Einbinden der Konfigurationsdatei sowie der Funktionsdatei
+ * Including the configuration and function loader.
  */
-require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."config.php");
-require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."functions.php");
+require_once(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'includes'.DIRECTORY_SEPARATOR.'loader.php');
 
 /**
  * Selektieren aller User, die seit mindestens einem Monat registriert sind und die letzte Aktivität maximal eine Stunde nach Registrierung war.
@@ -21,13 +21,7 @@ if(mysqli_num_rows($result) == 0) {
 }
 
 /**
- * Einbinden des PHPMailers
- */
-require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
-require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
-
-/**
- * Konfiguration der Mailfunktion
+ * Configuration of the email function.
  */
 $mail = new PHPMailer();
 $mail->isSMTP();
@@ -52,7 +46,7 @@ $mailConfig['conf']['closingGreeting'];
 $mail->Body = $mailBody;
 
 /**
- * Durchlaufen aller User, die inaktiv sind und Versenden der Email.
+ * Iterate all users who are inactive and send the email.
  */
 while($row = mysqli_fetch_assoc($result)) {
   $mail->addAddress($row['email']);

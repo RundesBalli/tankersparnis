@@ -2,18 +2,17 @@
 /**
  * reminder.php
  * 
- * Datei zum Senden von Emails an User, die 6 Monate nicht online waren.
+ * Script for sending emails to users who have not been online for 6 months.
  * Cron: 20 7-22 * * * /usr/bin/php /path/to/cliScripts/reminder.php > /dev/null
  */
 
 /**
- * Einbinden der Konfigurationsdatei sowie der Funktionsdatei
+ * Including the configuration and function loader.
  */
-require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."config.php");
-require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."functions.php");
+require_once(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'includes'.DIRECTORY_SEPARATOR.'loader.php');
 
 /**
- * Selektieren aller User, die seit 3 Monaten nicht online waren und noch keine Erinnerungs-Email bekommen haben. Abbruch wenn kein User benachrichtigt werden muss.
+ * Select all users who have not been online for 3 months and have not yet received a reminder email. Cancel if no user needs to be notified.
  */
 $result = mysqli_query($dbl, "SELECT * FROM `users` WHERE `lastActivity` < DATE_SUB(NOW(), INTERVAL 3 MONTH) AND `reminderDate` IS NULL") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) == 0) {
@@ -21,13 +20,7 @@ if(mysqli_num_rows($result) == 0) {
 }
 
 /**
- * Einbinden des PHPMailers
- */
-require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
-require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
-
-/**
- * Konfiguration der Mailfunktion
+ * Configuration of the email function
  */
 $mail = new PHPMailer();
 $mail->isSMTP();
@@ -51,7 +44,7 @@ $mailConfig['conf']['closingGreeting'];
 $mail->Body = $mailBody;
 
 /**
- * Durchlaufen aller User, die inaktiv sind und Versenden der Email.
+ * Iterate all users who are inactive and send the email.
  */
 while($row = mysqli_fetch_assoc($result)) {
   $mail->addAddress($row['email']);

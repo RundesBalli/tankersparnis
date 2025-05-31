@@ -6,10 +6,9 @@
  */
 
 /**
- * Einbinden der Konfigurationsdatei sowie der Funktionsdatei
+ * Including the configuration and function loader.
  */
-require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."config.php");
-require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."functions.php");
+require_once(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'includes'.DIRECTORY_SEPARATOR.'loader.php');
 
 /**
  * Eckdaten User
@@ -18,7 +17,7 @@ $userId = 0;
 $carId = 0;
 
 /**
- * Prüfung der User/Auto Kombination
+ * Checking the user/car combination
  */
 $result = mysqli_query($dbl, "SELECT `cars`.*, `fuels`.`energy` AS `energy`, `fuelsCompare`.`energy` AS `energyCompare`, `fuelsCompare`.`symbol` AS `symbol` FROM `cars` JOIN `fuels` ON `fuels`.`id`=`cars`.`fuel` JOIN `fuelsCompare` ON `fuelsCompare`.`id`=`cars`.`fuelCompare` WHERE `cars`.`userId`=".intval(defuse($userId))." AND `cars`.`id`=".intval(defuse($carId))." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
 if(mysqli_num_rows($result) == 0) {
@@ -28,7 +27,7 @@ if(mysqli_num_rows($result) == 0) {
 }
 
 /**
- * Eckdaten Input
+ * Data input
  */
 $inputfile = "./input.csv";
 $fp = fopen($inputfile, "r");
@@ -43,17 +42,17 @@ while($input[] = fgetcsv(
 }
 
 /**
- * Ausgabe des Inputs zur Kontrolle.
+ * Output of the input for checking.
  */
 //echo var_export($input, TRUE)."\n";
 
 /**
- * Wenn wirklich ein Input stattfinden soll, dann das die(); auskommentieren.
+ * If an input should really take place, then comment out the die();.
  */
 //die();
 
 /**
- * Durchschnittspreise
+ * Average prices
  * @see https://www.mwv.de/statistiken/verbraucherpreise/
  * @see https://en2x.de/service/statistiken/verbraucherpreise/
  */
@@ -72,7 +71,7 @@ $averages['e5'][2021] = [NULL, 1.3964, 1.4396, 1.5149, 1.5233, 1.5358, 1.5595, 1
 $averages['e5'][2022] = [NULL, 1.7212, 1.7881, 2.1546, 2.0319, 2.1002, 1.9943, 1.8689, 1.7699, 2.0166, 1.9846, 1.9260, 1.7546];
 $averages['e5'][2023] = [NULL, 1.7941, 1.8200, 1.8252, 1.8769, 1.8446, 1.8549, 1.8523, 1.9092, 1.9415, 1.8717, 1.8265, 1.7670];
 $averages['e5'][2023] = [NULL, 1.7864, 1.8122, 1.8329, 1.9118, 1.8769, 1.8213, 1.8399];
-// letzter Wert ist eine ungefähre Schätzung.
+// The last value is an approximate estimate.
 
 // Keine belastbaren Vergleichswerte für E10, daher Kopie von E5.
 $averages['e10'][2010] = [NULL, 1.3695, 1.3495, 1.4255, 1.4465, 1.4435, 1.4365, 1.4145, 1.4015, 1.4035, 1.4025, 1.4125, 1.4705];
@@ -90,7 +89,7 @@ $averages['e10'][2021] = [NULL, 1.3964, 1.4396, 1.5149, 1.5233, 1.5358, 1.5595, 
 $averages['e10'][2022] = [NULL, 1.7212, 1.7881, 2.1546, 2.0319, 2.1002, 1.9943, 1.8689, 1.7699, 2.0166, 1.9846, 1.9260, 1.7546];
 $averages['e10'][2023] = [NULL, 1.7941, 1.8200, 1.8252, 1.8769, 1.8446, 1.8549, 1.8523, 1.9092, 1.9415, 1.8717, 1.8265, 1.7670];
 $averages['e10'][2023] = [NULL, 1.7864, 1.8122, 1.8329, 1.9118, 1.8769, 1.8213, 1.8399];
-// letzter Wert ist eine ungefähre Schätzung.
+// The last value is an approximate estimate.
 
 $averages['diesel'][2010] = [NULL, 1.1704, 1.1344, 1.2064, 1.2394, 1.2454, 1.2444, 1.2214, 1.2104, 1.2264, 1.2394, 1.2534, 1.3074];
 $averages['diesel'][2011] = [NULL, 1.3334, 1.3694, 1.4374, 1.4604, 1.4094, 1.4234, 1.4234, 1.3924, 1.4343, 1.4439, 1.4674, 1.4324];
@@ -107,17 +106,17 @@ $averages['diesel'][2021] = [NULL, 1.2437, 1.2812, 1.3351, 1.3257, 1.3444, 1.373
 $averages['diesel'][2022] = [NULL, 1.6009, 1.6641, 2.1841, 2.0237, 2.0529, 2.0354, 1.9745, 1.9194, 2.1068, 2.1267, 2.0155, 1.8211];
 $averages['diesel'][2023] = [NULL, 1.8404, 1.7730, 1.7448, 1.7089, 1.6111, 1.6009, 1.6425, 1.7718, 1.8415, 1.8325, 1.7730, 1.7066];
 $averages['diesel'][2023] = [NULL, 1.7156, 1.7640, 1.7437, 1.7572, 1.6830, 1.6583, 1.7099];
-// letzter Wert ist eine ungefähre Schätzung.
+// The last value is an approximate estimate.
 
 foreach($input AS $key => $val) {
   /**
-   * Datum
+   * Date
    */
   if(!empty($val[0]) AND preg_match("/^(?'d'\d{1,2})\.(?'m'\d{1,2})\.(?'y'\d{4})$/", defuse($val[0]), $matches) === 1) {
     $date = $matches['y']."-".str_pad($matches['m'], 2, "0", STR_PAD_LEFT)."-".str_pad($matches['d'], 2, "0", STR_PAD_LEFT)." 00:00:00";
     if(!empty($averages[$row['symbol']][intval($matches['y'])][intval($matches['m'])])) {
       /**
-       * Setzen des Vergleichspreises für diesen Vorgang
+       * Set the comparison price for this operation
        */
       $priceCompare = floatval($averages[$row['symbol']][intval($matches['y'])][intval($matches['m'])]);
     } else {
@@ -128,7 +127,7 @@ foreach($input AS $key => $val) {
   }
 
   /**
-   * Reichweite
+   * Range
    */
   if(!empty($val[2])) {
     $range = round(floatval(str_replace(",", ".", defuse($val[2]))), 2);
@@ -152,7 +151,7 @@ foreach($input AS $key => $val) {
   }
 
   /**
-   * Kosten
+   * Cost
    */
   if(!empty($val[4])) {
     $cost = round(floatval(str_replace(",", ".", defuse($val[4]))), 2);
@@ -164,15 +163,15 @@ foreach($input AS $key => $val) {
   }
 
   /**
-   * Ausrechnen
+   * Calculate
    */
-  $energyUsed = $fuel*$row['energy']; // Energie des Getankten Kraftstoffes in kW
-  $fuelCompare = $energyUsed/$row['energyCompare']; // Benötigte Menge des Vergleichskraftstoffes
-  $costCompare = $fuelCompare*$priceCompare; // Gesamtpreis des Vergleichskraftstoffes
-  $moneySaved = $costCompare-$cost; // Ersparnis gegenüber dem Vergleichskraftstoff
+  $energyUsed = $fuel*$row['energy']; // Energy of the refueled fuel in kW
+  $fuelCompare = $energyUsed/$row['energyCompare']; // Quantity of reference fuel required
+  $costCompare = $fuelCompare*$priceCompare; // Total price of the reference fuel
+  $moneySaved = $costCompare-$cost; // Savings compared to the reference fuel
   //mysqli_query($dbl, "INSERT INTO `entries` (`userId`, `carId`, `timestamp`, `fuelQuantity`, `range`, `cost`, `moneySaved`, `raw`) VALUES (".defuse($userId).", ".defuse($carId).", '".defuse($date)."', ".$fuel.", ".$range.", ".$cost.", ".$moneySaved.", 'Spritmonitor-Input, Durchschnittspreis: ".defuse($priceCompare)."')") OR DIE(MYSQLI_ERROR($dbl));
   echo "INSERT INTO `entries` (`userId`, `carId`, `timestamp`, `fuelQuantity`, `range`, `cost`, `moneySaved`, `raw`) VALUES (".defuse($userId).", ".defuse($carId).", '".defuse($date)."', ".$fuel.", ".$range.", ".$cost.", ".$moneySaved.", 'Spritmonitor-Input, Durchschnittspreis: ".defuse($priceCompare)."')\n";
   //userLog($userId, 2, "Spritmonitor-Import Eintrag hinzugefügt. ".number_format($moneySaved, 2, ",", ".")."€ gespart");
 }
-echo "Fertig.\n";
+echo "Done.\n";
 ?>

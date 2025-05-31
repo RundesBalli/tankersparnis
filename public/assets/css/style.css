@@ -15,6 +15,7 @@
 :root {
   --fontSize: 18px;
   --basicSpacingSize: 18px;
+  --transitionTime: 0.3s;
 }
 
 html, body {
@@ -49,7 +50,7 @@ a {
   color: var(--linkColor);
   text-decoration: underline;
   cursor: pointer;
-  transition: all 0.4s;
+  transition: all var(--transitionTime);
 }
 
 a:active, a:hover, a:focus {
@@ -79,18 +80,18 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: calc(var(--fontSize) * 2);
-  margin: calc(var(--fontSize) * 1.5) 0 calc(var(--fontSize) * 0.7);
+  font-size: calc(var(--fontSize) * 4);
+  margin: calc(var(--basicSpacingSize) * 1.5) 0 calc(var(--basicSpacingSize) * 0.7);
 }
 
 h2 {
-  font-size: calc(var(--fontSize) * 1.5);
-  margin: calc(var(--fontSize) * 1.2) 0 calc(var(--fontSize) * 0.5);
+  font-size: calc(var(--fontSize) * 2.5);
+  margin: calc(var(--basicSpacingSize) * 1.2) 0 calc(var(--basicSpacingSize) * 0.5);
 }
 
 h3 {
-  font-size: calc(var(--fontSize) * 1.2);
-  margin: calc(var(--fontSize) * 0.85) 0 calc(var(--fontSize) * 0.35);
+  font-size: calc(var(--fontSize) * 1.8);
+  margin: calc(var(--basicSpacingSize) * 0.85) 0 calc(var(--basicSpacingSize) * 0.35);
 }
 
 hr {
@@ -114,23 +115,23 @@ code {
 
 .warnBox {
   background-color: rgba(197, 43, 47, 0.5); /** c52b2f, 50% opacity */
-  border-left: 5px solid #c52b2f;
-  padding: 15px;
-  margin: 10px 0;
+  border-left: calc(var(--basicSpacingSize) * 0.3) solid #c52b2f;
+  padding: var(--basicSpacingSize);
+  margin: calc(var(--basicSpacingSize) * 0.6) 0;
 }
 
 .successBox {
   background-color: rgba(91, 185, 28, 0.5); /** 5bb91c, 50% opacity */
-  border-left: 5px solid #5bb91c;
-  padding: 15px;
-  margin: 10px 0;
+  border-left: calc(var(--basicSpacingSize) * 0.3) solid #5bb91c;
+  padding: var(--basicSpacingSize);
+  margin: calc(var(--basicSpacingSize) * 0.6) 0;
 }
 
 .infoBox {
   background-color: rgba(0, 143, 255, 0.5); /** 008fff, 50% opacity */
-  border-left: 5px solid #008fff;
-  padding: 15px;
-  margin: 10px 0;
+  border-left: calc(var(--basicSpacingSize) * 0.3) solid #008fff;
+  padding: var(--basicSpacingSize);
+  margin: calc(var(--basicSpacingSize) * 0.6) 0;
 }
 
 .small {
@@ -211,7 +212,7 @@ code {
 .header {
   flex: none;
   text-align: center;
-  margin: 15px auto 10px;
+  margin: var(--basicSpacingSize) auto calc(var(--basicSpacingSize) * 0.6);
 }
 
 /**
@@ -221,7 +222,7 @@ code {
 .navbar {
   flex: none;
   text-align: center;
-  margin: 10px auto 20px;
+  margin: calc(var(--basicSpacingSize) * 0.6) auto calc(var(--basicSpacingSize) * 1.2);
   width: 100%;
 }
 
@@ -230,9 +231,9 @@ code {
   font-size: calc(var(--fontSize) * 1.35);
   font-family: 'OSS-L', sans-serif;
   text-decoration: none;
-  transition: all 0.3s;
+  transition: all var(--transitionTime);
   border-left: 1px solid var(--linkColor);
-  padding: 0px 20px;
+  padding: 0px calc(var(--basicSpacingSize) * 1.2);
   display: inline-block;
   white-space: nowrap;
 }
@@ -262,7 +263,7 @@ code {
   width: 100%;
   text-align: center;
   flex: none;
-  padding: 5px 0px;
+  padding: calc(var(--basicSpacingSize) * 0.3) 0px;
   font-size: calc(var(--fontSize) * 0.75);
   border-top: 1px solid var(--hrColor);
 }
@@ -270,7 +271,7 @@ code {
 .footer a {
   color: var(--linkColor);
   text-decoration: none;
-  margin: 0px 10px;
+  margin: 0px calc(var(--basicSpacingSize) * 0.4);
   display: inline-block;
 }
 
@@ -294,7 +295,7 @@ code {
   min-height: 90vh;
   display: flex;
   flex-flow: column;
-  margin: 40px auto;
+  margin: calc(var(--basicSpacingSize) * 2) auto;
   border-radius: 20px;
   background-color: var(--wrapperColor);
   box-shadow: 2px 2px 10px 2px #000000;
@@ -302,8 +303,8 @@ code {
 
 .content {
   width: 100%;
-  padding: 15px;
-  margin: 0px auto 15px;
+  padding: var(--basicSpacingSize);
+  margin: 0px auto var(--basicSpacingSize);
   flex: auto;
 }
 
@@ -401,15 +402,15 @@ section .row:not(:last-child) {
 }
 
 .spacer-s {
-  height: 15px;
+  height: calc(var(--basicSpacingSize) * 1);
 }
 
 .spacer-m {
-  height: 30px;
+  height: calc(var(--basicSpacingSize) * 2);
 }
 
 .spacer-l {
-  height: 50px;
+  height: calc(var(--basicSpacingSize) * 3);
 }
 
 /**
@@ -425,7 +426,7 @@ input[type=text], input[type=password], input[type=number], input[type=email], s
 
 textarea {
   resize: none;
-  height: 120px;
+  height: calc(var(--basicSpacingSize) * 7);
 }
 
 input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input[type=email]:focus, select:focus, textarea:focus {
@@ -436,7 +437,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, in
 input[type=submit], input[type=reset], input[type=button] {
   width: 30%;
   cursor: pointer;
-  padding: 8px 12px;
+  padding: calc(var(--basicSpacingSize) * 0.3) calc(var(--basicSpacingSize) * 0.5);
   background-color: transparent;
   color: var(--fontColor);
   border: 1px solid var(--fontColor);

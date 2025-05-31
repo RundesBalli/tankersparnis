@@ -39,7 +39,7 @@ $routes = [
   'rawData'        => 'rawData.php',
 
   /* Error pages */
-  '404'            => '404.php',
-  '403'            => '403.php',
+  '404'            => 'errors'.DIRECTORY_SEPARATOR.'404.php',
+  '403'            => 'errors'.DIRECTORY_SEPARATOR.'403.php',
 ];
 ?>

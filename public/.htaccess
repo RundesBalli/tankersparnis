@@ -4,25 +4,31 @@ IndexIgnore *
 # Add some security headers
 Header set X-Frame-Options DENY
 Header set X-XSS-Protection "1; mode=block"
-Header set Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline'
+Header set Content-Security-Policy: "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
 Header set X-Content-Type-Options nosniff
 Header set Strict-Transport-Security "max-age=31536000" env=HTTPS
 
+# Enable CORS
+Header set Access-Control-Allow-Origin "*"
+
 # Cache Control
-<FilesMatch "\.(jpg|jpeg|png|gif|js|css|eot|svg|ttf|woff|woff2)$">
-  Header set Cache-Control "max-age=3600, public"
+<FilesMatch "\.(jpg|jpeg|png|gif|html|js|css|svg)$"> # Images and Styles
+  Header set Cache-Control "max-age=43200, public"
+</FilesMatch>
+<FilesMatch "\.(eot|ttf|woff|woff2)$"> # Fonts
+  Header set Cache-Control "max-age=604800, public"
 </FilesMatch>
 
 # Rewrite engine
 RewriteEngine On
 
-# If requested URL is a file or directory then ignore rules
+# If the URL is a file or directory, then ignore the following rules.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-# Rule for the subpages
-RewriteRule ^([\w\d-]+)$ /index.php?p=$1 [NC,L,QSA]
+# Rules for everything
+RewriteRule ^([a-z-\d]+)$ /index.php?page=$1 [NC,L,QSA]
 
 # Errorhandling
-ErrorDocument 404 /index.php?p=404
-ErrorDocument 403 /index.php?p=403
+ErrorDocument 404 /index.php?page=404
+ErrorDocument 403 /index.php?page=403

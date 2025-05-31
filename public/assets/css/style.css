@@ -1,26 +1,17 @@
-/*
-CSS stylesheet for https://Tankersparnis.net
+/**
+ * CSS stylesheet for https://Tankersparnis.net
+ *
+ * https://RundesBalli.com
+ * https://github.com/RundesBalli
+ * https://github.com/RundesBalli/tankersparnis
+ *
+ * Sources:
+ * - Font-Awesome Free: https://fontawesome.com/start
+ */
 
-https://RundesBalli.com
-https://github.com/RundesBalli
-https://github.com/RundesBalli/tankersparnis
-
-Sources:
-- Font-Awesome Free: https://fontawesome.com/start
-
-Contents:
-1. General
-2. Header
-3. Navigation
-4. Footer
-5. Grid
-6. Forms
-*/
-
-/*
-  1. General
-*/
-
+/**
+ * 1. General
+ */
 :root {
   --fontSize: 18px;
 }
@@ -70,10 +61,10 @@ a.noUnderline {
 }
 
 @font-face {
-  /* https://fonts.google.com/specimen/Open+Sans+Condensed */
+  /** https://fonts.google.com/specimen/Open+Sans+Condensed */
   font-family: 'OSS-L';
   font-weight: 300;
-  src: url("/src/webfonts/OpenSansCondensed-Light.ttf");
+  src: url("/assets/webfonts/OpenSansCondensed-Light.ttf");
 }
 
 h1, h2, h3 {
@@ -115,22 +106,22 @@ code {
   cursor: help;
 }
 
-.warnbox {
-  background-color: rgba(197, 43, 47, 0.5); /* c52b2f, 50% opacity */
+.warnBox {
+  background-color: rgba(197, 43, 47, 0.5); /** c52b2f, 50% opacity */
   border-left: 5px solid #c52b2f;
   padding: 15px;
   margin: 10px 0;
 }
 
-.successbox {
-  background-color: rgba(91, 185, 28, 0.5); /* 5bb91c, 50% opacity */
+.successBox {
+  background-color: rgba(91, 185, 28, 0.5); /** 5bb91c, 50% opacity */
   border-left: 5px solid #5bb91c;
   padding: 15px;
   margin: 10px 0;
 }
 
-.infobox {
-  background-color: rgba(0, 143, 255, 0.5); /* 008fff, 50% opacity */
+.infoBox {
+  background-color: rgba(0, 143, 255, 0.5); /** 008fff, 50% opacity */
   border-left: 5px solid #008fff;
   padding: 15px;
   margin: 10px 0;
@@ -160,17 +151,17 @@ code {
   color: var(--highlightPositiveColor);
 }
 
-/*
-1.1 Fontawesome
-https://fontawesome.com/
-*/
+/**
+ * Fontawesome
+ * https://fontawesome.com/
+ */
 
 @font-face {
   font-family: 'fontawesome-r';
   font-style: normal;
   font-weight: 400;
-  src: url("/src/webfonts/fa-regular-400.eot");
-  src: url("/src/webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("/src/webfonts/fa-regular-400.woff2") format("woff2"), url("/src/webfonts/fa-regular-400.woff") format("woff"), url("/src/webfonts/fa-regular-400.ttf") format("truetype"), url("/src/webfonts/fa-regular-400.svg#fontawesome") format("svg");
+  src: url("/assets/webfonts/fa-regular-400.eot");
+  src: url("/assets/webfonts/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("/assets/webfonts/fa-regular-400.woff2") format("woff2"), url("/assets/webfonts/fa-regular-400.woff") format("woff"), url("/assets/webfonts/fa-regular-400.ttf") format("truetype"), url("/assets/webfonts/fa-regular-400.svg#fontawesome") format("svg");
 }
 
 .far {
@@ -182,8 +173,8 @@ https://fontawesome.com/
   font-family: 'fontawesome-s';
   font-style: normal;
   font-weight: 900;
-  src: url("/src/webfonts/fa-solid-900.eot");
-  src: url("/src/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("/src/webfonts/fa-solid-900.woff2") format("woff2"), url("/src/webfonts/fa-solid-900.woff") format("woff"), url("/src/webfonts/fa-solid-900.ttf") format("truetype"), url("/src/webfonts/fa-solid-900.svg#fontawesome") format("svg");
+  src: url("/assets/webfonts/fa-solid-900.eot");
+  src: url("/assets/webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("/assets/webfonts/fa-solid-900.woff2") format("woff2"), url("/assets/webfonts/fa-solid-900.woff") format("woff"), url("/assets/webfonts/fa-solid-900.ttf") format("truetype"), url("/assets/webfonts/fa-solid-900.svg#fontawesome") format("svg");
 }
 
 .fas {
@@ -195,8 +186,8 @@ https://fontawesome.com/
   font-family: 'fontawesome-b';
   font-style: normal;
   font-weight: normal;
-  src: url("/src/webfonts/fa-brands-400.eot");
-  src: url("/src/webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("/src/webfonts/fa-brands-400.woff2") format("woff2"), url("/src/webfonts/fa-brands-400.woff") format("woff"), url("/src/webfonts/fa-brands-400.ttf") format("truetype"), url("/src/webfonts/fa-brands-400.svg#fontawesome") format("svg"); }
+  src: url("/assets/webfonts/fa-brands-400.eot");
+  src: url("/assets/webfonts/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("/assets/webfonts/fa-brands-400.woff2") format("woff2"), url("/assets/webfonts/fa-brands-400.woff") format("woff"), url("/assets/webfonts/fa-brands-400.ttf") format("truetype"), url("/assets/webfonts/fa-brands-400.svg#fontawesome") format("svg"); }
 
 .fab {
   font-family: 'fontawesome-b';
@@ -207,9 +198,9 @@ https://fontawesome.com/
   padding: 0px 5px 0px 0px;
 }
 
-/*
-  2. Header
-*/
+/**
+ * 2. Header
+ */
 
 .header {
   flex: none;
@@ -217,9 +208,9 @@ https://fontawesome.com/
   margin: 15px auto 10px;
 }
 
-/*
-  3. Navigation
-*/
+/**
+ * 3. Navigation
+ */
 
 .navbar {
   flex: none;
@@ -257,9 +248,9 @@ https://fontawesome.com/
   display: none;
 }
 
-/*
-  4. Footer
-*/
+/**
+ * 4. Footer
+ */
 
 .footer {
   width: 100%;
@@ -286,9 +277,9 @@ https://fontawesome.com/
   color: var(--highlightColor);
 }
 
-/*
-  5. Grid
-*/
+/**
+ * 5. Grid
+ */
 
 .wrapper {
   max-width: 1200px;
@@ -415,9 +406,9 @@ section .row:not(:last-child) {
   height: 50px;
 }
 
-/*
-  6. Forms
-*/
+/**
+ * 6. Forms
+ */
 input[type=text], input[type=password], input[type=number], input[type=email], select, textarea {
   width: 30%;
   border: 1px solid var(--fontColor);

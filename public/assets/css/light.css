@@ -1,17 +1,17 @@
-/*
-  Tankersparnis.net
-
-  Helles Farbschema
-
-  Farben:
-  https://www.color-hex.com/color-palette/1294
-  https://www.color-hex.com/color-palette/110397
-
-  Hintergrundbild:
-  https://php-noise.com
-*/
+/**
+ * Tankersparnis.net
+ *
+ * light color scheme
+ *
+ * Colors:
+ * https://www.color-hex.com/color-palette/1294
+ * https://www.color-hex.com/color-palette/110397
+ *
+ * Background image:
+ * https://php-noise.com
+ */
 :root {
-  --bgImg: url("bg-light.png");
+  --bgImg: url("/assets/images/bg-light.png");
   --wrapperColor: #eeeeee;
   --fontColor: #005b96;
   --linkColor: #005b96;

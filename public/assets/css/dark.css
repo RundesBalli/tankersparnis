@@ -1,17 +1,17 @@
-/*
-  Tankersparnis.net
-
-  Dunkles Farbschema
-
-  Farben:
-  https://www.color-hex.com/color-palette/1294
-  https://www.color-hex.com/color-palette/110397
-
-  Hintergrundbild:
-  https://php-noise.com
-*/
+/**
+ * Tankersparnis.net
+ *
+ * Dark color scheme
+ *
+ * Colors:
+ * https://www.color-hex.com/color-palette/1294
+ * https://www.color-hex.com/color-palette/110397
+ *
+ * Background image:
+ * https://php-noise.com
+ */
 :root {
-  --bgImg: url("bg-dark.png");
+  --bgImg: url("/assets/images/bg-dark.png");
   --wrapperColor: #323232;
   --fontColor: #b3cde0;
   --linkColor: #b3cde0;

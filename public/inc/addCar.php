@@ -21,7 +21,7 @@ if(empty($_POST['token'])) {
    * Es wurde kein Token übergeben.
    */
   http_response_code(403);
-  $content.= "<div class='warnbox'>Es wurde kein Token übergeben.</div>";
+  $content.= "<div class='warnBox'>Es wurde kein Token übergeben.</div>";
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
   "</div>";
@@ -30,7 +30,7 @@ if(empty($_POST['token'])) {
    * Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.
    */
   http_response_code(403);
-  $content.= "<div class='warnbox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
+  $content.= "<div class='warnBox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
   "</div>";
@@ -39,7 +39,7 @@ if(empty($_POST['token'])) {
    * Wenigstens eins der übergebenen Felder ist leer oder die Kraftstoffarten sind keine IDs.
    */
   http_response_code(403);
-  $content.= "<div class='warnbox'>Du musst eine Bezeichnung und beide Kraftstoffarten angeben.</div>";
+  $content.= "<div class='warnBox'>Du musst eine Bezeichnung und beide Kraftstoffarten angeben.</div>";
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
   "</div>";
@@ -58,7 +58,7 @@ if(empty($_POST['token'])) {
      */
     $ok = 0;
     http_response_code(403);
-    $content.= "<div class='warnbox'>Du musst eine gültige Kraftstoffart angeben.</div>";
+    $content.= "<div class='warnBox'>Du musst eine gültige Kraftstoffart angeben.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
     "</div>";
@@ -70,7 +70,7 @@ if(empty($_POST['token'])) {
      */
     $ok = 0;
     http_response_code(403);
-    $content.= "<div class='warnbox'>Du musst eine gültige Kraftstoffart angeben.</div>";
+    $content.= "<div class='warnBox'>Du musst eine gültige Kraftstoffart angeben.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
     "</div>";
@@ -79,13 +79,13 @@ if(empty($_POST['token'])) {
     mysqli_query($dbl, "INSERT INTO `cars` (`userId`, `name`, `fuel`, `fuelCompare`) VALUES (".$userId.", '".$name."', ".$fuel.", ".$fuelCompare.")") OR DIE(MYSQLI_ERROR($dbl));
     if(mysqli_affected_rows($dbl) == 1) {
       userLog($userId, 6, "KFZ angelegt: `".$name."`, `".$fuel."`, `".$fuelCompare."`");
-      $content.= "<div class='successbox'>Das Fahrzeug wurde erfolgreich angelegt.</div>";
+      $content.= "<div class='successBox'>Das Fahrzeug wurde erfolgreich angelegt.</div>";
       $content.= "<div class='row'>".
         "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Fahrzeug Übersicht</a></div>".
       "</div>";
     } else {
       http_response_code(403);
-      $content.= "<div class='warnbox'>Das Fahrzeug konnte nicht angelegt werden. Bitte wende dich an den <a href='/imprint'>Plattformbetreiber</a>.</div>";
+      $content.= "<div class='warnBox'>Das Fahrzeug konnte nicht angelegt werden. Bitte wende dich an den <a href='/imprint'>Plattformbetreiber</a>.</div>";
       $content.= "<div class='row'>".
         "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
       "</div>";

@@ -34,7 +34,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
      * Eintrag existiert nicht
      */
     http_response_code(403);
-    $content.= "<div class='warnbox'>Es existiert kein Eintrag mit dieser ID oder er ist nicht deinem Nutzerkonto zugewiesen.</div>";
+    $content.= "<div class='warnBox'>Es existiert kein Eintrag mit dieser ID oder er ist nicht deinem Nutzerkonto zugewiesen.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></div>".
     "</div>";

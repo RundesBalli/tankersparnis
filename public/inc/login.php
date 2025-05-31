@@ -67,7 +67,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
            */
           http_response_code(403);
           $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>";
-          $content.= "<div class='warnbox'>Du musst deine E-Mail Adresse bestätigen indem du auf den Link in der E-Mail klickst.</div>";
+          $content.= "<div class='warnBox'>Du musst deine E-Mail Adresse bestätigen indem du auf den Link in der E-Mail klickst.</div>";
           $content.= "<div class='row'>".
           "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a></div>".
           "</div>";
@@ -78,7 +78,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
          */
         http_response_code(403);
         $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>";
-        $content.= "<div class='warnbox'>Der Account ist noch nicht aktiviert. Bitte klicke auf den Link in der Registrierungsmail.</div>";
+        $content.= "<div class='warnBox'>Der Account ist noch nicht aktiviert. Bitte klicke auf den Link in der Registrierungsmail.</div>";
         $content.= "<div class='row'>".
         "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a></div>".
         "</div>";
@@ -89,7 +89,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
        */
       http_response_code(403);
       $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>";
-      $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>";
+      $content.= "<div class='warnBox'>Die Zugangsdaten sind falsch.</div>";
       $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></div>".
       "</div>";
@@ -100,7 +100,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
      */
     http_response_code(403);
     $content.= "<h1><span class='fas icon'>&#xf071;</span>Login gescheitert</h1>";
-    $content.= "<div class='warnbox'>Die Zugangsdaten sind falsch.</div>";
+    $content.= "<div class='warnBox'>Die Zugangsdaten sind falsch.</div>";
     $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Erneut versuchen</a><br><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a></div>".
     "</div>";

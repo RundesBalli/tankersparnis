@@ -34,7 +34,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
      * KFZ existiert nicht
      */
     http_response_code(403);
-    $content.= "<div class='warnbox'>Es existiert kein Fahrzeug mit dieser ID oder es ist nicht deinem Nutzerkonto zugewiesen.</div>";
+    $content.= "<div class='warnBox'>Es existiert kein Fahrzeug mit dieser ID oder es ist nicht deinem Nutzerkonto zugewiesen.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
     "</div>";
@@ -92,7 +92,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
          * Es wurde kein Token übergeben.
          */
         http_response_code(403);
-        $content.= "<div class='warnbox'>Es wurde kein Token übergeben.</div>";
+        $content.= "<div class='warnBox'>Es wurde kein Token übergeben.</div>";
         $content.= "<div class='row'>".
           "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
         "</div>";
@@ -101,7 +101,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
          * Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.
          */
         http_response_code(403);
-        $content.= "<div class='warnbox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
+        $content.= "<div class='warnBox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
         $content.= "<div class='row'>".
           "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
         "</div>";
@@ -110,7 +110,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
          * Wenigstens eins der übergebenen Felder ist leer oder die Kraftstoffarten sind keine IDs.
          */
         http_response_code(403);
-        $content.= "<div class='warnbox'>Du musst eine Bezeichnung und beide Kraftstoffarten angeben.</div>";
+        $content.= "<div class='warnBox'>Du musst eine Bezeichnung und beide Kraftstoffarten angeben.</div>";
         $content.= "<div class='row'>".
           "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
         "</div>";
@@ -129,7 +129,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
            */
           $ok = 0;
           http_response_code(403);
-          $content.= "<div class='warnbox'>Du musst eine gültige Kraftstoffart angeben.</div>";
+          $content.= "<div class='warnBox'>Du musst eine gültige Kraftstoffart angeben.</div>";
           $content.= "<div class='row'>".
             "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
           "</div>";
@@ -141,7 +141,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
            */
           $ok = 0;
           http_response_code(403);
-          $content.= "<div class='warnbox'>Du musst eine gültige Kraftstoffart angeben.</div>";
+          $content.= "<div class='warnBox'>Du musst eine gültige Kraftstoffart angeben.</div>";
           $content.= "<div class='row'>".
             "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
           "</div>";
@@ -150,13 +150,13 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
           mysqli_query($dbl, "UPDATE `cars` SET `name`='".$name."', `fuel`=".$fuel.", `fuelCompare`=".$fuelCompare." WHERE `userId`=".$userId." AND `id`=".$id." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
           if(mysqli_affected_rows($dbl) == 1) {
             userLog($userId, 7, "KFZ geändert: `".$name."`, `".$fuel."`, `".$fuelCompare."`");
-            $content.= "<div class='successbox'>Das Fahrzeug wurde erfolgreich bearbeitet.</div>";
+            $content.= "<div class='successBox'>Das Fahrzeug wurde erfolgreich bearbeitet.</div>";
             $content.= "<div class='row'>".
               "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Fahrzeug Übersicht</a></div>".
             "</div>";
           } else {
             http_response_code(403);
-            $content.= "<div class='infobox'>Es fand keine Änderung statt.</div>";
+            $content.= "<div class='infoBox'>Es fand keine Änderung statt.</div>";
             $content.= "<div class='row'>".
               "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
             "</div>";

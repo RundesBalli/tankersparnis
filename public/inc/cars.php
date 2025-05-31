@@ -39,7 +39,7 @@ if(mysqli_num_rows($result) > 0) {
   }
   $content.= "</section>";
 } else {
-  $content.= "<div class='infobox'>Du hast noch keine KFZs hinzugefügt.</div>";
+  $content.= "<div class='infoBox'>Du hast noch keine KFZs hinzugefügt.</div>";
 }
 $content.= "<div class='spacer-m'></div>";
 $content.= "<hr>";

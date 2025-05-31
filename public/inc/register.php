@@ -31,7 +31,7 @@ if(isset($_POST['submit'])) {
     $email = defuse(filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL));
   } else {
     $form = 1;
-    $content.= "<div class='warnbox'>Die eingegebene E-Mail Adresse ist ungültig.</div>";
+    $content.= "<div class='warnBox'>Die eingegebene E-Mail Adresse ist ungültig.</div>";
   }
 
   /**
@@ -42,7 +42,7 @@ if(isset($_POST['submit'])) {
     $password = password_hash($_POST['password'].$salt, PASSWORD_DEFAULT);
   } else {
     $form = 1;
-    $content.= "<div class='warnbox'>Das Passwort ist zu kurz.</div>";
+    $content.= "<div class='warnBox'>Das Passwort ist zu kurz.</div>";
   }
 
   /**
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])) {
    */
   if(empty($_POST['privacy']) OR $_POST['privacy'] != 1) {
     $form = 1;
-    $content.= "<div class='warnbox'>Du musst die Datenschutzerklärung lesen, verstehen und akzeptieren um dir ein Nutzerkonto anzulegen.</div>";
+    $content.= "<div class='warnBox'>Du musst die Datenschutzerklärung lesen, verstehen und akzeptieren um dir ein Nutzerkonto anzulegen.</div>";
   }
 
   /**
@@ -58,7 +58,7 @@ if(isset($_POST['submit'])) {
    */
   if(empty($_POST['spam']) OR empty($_COOKIE['spam']) OR $_POST['spam'] != $_COOKIE['spam']) {
     $form = 1;
-    $content.= "<div class='warnbox'>Ungültiges Token.</div>";
+    $content.= "<div class='warnBox'>Ungültiges Token.</div>";
   }
 
   /**
@@ -69,7 +69,7 @@ if(isset($_POST['submit'])) {
     if(mysqli_query($dbl, "INSERT INTO `users` (`email`, `password`, `salt`, `registerHash`) VALUES ('".$email."', '".$password."', '".$salt."', '".$registerHash."')")) {
       $newUserId = mysqli_insert_id($dbl);
       userLog($newUserId, 1, "Registriert");
-      $content.= "<div class='successbox'>Account erfolgreich angelegt. Du bekommst nun eine Bestätigungs E-Mail mit der du deinen Zugang aktivieren kannst.</div>";
+      $content.= "<div class='successBox'>Account erfolgreich angelegt. Du bekommst nun eine Bestätigungs E-Mail mit der du deinen Zugang aktivieren kannst.</div>";
       $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Login</a></div>".
       "</div>";
@@ -100,14 +100,14 @@ if(isset($_POST['submit'])) {
       $mail->Body = $mailBody;
       if (!$mail->send()) {
         mysqli_query($dbl, "INSERT INTO `failedEmails` (`userId`, `to`, `subject`, `message`) VALUES ('".$newUserId."', '".$email."', '".$mailConfig['subject']['register']."', '".defuse($mailBody)."')") OR DIE(MYSQLI_ERROR($dbl));
-        $content.= "<div class='infobox'>Der Mailserver ist gerade ausgelastet. Es kann ein paar Minuten dauern, bis du die Aktivierungsmail bekommst.</div>";
+        $content.= "<div class='infoBox'>Der Mailserver ist gerade ausgelastet. Es kann ein paar Minuten dauern, bis du die Aktivierungsmail bekommst.</div>";
       }
     } else {
       $form = 1;
       if(mysqli_errno($dbl) == 1062) {
-        $content.= "<div class='warnbox'>Es existiert bereits ein Nutzerkonto unter dieser E-Mail Adresse.<br>Wenn du dein Passwort vergessen hast, kannst du es unter <a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a> neu setzen.</div>";
+        $content.= "<div class='warnBox'>Es existiert bereits ein Nutzerkonto unter dieser E-Mail Adresse.<br>Wenn du dein Passwort vergessen hast, kannst du es unter <a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a> neu setzen.</div>";
       } else {
-        $content.= "<div class='warnbox'>Unbekannter Fehler. Bitte wende dich an <a href='/imprint'>den Plattformbetreiber</a>.</div>";
+        $content.= "<div class='warnBox'>Unbekannter Fehler. Bitte wende dich an <a href='/imprint'>den Plattformbetreiber</a>.</div>";
       }
     }
   }

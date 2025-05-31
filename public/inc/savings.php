@@ -53,7 +53,7 @@ if($view == 'total') {
      * Es wurden noch keine KFZs angelegt
      */
     http_response_code(404);
-    $content.= "<div class='infobox'>Du hast noch keine KFZs angelegt.</div>";
+    $content.= "<div class='infoBox'>Du hast noch keine KFZs angelegt.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
     "</div>";
@@ -65,7 +65,7 @@ if($view == 'total') {
       $content.= "<h3>".output($carRow['name'])."</h3>";
       $result = mysqli_query($dbl, "SELECT `entries`.* FROM `entries` WHERE `entries`.`userId`=".$userId." AND `carId`=".$carRow['id']." ORDER BY `entries`.`timestamp` DESC") OR DIE(MYSQLI_ERROR($dbl));
       if(mysqli_num_rows($result) == 0) {
-        $content.= "<div class='infobox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
+        $content.= "<div class='infoBox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
       } else {
         $excelExport = '';
         $content.= "<section>";
@@ -142,7 +142,7 @@ if($view == 'total') {
      * Es wurden noch keine KFZs angelegt
      */
     http_response_code(404);
-    $content.= "<div class='infobox'>Du hast noch keine KFZs angelegt.</div>";
+    $content.= "<div class='infoBox'>Du hast noch keine KFZs angelegt.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
     "</div>";
@@ -154,7 +154,7 @@ if($view == 'total') {
       $content.= "<h3>".output($carRow['name'])."</h3>";
       $result = mysqli_query($dbl, "SELECT YEAR(`timestamp`) AS `y`, MONTH(`timestamp`) AS `m`, SUM(`fuelQuantity`) AS `fuelQuantity`, SUM(`range`) AS `range`, SUM(`cost`) AS `cost`, SUM(`moneySaved`) AS `moneySaved` FROM `entries` WHERE `carId`=".$carRow['id']." AND `userId`=".$userId." GROUP BY `y`, `m` ORDER BY `y` DESC, `m` DESC") OR DIE(MYSQLI_ERROR($dbl));
       if(mysqli_num_rows($result) == 0) {
-        $content.= "<div class='infobox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
+        $content.= "<div class='infoBox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
       } else {
         $content.= "<section>";
         $content.= "<div class='row bold breakWord small'>".
@@ -215,7 +215,7 @@ if($view == 'total') {
      * Es wurden noch keine KFZs angelegt
      */
     http_response_code(404);
-    $content.= "<div class='infobox'>Du hast noch keine KFZs angelegt.</div>";
+    $content.= "<div class='infoBox'>Du hast noch keine KFZs angelegt.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
     "</div>";
@@ -227,7 +227,7 @@ if($view == 'total') {
       $content.= "<h3>".output($carRow['name'])."</h3>";
       $result = mysqli_query($dbl, "SELECT YEAR(`timestamp`) AS `y`, SUM(`fuelQuantity`) AS `fuelQuantity`, SUM(`range`) AS `range`, SUM(`cost`) AS `cost`, SUM(`moneySaved`) AS `moneySaved` FROM `entries` WHERE `carId`=".$carRow['id']." AND `userId`=".$userId." GROUP BY `y` ORDER BY `y` DESC") OR DIE(MYSQLI_ERROR($dbl));
       if(mysqli_num_rows($result) == 0) {
-        $content.= "<div class='infobox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
+        $content.= "<div class='infoBox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
       } else {
         $content.= "<section>";
         $content.= "<div class='row bold breakWord small'>".
@@ -286,7 +286,7 @@ if($view == 'total') {
      * Es wurden noch keine KFZs angelegt
      */
     http_response_code(404);
-    $content.= "<div class='infobox'>Du hast noch keine KFZs angelegt.</div>";
+    $content.= "<div class='infoBox'>Du hast noch keine KFZs angelegt.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
     "</div>";
@@ -298,7 +298,7 @@ if($view == 'total') {
       $content.= "<h3>".output($carRow['name'])."</h3>";
       $result = mysqli_query($dbl, "SELECT `entries`.* FROM `entries` WHERE `entries`.`userId`=".$userId." AND `carId`=".$carRow['id']." ORDER BY `entries`.`moneySaved` DESC LIMIT 10") OR DIE(MYSQLI_ERROR($dbl));
       if(mysqli_num_rows($result) == 0) {
-        $content.= "<div class='infobox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
+        $content.= "<div class='infoBox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
       } else {
         $content.= "<section>";
         $content.= "<div class='row bold breakWord small'>".
@@ -340,7 +340,7 @@ if($view == 'total') {
      * Es wurden noch keine KFZs angelegt
      */
     http_response_code(404);
-    $content.= "<div class='infobox'>Du hast noch keine KFZs angelegt.</div>";
+    $content.= "<div class='infoBox'>Du hast noch keine KFZs angelegt.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
     "</div>";
@@ -352,7 +352,7 @@ if($view == 'total') {
       $content.= "<h3>".output($carRow['name'])."</h3>";
       $result = mysqli_query($dbl, "SELECT `entries`.*, ROUND((`fuelQuantity`/`range`*100), 1) AS `consumption` FROM `entries` WHERE `userId`=".$userId." AND `carId`=".$carRow['id']." ORDER BY `consumption` ASC LIMIT 10") OR DIE(MYSQLI_ERROR($dbl));
       if(mysqli_num_rows($result) == 0) {
-        $content.= "<div class='infobox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
+        $content.= "<div class='infoBox'>Für dieses KFZ gibt es noch keine Einträge.</div>";
       } else {
         $content.= "<section>";
         $content.= "<div class='row bold breakWord small'>".

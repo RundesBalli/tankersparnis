@@ -20,7 +20,7 @@ $content.= "<h1><span class='fas icon'>&#xf201;</span>Statistiken</h1>";
  * Prüfung ob diese Seite überhaupt aufgerufen werden darf.
  */
 if(!defined("perm-showStatistics")) {
-  $content.= "<div class='warnbox'>Du hast keine Berechtigung um auf diese Seite zuzugreifen.</div>";
+  $content.= "<div class='warnBox'>Du hast keine Berechtigung um auf diese Seite zuzugreifen.</div>";
 } else {
   $perm = 0;
 
@@ -36,7 +36,7 @@ if(!defined("perm-showStatistics")) {
     $content.= "<h2>Registrierungen, 4 Wochen</h2>";
     $result = mysqli_query($dbl, "SELECT COUNT(`id`) AS `c`, DATE(`registered`) AS `d` FROM `users` WHERE `registered` > DATE_SUB(NOW(), INTERVAL 4 WEEK) GROUP BY `d` ORDER BY `d` DESC") OR DIE(MYSQLI_ERROR($dbl));
     if(mysqli_num_rows($result) == 0) {
-      $content.= "<div class='infobox'>Keine Neuregistrierungen in den letzten 4 Wochen.</div>";
+      $content.= "<div class='infoBox'>Keine Neuregistrierungen in den letzten 4 Wochen.</div>";
     } else {
       $content.= "<section>";
       $content.= "<div class='row bold breakWord'>".
@@ -147,7 +147,7 @@ if(!defined("perm-showStatistics")) {
     $content.= "<h2>Einträge, 4 Wochen</h2>";
     $result = mysqli_query($dbl, "SELECT COUNT(`id`) AS `c`, DATE(`timestamp`) AS `t` FROM `entries` WHERE `timestamp` > DATE_SUB(NOW(), INTERVAL 4 WEEK) GROUP BY `t` ORDER BY `t` DESC") OR DIE(MYSQLI_ERROR($dbl));
     if(mysqli_num_rows($result) == 0) {
-      $content.= "<div class='infobox'>Keine Einträge in den letzten 4 Wochen.</div>";
+      $content.= "<div class='infoBox'>Keine Einträge in den letzten 4 Wochen.</div>";
     } else {
       $content.= "<section>";
       $content.= "<div class='row bold breakWord'>".
@@ -177,7 +177,7 @@ if(!defined("perm-showStatistics")) {
     $content.= "<h2>die Einträge der letzten 2 Wochen</h2>";
     $result = mysqli_query($dbl, "SELECT * FROM `entries` WHERE `timestamp` > DATE_SUB(NOW(), INTERVAL 2 WEEK) ORDER BY `timestamp` DESC") OR DIE(MYSQLI_ERROR($dbl));
     if(mysqli_num_rows($result) == 0) {
-      $content.= "<div class='infobox'>Keine Einträge in den letzten 2 Wochen.</div>";
+      $content.= "<div class='infoBox'>Keine Einträge in den letzten 2 Wochen.</div>";
     } else {
       $content.= "<section>";
       $content.= "<div class='row bold breakWord small'>".
@@ -234,7 +234,7 @@ if(!defined("perm-showStatistics")) {
   }
 
   if($perm == 0) {
-    $content.= "<div class='warnbox'>Du hast zwar die Berechtigung um auf diese Seite zuzugreifen, aber keine Berechtigung um einzelne Elemente dieser Seite anzeigen zu lassen.</div>";
+    $content.= "<div class='warnBox'>Du hast zwar die Berechtigung um auf diese Seite zuzugreifen, aber keine Berechtigung um einzelne Elemente dieser Seite anzeigen zu lassen.</div>";
   }
 }
 ?>

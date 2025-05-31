@@ -17,7 +17,7 @@ if(!empty($_GET['hash'])) {
       if(mysqli_affected_rows($dbl) == 1) {
         $row = mysqli_fetch_assoc($result);
         userLog($row['id'], 1, "Aktiviert");
-        $content.= "<div class='successbox'>Nutzerkonto aktiviert.</div>";
+        $content.= "<div class='successBox'>Nutzerkonto aktiviert.</div>";
         require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
         require(__DIR__.DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
         $mail = new PHPMailer();
@@ -48,21 +48,21 @@ if(!empty($_GET['hash'])) {
       }
     } else {
       http_response_code(403);
-      $content.= "<div class='warnbox'>Der übergebene Hash ist ungültig oder wurde bereits benutzt. Bitte klicke den Link in der Aktivierungsmail an oder probiere dich einzuloggen um fortzufahren.</div>";
+      $content.= "<div class='warnBox'>Der übergebene Hash ist ungültig oder wurde bereits benutzt. Bitte klicke den Link in der Aktivierungsmail an oder probiere dich einzuloggen um fortzufahren.</div>";
       $content.= "<div class='row'>".
         "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
       "</div>";
     }
   } else {
     http_response_code(403);
-    $content.= "<div class='warnbox'>Der übergebene Hash hat ein ungültiges Format. Bitte klicke den Link in der Aktivierungsmail an um fortzufahren.</div>";
+    $content.= "<div class='warnBox'>Der übergebene Hash hat ein ungültiges Format. Bitte klicke den Link in der Aktivierungsmail an um fortzufahren.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
     "</div>";
   }
 } else {
   http_response_code(403);
-  $content.= "<div class='warnbox'>Es wurde kein Hash übergeben. Bitte klicke den Link in der Aktivierungsmail an um fortzufahren.</div>";
+  $content.= "<div class='warnBox'>Es wurde kein Hash übergeben. Bitte klicke den Link in der Aktivierungsmail an um fortzufahren.</div>";
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
   "</div>";

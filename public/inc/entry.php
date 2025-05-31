@@ -63,7 +63,7 @@ if(mysqli_num_rows($result) > 0) {
     $content.= "</section>";
   $content.= "</form>";
 } else {
-  $content.= "<div class='infobox'>Du hast noch keine KFZs hinzugefügt.</div>";
+  $content.= "<div class='infoBox'>Du hast noch keine KFZs hinzugefügt.</div>";
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ hinzufügen</a></div>".
   "</div>";

@@ -21,7 +21,7 @@ if(empty($_POST['token'])) {
    * Es wurde kein Token übergeben.
    */
   http_response_code(403);
-  $content.= "<div class='warnbox'>Es wurde kein Token übergeben.</div>";
+  $content.= "<div class='warnBox'>Es wurde kein Token übergeben.</div>";
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
   "</div>";
@@ -30,7 +30,7 @@ if(empty($_POST['token'])) {
    * Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.
    */
   http_response_code(403);
-  $content.= "<div class='warnbox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
+  $content.= "<div class='warnBox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
   "</div>";
@@ -39,7 +39,7 @@ if(empty($_POST['token'])) {
    * Wenigstens eins der übergebenen Felder ist leer.
    */
   http_response_code(403);
-  $content.= "<div class='warnbox'>Du musst alle Felder ausfüllen.</div>";
+  $content.= "<div class='warnBox'>Du musst alle Felder ausfüllen.</div>";
   $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
   "</div>";
@@ -51,7 +51,7 @@ if(empty($_POST['token'])) {
   $result = mysqli_query($dbl, "SELECT `cars`.*, `fuels`.`energy` AS `energy`, `fuelsCompare`.`energy` AS `energyCompare`, `fuelsCompare`.`symbol` AS `symbol` FROM `cars` JOIN `fuels` ON `fuels`.`id`=`cars`.`fuel` JOIN `fuelsCompare` ON `fuelsCompare`.`id`=`cars`.`fuelCompare` WHERE `cars`.`userId`=".$userId." AND `cars`.`id`=".$car." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
   if(mysqli_num_rows($result) != 1) {
     http_response_code(403);
-    $content.= "<div class='warnbox'>Das übergebene Fahrzeug ist ungültig.</div>";
+    $content.= "<div class='warnBox'>Das übergebene Fahrzeug ist ungültig.</div>";
     $content.= "<div class='row'>".
       "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
     "</div>";
@@ -65,7 +65,7 @@ if(empty($_POST['token'])) {
     $cost = round(floatval(str_replace(",", ".", defuse($_POST['cost']))), 2);
     if($fuel <= 0 OR $range <= 0 OR $cost <= 0) {
       http_response_code(403);
-      $content.= "<div class='warnbox'>Die Eingaben sind ungültig.</div>";
+      $content.= "<div class='warnBox'>Die Eingaben sind ungültig.</div>";
       $content.= "<div class='row'>".
         "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
       "</div>";
@@ -126,7 +126,7 @@ if(empty($_POST['token'])) {
       
       if($ok == 0) {
         http_response_code(403);
-        $content.= "<div class='warnbox'>Es konnte kein Vergleichspreis ermittelt werden.</div>";
+        $content.= "<div class='warnBox'>Es konnte kein Vergleichspreis ermittelt werden.</div>";
         $content.= "<div class='row'>".
           "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
         "</div>";
@@ -140,7 +140,7 @@ if(empty($_POST['token'])) {
         $moneySaved = $costCompare-$cost; // Ersparnis gegenüber dem Vergleichskraftstoff
         mysqli_query($dbl, "INSERT INTO `entries` (`userId`, `carId`, `fuelQuantity`, `range`, `cost`, `moneySaved`, `raw`) VALUES (".$userId.", ".$car.", ".$fuel.", ".$range.", ".$cost.", ".$moneySaved.", '".defuse(json_encode($pricing))."')") OR DIE(MYSQLI_ERROR($dbl));
         userLog($userId, 2, "Eintrag hinzugefügt. ".number_format($moneySaved, 2, ",", ".")."€ gespart");
-        $content.= "<div class='successbox'>Eintrag hinzugefügt. Du hast ".number_format($moneySaved, 2, ",", ".")."€ gespart!</div>";
+        $content.= "<div class='successBox'>Eintrag hinzugefügt. Du hast ".number_format($moneySaved, 2, ",", ".")."€ gespart!</div>";
         $content.= "<div class='row'>".
           "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</div>".
           "<div class='col-s-12 col-l-12'><a href='/savings'><span class='fas icon'>&#xf153;</span>Ersparnisse ansehen</div>".

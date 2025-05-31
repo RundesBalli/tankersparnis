@@ -54,7 +54,7 @@ if(mysqli_num_rows($result) > 0) {
     "<div class='col-s-12 col-l-3'><label for='geoButton'>Standort<br><span class='small'>Optional</span></label></div>".
     "<div class='col-s-12 col-l-9'><input type='button' id='geoButton' value='Standort ermitteln' tabindex='".$tabindex++."'><br><span class='small'>Dein genauer Standort wird nicht gespeichert, sondern nur die Tankstelle im Umkreis von 15km, die am günstigsten ist.<br>Dein Standort wird ohne Zuweisung zu deiner Person an unseren Kraftstoffpreis Dienstleister <a href='https://creativecommons.tankerkoenig.de/' target='_blank' rel='noopener'>Tankerkönig</a> gesendet.</span></div>".
     "</div>";
-    $content.= "<script type='text/javascript' src='/src/geolocation.js'></script>";
+    $content.= "<script type='text/javascript' src='/assets/js/geolocation.js'></script>";
     $content.= "<input type='hidden' name='geo' id='geo' value=''>";
     $content.= "<div class='row'>".
     "<div class='col-s-12 col-l-3'><label for='submit'>Hinzufügen</label></div>".

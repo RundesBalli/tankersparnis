@@ -23,6 +23,8 @@ require_once(__DIR__.DIRECTORY_SEPARATOR.'functions'.DIRECTORY_SEPARATOR.'defuse
 /**
  * Email stuff
  */
+require_once(__DIR__.DIRECTORY_SEPARATOR.'email'.DIRECTORY_SEPARATOR.'PHPMailer.php');
+require_once(__DIR__.DIRECTORY_SEPARATOR.'email'.DIRECTORY_SEPARATOR.'SMTP.php');
 
 /**
  * If the loader has been called from a cli script or the API, the content/page generation is not needed.

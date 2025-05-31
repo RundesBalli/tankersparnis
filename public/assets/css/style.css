@@ -14,6 +14,7 @@
  */
 :root {
   --fontSize: 18px;
+  --basicSpacingSize: 18px;
 }
 
 html, body {
@@ -58,6 +59,11 @@ a:active, a:hover, a:focus {
 
 a.noUnderline {
   text-decoration: none;
+}
+
+p {
+  margin: var(--basicSpacingSize) auto;
+  max-width: 1200px;
 }
 
 @font-face {

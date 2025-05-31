@@ -71,13 +71,13 @@ if(empty($_POST['token'])) {
          */
         $response = apiCall(
           "https://creativecommons.tankerkoenig.de/json/list.php",
-          array(
+          [
             'lat' => floatval($matches[1]),
             'lng' => floatval($matches[2]),
             'rad' => $userRow['radius'],
             'type' => $row['symbol'],
             'sort' => 'price'
-          )
+          ]
         );
         /**
          * Preisfindung anhand der nächstgelegenen Tankstelle. Sofern keine Tankstelle geöffnet hat oder keine Tankstelle in der Umgebung
@@ -102,8 +102,7 @@ if(empty($_POST['token'])) {
          * Geo Auswertung wurde nicht übergeben oder konnte nicht erfolgen. Nehme bundesweiten Durchschnittspreis.
          */
         $response = apiCall(
-          "https://creativecommons.tankerkoenig.de/api/v4/stats",
-          NULL
+          "https://creativecommons.tankerkoenig.de/api/v4/stats"
         );
         if($response !== FALSE) {
           $response = array_change_key_case($response, CASE_LOWER);

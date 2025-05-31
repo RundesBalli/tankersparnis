@@ -1,6 +1,6 @@
 ### Tankersparnis.net
-# Failed Emails Sender
-*/5 * * * * /usr/bin/php /pfad/zu/cliScripts/failedEmails.php > /dev/null
-# Account Inaktivität Reminder
-20 7-22 * * * /usr/bin/php /pfad/zu/cliScripts/reminder.php > /dev/null
-25 7-22 * * * /usr/bin/php /pfad/zu/cliScripts/autoDeleter.php > /dev/null
+# Failed emails sender
+*/5 * * * * /usr/bin/php /path/to/cliScripts/failedEmails.php > /dev/null
+# Account inactivity reminder
+20 7-22 * * * /usr/bin/php /path/to/cliScripts/reminder.php > /dev/null
+25 7-22 * * * /usr/bin/php /path/to/cliScripts/autoDeleter.php > /dev/null

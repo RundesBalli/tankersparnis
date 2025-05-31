@@ -12,16 +12,16 @@ https://github.com/RundesBalli/tankersparnis
     <meta name="keywords" content="Tankersparnis, Berechnen, Rechner, Ersparnis, Tanken, Sprit, Gas, Gasoline, Autogas"/>
     <meta name="author" content="RundesBalli"/>
     <meta name="revisit-after" content="3 days"/>
-    <link href="/src/{STYLE}.css" rel="stylesheet">
-    <link href="/src/style.css" rel="stylesheet">
-    <link rel="shortcut icon" href="/src/favicon.png" type="image/png">
+    <link href="/assets/css/{STYLE}.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/assets/images/favicon.png" type="image/png">
     <meta name="theme-color" content="#323232">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <div class="wrapper">
       <div class="header">
-        <a href="/"><img src="/src/header-{STYLE}.png" alt="Header"></a>
+        <a href="/"><img src="/assets/images/header-{STYLE}.png" alt="Header"></a>
       </div>
       <div class="navbar" id="navbar">
         <a class="icon" id="toggle">&#x2630;</a>{NAV}
@@ -34,6 +34,6 @@ https://github.com/RundesBalli/tankersparnis
         {FOOTER}
       </div>
     </div>
-    <script type="text/javascript" src="/src/toggleMenu.js"></script>
+    <script type="text/javascript" src="/assets/js/toggleMenu.js"></script>
   </body>
 </html>

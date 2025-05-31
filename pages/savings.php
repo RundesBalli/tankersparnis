@@ -54,9 +54,7 @@ if($view == 'total') {
      */
     http_response_code(404);
     $content.= "<div class='infoBox'>Du hast noch keine KFZs angelegt.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></p>";
   } else {
     /**
      * Es existieren KFZs
@@ -143,9 +141,7 @@ if($view == 'total') {
      */
     http_response_code(404);
     $content.= "<div class='infoBox'>Du hast noch keine KFZs angelegt.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></p>";
   } else {
     /**
      * Es existieren KFZs
@@ -216,9 +212,7 @@ if($view == 'total') {
      */
     http_response_code(404);
     $content.= "<div class='infoBox'>Du hast noch keine KFZs angelegt.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></p>";
   } else {
     /**
      * Es existieren KFZs
@@ -287,9 +281,7 @@ if($view == 'total') {
      */
     http_response_code(404);
     $content.= "<div class='infoBox'>Du hast noch keine KFZs angelegt.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></p>";
   } else {
     /**
      * Es existieren KFZs
@@ -341,9 +333,7 @@ if($view == 'total') {
      */
     http_response_code(404);
     $content.= "<div class='infoBox'>Du hast noch keine KFZs angelegt.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ anlegen</a></p>";
   } else {
     /**
      * Es existieren KFZs

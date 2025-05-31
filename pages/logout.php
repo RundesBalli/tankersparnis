@@ -36,9 +36,7 @@ if(!isset($_POST['submit'])) {
       "</div>";
     $content.= "</section>";
   $content.= "</form>";
-  $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></div>".
-  "</div>";
+  $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></p>";
 } else {
   /**
    * Formular abgesendet
@@ -49,9 +47,7 @@ if(!isset($_POST['submit'])) {
   if($_POST['token'] != $sessionhash) {
     http_response_code(403);
     $content.= "<div class='warnBox'>Ungültiges Token.</div>";
-    $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></div>".
-    "</div>";
+    $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></p>";
   } else {
     /**
      * Löschen der Sitzung.

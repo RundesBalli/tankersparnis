@@ -40,29 +40,21 @@ if(!empty($_GET['hash'])) {
         if (!$mail->send()) {
           mysqli_query($dbl, "INSERT INTO `failedEmails` (`userId`, `to`, `subject`, `message`) VALUES ('".$row['id']."', '".$row['email']."', '".$mailConfig['subject']['accountActivated']."', '".defuse($mailBody)."')") OR DIE(MYSQLI_ERROR($dbl));
         }
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Login</a></div>".
-        "</div>";
+        $content.= "<p><a href='/login'><span class='fas icon'>&#xf2f6;</span>Login</a></p>";
       }
     } else {
       http_response_code(403);
       $content.= "<div class='warnBox'>Der übergebene Hash ist ungültig oder wurde bereits benutzt. Bitte klicke den Link in der Aktivierungsmail an oder probiere dich einzuloggen um fortzufahren.</div>";
-      $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
-      "</div>";
+      $content.= "<p><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></p>";
     }
   } else {
     http_response_code(403);
     $content.= "<div class='warnBox'>Der übergebene Hash hat ein ungültiges Format. Bitte klicke den Link in der Aktivierungsmail an um fortzufahren.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
-    "</div>";
+    $content.= "<p><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></p>";
   }
 } else {
   http_response_code(403);
   $content.= "<div class='warnBox'>Es wurde kein Hash übergeben. Bitte klicke den Link in der Aktivierungsmail an um fortzufahren.</div>";
-  $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
-  "</div>";
+  $content.= "<p><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></p>";
 }
 ?>

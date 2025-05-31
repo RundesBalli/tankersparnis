@@ -70,9 +70,7 @@ if(isset($_POST['submit'])) {
       $newUserId = mysqli_insert_id($dbl);
       userLog($newUserId, 1, "Registriert");
       $content.= "<div class='successBox'>Account erfolgreich angelegt. Du bekommst nun eine Bestätigungs E-Mail mit der du deinen Zugang aktivieren kannst.</div>";
-      $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Login</a></div>".
-      "</div>";
+      $content.= "<p><a href='/login'><span class='fas icon'>&#xf2f6;</span>Login</a></p>";
       /**
        * Mail
        */

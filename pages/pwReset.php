@@ -51,9 +51,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
       http_response_code(403);
       $content.= "<h1><span class='fas icon'>&#xf071;</span>Passwort zurücksetzen gescheitert</h1>";
       $content.= "<div class='warnBox'>Dieses Nutzerkonto ist für die Passwort zurücksetzen Funktion gesperrt. Wenn du dein Kennwort ändern lassen möchtest, schreib eine E-Mail an die <a href='/imprint'>vorhandenen Kontaktmöglichkeiten</a>.</div>";
-      $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
-      "</div>";
+      $content.= "<p><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></p>";
     } elseif(!empty($row['lastPwReset']) AND (time()-86400) < strtotime($row['lastPwReset'])) {
       /**
        * Der Nutzer hat zu viele Passwort Zurücksetzungen angefordert.
@@ -61,9 +59,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
       http_response_code(403);
       $content.= "<h1><span class='fas icon'>&#xf071;</span>Passwort zurücksetzen gescheitert</h1>";
       $content.= "<div class='warnBox'>Es wurde in zu kurzer Zeit zu oft versucht das Passwort zurückzusetzen. Wenn du dein Kennwort ändern lassen möchtest, schreib eine E-Mail an die <a href='/imprint'>vorhandenen Kontaktmöglichkeiten</a> oder warte einen Tag.</div>";
-      $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
-      "</div>";
+      $content.= "<p><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></p>";
     } else {
       /**
        * Der Nutzer darf sein Passwort zurücksetzen.
@@ -112,9 +108,7 @@ if(empty($_COOKIE[$cookieName]) AND !isset($_POST['submit'])) {
     http_response_code(403);
     $content.= "<h1><span class='fas icon'>&#xf071;</span>Passwort zurücksetzen gescheitert</h1>";
     $content.= "<div class='warnBox'>Es existiert kein Nutzerkonto mit der E-Mail Adresse.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Mit anderer E-Mail Adresse versuchen</a><br><a href='/register'><span class='far icon'>&#xf044;</span>Neues Nutzerkonto registrieren</a></div>".
-    "</div>";
+    $content.= "<p><a href='/pwReset'><span class='fas icon'>&#xf084;</span>Mit anderer E-Mail Adresse versuchen</a><br><a href='/register'><span class='far icon'>&#xf044;</span>Neues Nutzerkonto registrieren</a></p>";
   }
 } else {
   /**

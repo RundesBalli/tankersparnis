@@ -35,9 +35,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Es existiert kein Fahrzeug mit dieser ID oder es ist nicht deinem Nutzerkonto zugewiesen.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
   } else {
     /**
      * KFZ existiert
@@ -80,9 +78,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
         $content.= "</section>";
       $content.= "</form>";
       $content.= "<div class='spacer-m'></div>";
-      $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Übersicht</a></div>".
-      "</div>";
+      $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Übersicht</a></p>";
     } else {
       /**
        * Formular wurde abgesendet
@@ -93,27 +89,21 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
          */
         http_response_code(403);
         $content.= "<div class='warnBox'>Es wurde kein Token übergeben.</div>";
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-        "</div>";
+        $content.= "<p><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
       } elseif($_POST['token'] != $sessionhash) {
         /**
          * Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.
          */
         http_response_code(403);
         $content.= "<div class='warnBox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-        "</div>";
+        $content.= "<p><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
       } elseif(empty($_POST['name']) OR empty($_POST['fuel']) OR empty($_POST['fuelCompare']) OR !is_numeric($_POST['fuel']) OR !is_numeric($_POST['fuelCompare'])) {
         /**
          * Wenigstens eins der übergebenen Felder ist leer oder die Kraftstoffarten sind keine IDs.
          */
         http_response_code(403);
         $content.= "<div class='warnBox'>Du musst eine Bezeichnung und beide Kraftstoffarten angeben.</div>";
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-        "</div>";
+        $content.= "<p><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
       } else {
         /**
          * Alle Felder wurden übergeben. Nun müssen die übergebenen Kraftstoffarten geprüft werden.
@@ -130,9 +120,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
           $ok = 0;
           http_response_code(403);
           $content.= "<div class='warnBox'>Du musst eine gültige Kraftstoffart angeben.</div>";
-          $content.= "<div class='row'>".
-            "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-          "</div>";
+          $content.= "<p><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
         }
         $result = mysqli_query($dbl, "SELECT `id` FROM `fuelsCompare` WHERE `id`=".$fuelCompare." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
         if(mysqli_num_rows($result) != 1) {
@@ -142,24 +130,18 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
           $ok = 0;
           http_response_code(403);
           $content.= "<div class='warnBox'>Du musst eine gültige Kraftstoffart angeben.</div>";
-          $content.= "<div class='row'>".
-            "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-          "</div>";
+          $content.= "<p><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
         }
         if($ok == 1) {
           mysqli_query($dbl, "UPDATE `cars` SET `name`='".$name."', `fuel`=".$fuel.", `fuelCompare`=".$fuelCompare." WHERE `userId`=".$userId." AND `id`=".$id." LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
           if(mysqli_affected_rows($dbl) == 1) {
             userLog($userId, 7, "KFZ geändert: `".$name."`, `".$fuel."`, `".$fuelCompare."`");
             $content.= "<div class='successBox'>Das Fahrzeug wurde erfolgreich bearbeitet.</div>";
-            $content.= "<div class='row'>".
-              "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Fahrzeug Übersicht</a></div>".
-            "</div>";
+            $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Fahrzeug Übersicht</a></p>";
           } else {
             http_response_code(403);
             $content.= "<div class='infoBox'>Es fand keine Änderung statt.</div>";
-            $content.= "<div class='row'>".
-              "<div class='col-s-12 col-l-12'><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-            "</div>";
+            $content.= "<p><a href='/editCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
           }
         }
       }

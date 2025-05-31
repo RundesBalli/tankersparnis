@@ -35,9 +35,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Es existiert kein Fahrzeug mit dieser ID oder es ist nicht deinem Nutzerkonto zugewiesen.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
   } else {
     /**
      * KFZ existiert
@@ -74,9 +72,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
         $content.= "</section>";
       $content.= "</form>";
       $content.= "<div class='spacer-m'></div>";
-      $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Nein, nicht löschen</a></div>".
-      "</div>";
+      $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Nein, nicht löschen</a></p>";
     } else {
       /**
        * Formular wurde abgesendet
@@ -87,18 +83,14 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
          */
         http_response_code(403);
         $content.= "<div class='warnBox'>Es wurde kein Token übergeben.</div>";
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/deleteCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-        "</div>";
+        $content.= "<p><a href='/deleteCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
       } elseif($_POST['token'] != $sessionhash) {
         /**
          * Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.
          */
         http_response_code(403);
         $content.= "<div class='warnBox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/deleteCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-        "</div>";
+        $content.= "<p><a href='/deleteCar?id=".output($id)."'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
       } else {
         /**
          * Das Formular wurde bestätigt.
@@ -107,15 +99,11 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
         if(mysqli_affected_rows($dbl) == 1) {
           userLog($userId, 8, "KFZ gelöscht: `".$row['name']."`, `".$row['fuelId']."`, `".$row['fuelCompareId']."`");
           $content.= "<div class='successBox'>Das Fahrzeug wurde erfolgreich gelöscht.</div>";
-          $content.= "<div class='row'>".
-            "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Fahrzeug Übersicht</a></div>".
-          "</div>";
+          $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Zurück zur Fahrzeug Übersicht</a></p>";
         } else {
           http_response_code(403);
           $content.= "<div class='warnBox'>Das Fahrzeug konnte nicht gelöscht werden. Bitte wende dich an den <a href='/imprint'>Plattformbetreiber</a>.</div>";
-          $content.= "<div class='row'>".
-            "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></div>".
-          "</div>";
+          $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>Erneut versuchen</a></p>";
         }
       }
     }

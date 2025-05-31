@@ -18,29 +18,21 @@ if(!empty($_GET['hash'])) {
         $row = mysqli_fetch_assoc($result);
         userLog($row['id'], 1, "Neue E-Mail Adresse bestätigt");
         $content.= "<div class='successBox'>Neue E-Mail Adresse bestätigt.</div>";
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Login</a></div>".
-        "</div>";
+        $content.= "<p><a href='/login'><span class='fas icon'>&#xf2f6;</span>Login</a></p>";
       }
     } else {
       http_response_code(403);
       $content.= "<div class='warnBox'>Der übergebene Hash ist ungültig oder wurde bereits benutzt. Bitte klicke den Link in der Änderungsmail an oder probiere dich einzuloggen um fortzufahren.</div>";
-      $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
-      "</div>";
+      $content.= "<p><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></p>";
     }
   } else {
     http_response_code(403);
     $content.= "<div class='warnBox'>Der übergebene Hash hat ein ungültiges Format. Bitte klicke den Link in der Änderungsmail an um fortzufahren.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
-    "</div>";
+    $content.= "<p><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></p>";
   }
 } else {
   http_response_code(403);
   $content.= "<div class='warnBox'>Es wurde kein Hash übergeben. Bitte klicke den Link in der Änderungsmail an um fortzufahren.</div>";
-  $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></div>".
-  "</div>";
+  $content.= "<p><a href='/start'><span class='fas icon'>&#xf015;</span>Startseite</a></p>";
 }
 ?>

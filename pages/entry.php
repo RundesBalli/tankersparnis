@@ -64,9 +64,7 @@ if(mysqli_num_rows($result) > 0) {
   $content.= "</form>";
 } else {
   $content.= "<div class='infoBox'>Du hast noch keine KFZs hinzugefügt.</div>";
-  $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ hinzufügen</a></div>".
-  "</div>";
+  $content.= "<p><a href='/cars'><span class='fas icon'>&#xf1b9;</span>KFZ hinzufügen</a></p>";
 }
 $content.= "<div class='spacer-m'></div>";
 
@@ -82,9 +80,7 @@ if(mysqli_num_rows($result) > 0) {
     "<div class='col-s-12 col-l-0'>Für eine detailliertere Ansicht musst du diese Seite von einem Computer aus aufrufen!</div>".
     "<div class='col-s-12 col-l-0 spacer-m'></div>".
   "</div>";
-  $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'>Oder schau dir deine <a href='/savings'>ausführlichen Statistiken</a> an.</div>".
-  "</div>";
+  $content.= "<p>Oder schau dir deine <a href='/savings'>ausführlichen Statistiken</a> an.</p>";
   $content.= "<div class='spacer-m'></div>";
   $content.= "<section>";
   $content.= "<div class='row bold breakWord small'>".

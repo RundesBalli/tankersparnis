@@ -36,17 +36,11 @@ $content.= "<div class='row'>".
 "</div>";
 
 $content.= "<h2>Recht auf Auskunft, Löschung, Sperrung</h2>";
-$content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-12'>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit unter der im Impressum angegebenen Kontaktmöglichkeit an uns wenden.</div>".
-"</div>";
+$content.= "<p>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit unter der im Impressum angegebenen Kontaktmöglichkeit an uns wenden.</p>";
 
 $content.= "<h2>Widerspruch Werbe-Mails</h2>";
-$content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-12'>Der Nutzung von im Rahmen des Impressums veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.</div>".
-"</div>";
+$content.= "<p>Der Nutzung von im Rahmen des Impressums veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.</p>";
 
 $content.= "<h2>Quelle</h2>";
-$content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-12'><a href='https://www.e-recht24.de' target='_blank' rel='noopener'>https://www.e-recht24.de</a></div>".
-"</div>";
+$content.= "<p><a href='https://www.e-recht24.de' target='_blank' rel='noopener'>https://www.e-recht24.de</a></p>";
 ?>

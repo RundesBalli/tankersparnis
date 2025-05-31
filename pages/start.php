@@ -15,9 +15,7 @@ if(!empty($_COOKIE[$cookieName]) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOK
 }
 
 $content.= "<h1><span class='fas icon'>&#xf52f;</span>Herzlich willkommen</h1>";
-$content.= "<div class='row'>".
-  "<div class='col-s-12 col-l-12'>Herzlich willkommen auf tankersparnis.net</div>".
-"</div>";
+$content.= "<p>Herzlich willkommen auf tankersparnis.net</p>";
 
 $content.= "<h2>Was ist das hier?</h2>";
 $content.= "<div class='row'>".

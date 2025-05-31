@@ -35,9 +35,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Es existiert kein Eintrag mit dieser ID oder er ist nicht deinem Nutzerkonto zugewiesen.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></div>".
-    "</div>";
+    $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></p>";
   } else {
     /**
      * Eintrag existiert
@@ -54,9 +52,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
     "</div>";
     $content.= "<div class='spacer-m'></div>";
     $content.= "<h2>Hinweis</h2>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'>Sollten noch Daten der Tankstelle gespeichert sein, dient dies ausschließlich für eventuelle Fehlersuche. Die Daten werden nach einiger Zeit gelöscht und nur der Preis wird beibehalten.</div>".
-    "</div>";
+    $content.= "<p>Sollten noch Daten der Tankstelle gespeichert sein, dient dies ausschließlich für eventuelle Fehlersuche. Die Daten werden nach einiger Zeit gelöscht und nur der Preis wird beibehalten.</p>";
   }
 }
 ?>

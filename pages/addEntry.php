@@ -22,27 +22,21 @@ if(empty($_POST['token'])) {
    */
   http_response_code(403);
   $content.= "<div class='warnBox'>Es wurde kein Token übergeben.</div>";
-  $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
-  "</div>";
+  $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</p>";
 } elseif($_POST['token'] != $sessionhash) {
   /**
    * Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.
    */
   http_response_code(403);
   $content.= "<div class='warnBox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
-  $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
-  "</div>";
+  $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</p>";
 } elseif(empty($_POST['car']) OR empty($_POST['fuel']) OR empty($_POST['range']) OR empty($_POST['cost'])) {
   /**
    * Wenigstens eins der übergebenen Felder ist leer.
    */
   http_response_code(403);
   $content.= "<div class='warnBox'>Du musst alle Felder ausfüllen.</div>";
-  $content.= "<div class='row'>".
-    "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
-  "</div>";
+  $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</p>";
 } else {
   /**
    * Alle Felder wurden übergeben. Nun muss geprüft werden, ob das KFZ korrekt ist.
@@ -52,9 +46,7 @@ if(empty($_POST['token'])) {
   if(mysqli_num_rows($result) != 1) {
     http_response_code(403);
     $content.= "<div class='warnBox'>Das übergebene Fahrzeug ist ungültig.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
-    "</div>";
+    $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</p>";
   } else {
     /**
      * Das KFZ ist gültig. Nun werden die restlichen übergebenen Werte entschärft und aufgewertet.
@@ -66,9 +58,7 @@ if(empty($_POST['token'])) {
     if($fuel <= 0 OR $range <= 0 OR $cost <= 0) {
       http_response_code(403);
       $content.= "<div class='warnBox'>Die Eingaben sind ungültig.</div>";
-      $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
-      "</div>";
+      $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</p>";
     } else {
       /**
        * Alle Eingaben sind im positiven Wertebereich und größer als Null.
@@ -127,9 +117,7 @@ if(empty($_POST['token'])) {
       if($ok == 0) {
         http_response_code(403);
         $content.= "<div class='warnBox'>Es konnte kein Vergleichspreis ermittelt werden.</div>";
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</div>".
-        "</div>";
+        $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</p>";
       } else {
         /**
          * Eintragen
@@ -141,10 +129,8 @@ if(empty($_POST['token'])) {
         mysqli_query($dbl, "INSERT INTO `entries` (`userId`, `carId`, `fuelQuantity`, `range`, `cost`, `moneySaved`, `raw`) VALUES (".$userId.", ".$car.", ".$fuel.", ".$range.", ".$cost.", ".$moneySaved.", '".defuse(json_encode($pricing))."')") OR DIE(MYSQLI_ERROR($dbl));
         userLog($userId, 2, "Eintrag hinzugefügt. ".number_format($moneySaved, 2, ",", ".")."€ gespart");
         $content.= "<div class='successBox'>Eintrag hinzugefügt. Du hast ".number_format($moneySaved, 2, ",", ".")."€ gespart!</div>";
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</div>".
-          "<div class='col-s-12 col-l-12'><a href='/savings'><span class='fas icon'>&#xf153;</span>Ersparnisse ansehen</div>".
-        "</div>";
+        $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</p>";
+        $content.= "<p><a href='/savings'><span class='fas icon'>&#xf153;</span>Ersparnisse ansehen</p>";
       }
     }
   }

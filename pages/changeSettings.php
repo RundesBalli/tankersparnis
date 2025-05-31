@@ -33,54 +33,42 @@ if(empty($_POST['action'])) {
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif(empty($_POST['password']) OR empty($_POST['email']) OR empty($_POST['email1'])) {
     /**
      * Wenigstens eins der übergebenen Felder ist leer.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Du musst dein derzeitiges Passwort und deine neue E-Mail Adresse doppelt eingeben.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif(!password_verify($_POST['password'].$userRow['salt'], $userRow['password'])) {
     /**
      * Das Passwort stimmt nicht mit dem eingegebenen Passwort überein.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Das eingegebene Passwort stimmt nicht mit dem aktuell gültigen Passwort überein.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif($email == $_POST['email']) {
     /**
      * Die neue E-Mail Adresse ist identisch mit der aktuellen.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Die neue E-Mail Adresse ist identisch zur aktuellen E-Mail Adresse.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif($_POST['email'] != $_POST['email1']) {
     /**
      * Die neue E-Mail Adresse ist nicht identisch mit der Zweiteingabe.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Die neuen E-Mail Adressen stimmen nicht überein.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif(filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL) === FALSE) {
     /**
      * Die neue E-Mail Adresse ist ungültig.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Die neue E-Mail Adresse ist ungültig.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } else {
     /**
      * Das E-Mail Adresse ist nicht identisch mit der aktuellen, ist gültig, stimmt mit der Zweiteingabe
@@ -94,9 +82,7 @@ if(empty($_POST['action'])) {
        */
       http_response_code(403);
       $content.= "<div class='warnBox'>Es existiert bereits ein Nutzerkonto mit der eingegebenen E-Mail Adresse.</div>";
-      $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-      "</div>";
+      $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
     } else {
       /**
        * Es existiert noch kein Nutzerkonto mit dieser E-Mail Adresse. Daher kann die neue E-Mail Adresse gesetzt werden.
@@ -107,9 +93,7 @@ if(empty($_POST['action'])) {
       mysqli_query($dbl, "DELETE FROM `sessions` WHERE `userId`=".$userId) OR DIE(MYSQLI_ERROR($dbl));
       userLog($userId, 1, "Alle Sitzungen beendet.");
       $content.= "<div class='successBox'>Deine E-Mail Adresse wurde geändert. Du musst dich jetzt neu einloggen.</div>";
-      $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Zum Login</a></div>".
-      "</div>";
+      $content.= "<p><a href='/login'><span class='fas icon'>&#xf2f6;</span>Zum Login</a></p>";
       setcookie($cookieName, NULL, 0, NULL, NULL, TRUE, TRUE);
       unset($_COOKIE[$cookieName]);
       /**
@@ -176,54 +160,42 @@ if(empty($_POST['action'])) {
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif(empty($_POST['password']) OR empty($_POST['passwordNew']) OR empty($_POST['passwordNew1'])) {
     /**
      * Wenigstens eins der übergebenen Felder ist leer.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Du musst dein derzeitiges Passwort und zwei mal dein neues Passwort eingeben um es zu ändern.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif(!password_verify($_POST['password'].$userRow['salt'], $userRow['password'])) {
     /**
      * Das alte Passwort stimmt nicht mit dem eingegebenen Passwort überein.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Das eingegebene Passwort stimmt nicht mit dem aktuell gültigen Passwort überein.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif($_POST['password'] == $_POST['passwordNew']) {
     /**
      * Das neue Passwort ist identisch mit dem derzeit gültigen.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Das neue Passwort ist identisch zu dem aktuellen.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif($_POST['passwordNew'] != $_POST['passwordNew1']) {
     /**
      * Das neue Passwort ist nicht identisch mit der Zweiteingabe des neuen Passworts.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Die neuen Passwörter stimmen nicht überein.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif(strlen($_POST['passwordNew']) < 8) {
     /**
      * Das neue Passwort ist zu kurz.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Das neue Passwort ist zu kurz (min. 8 Zeichen).</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } else {
     /**
      * Das neue Passwort ist nicht identisch mit dem aktuellen, ist lang genug, stimmt mit der Zweiteingabe
@@ -235,9 +207,7 @@ if(empty($_POST['action'])) {
     mysqli_query($dbl, "DELETE FROM `sessions` WHERE `userId`=".$userId) OR DIE(MYSQLI_ERROR($dbl));
     userLog($userId, 5, "Passwort geändert (settings) und alle Sitzungen ausgeloggt");
     $content.= "<div class='successBox'>Dein Passwort wurde geändert. Du musst dich jetzt neu einloggen.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/login'><span class='fas icon'>&#xf2f6;</span>Zum Login</a></div>".
-    "</div>";
+    $content.= "<p><a href='/login'><span class='fas icon'>&#xf2f6;</span>Zum Login</a></p>";
     setcookie($cookieName, NULL, 0, NULL, NULL, TRUE, TRUE);
     unset($_COOKIE[$cookieName]);
     /**
@@ -276,27 +246,21 @@ if(empty($_POST['action'])) {
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif(empty($_POST['radius']) OR !is_numeric($_POST['radius'])) {
     /**
      * Radius ist leer.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Du musst einen Radius eingeben.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } elseif(intval($_POST['radius']) < 1 OR intval($_POST['radius']) > 25) {
     /**
      * Der Radius ist zu klein oder zu groß.
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Der Radius muss zwischen 1 und 25km liegen.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Erneut versuchen</a></p>";
   } else {
     /**
      * Änderung kann durchgeführt werden.
@@ -304,9 +268,7 @@ if(empty($_POST['action'])) {
     mysqli_query($dbl, "UPDATE `users` SET `radius`='".defuse(intval($_POST['radius']))."' WHERE `id`='".$userId."' LIMIT 1") OR DIE(MYSQLI_ERROR($dbl));
     userLog($userId, 5, "Radius geändert von `".$userRow['radius']."` auf `".intval($_POST['radius'])."`");
     $content.= "<div class='successBox'>Der Radius wurde geändert.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/settings'><span class='fas icon'>&#xf013;</span>Zurück zu den Einstellungen</a></div>".
-    "</div>";
+    $content.= "<p><a href='/settings'><span class='fas icon'>&#xf013;</span>Zurück zu den Einstellungen</a></p>";
   }
 } else {
   /**

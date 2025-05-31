@@ -35,9 +35,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
      */
     http_response_code(403);
     $content.= "<div class='warnBox'>Es existiert kein Eintrag mit dieser ID oder er ist nicht deinem Nutzerkonto zugewiesen.</div>";
-    $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></div>".
-    "</div>";
+    $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></p>";
   } else {
     /**
      * Eintrag existiert
@@ -51,9 +49,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
       $content.= "<form method='post'>";
         $content.= "<input type='hidden' name='token' value='".$sessionhash."'>";
         $content.= "<section>";
-        $content.= "<div class='row'>".
-        "<div class='col-s-12 col-l-12'>Möchtest du die Ersparnis <span class='highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€ vom ".date("d.m.Y, H:i", strtotime($row['timestamp']))." wirklich löschen?</span></div>".
-        "</div>";
+        $content.= "<p>Möchtest du die Ersparnis <span class='highlightPositive'>".number_format($row['moneySaved'], 2, ",", ".")."€ vom ".date("d.m.Y, H:i", strtotime($row['timestamp']))." wirklich löschen?</span></p>";
         $content.= "<div class='row'>".
         "<div class='col-s-12 col-l-3'>Löschen</div>".
         "<div class='col-s-12 col-l-9'><input type='submit' id='submit' name='submit' value='Ja, wirklich löschen' tabindex='".$tabindex++."'></div>".
@@ -65,9 +61,7 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
         $content.= "</section>";
       $content.= "</form>";
       $content.= "<div class='spacer-m'></div>";
-      $content.= "<div class='row'>".
-      "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Nein, nicht löschen</a></div>".
-      "</div>";
+      $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Nein, nicht löschen</a></p>";
     } else {
       /**
        * Formular wurde abgesendet
@@ -78,18 +72,14 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
          */
         http_response_code(403);
         $content.= "<div class='warnBox'>Es wurde kein Token übergeben.</div>";
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/deleteEntry?id=".output($id)."'><span class='far icon'>&#xf2ed;</span>Erneut versuchen</a></div>".
-        "</div>";
+        $content.= "<p><a href='/deleteEntry?id=".output($id)."'><span class='far icon'>&#xf2ed;</span>Erneut versuchen</a></p>";
       } elseif($_POST['token'] != $sessionhash) {
         /**
          * Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.
          */
         http_response_code(403);
         $content.= "<div class='warnBox'>Das übergebene Token stimmt nicht mit dem Sitzungstoken überein.</div>";
-        $content.= "<div class='row'>".
-          "<div class='col-s-12 col-l-12'><a href='/deleteEntry?id=".output($id)."'><span class='far icon'>&#xf2ed;</span>Erneut versuchen</a></div>".
-        "</div>";
+        $content.= "<p><a href='/deleteEntry?id=".output($id)."'><span class='far icon'>&#xf2ed;</span>Erneut versuchen</a></p>";
       } else {
         /**
          * Das Formular wurde bestätigt.
@@ -98,15 +88,11 @@ if(!empty($_GET['id']) AND !is_numeric($_GET['id'])) {
         if(mysqli_affected_rows($dbl) == 1) {
           userLog($userId, 4, "Eintrag gelöscht: `".number_format($row['moneySaved'], 2, ",", ".")."€`, `".date("d.m.Y, H:i", strtotime($row['timestamp']))."`");
           $content.= "<div class='successBox'>Der Eintrag wurde erfolgreich gelöscht.</div>";
-          $content.= "<div class='row'>".
-            "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></div>".
-          "</div>";
+          $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Zurück zum Formular</a></p>";
         } else {
           http_response_code(403);
           $content.= "<div class='warnBox'>Das Fahrzeug konnte nicht gelöscht werden. Bitte wende dich an den <a href='/imprint'>Plattformbetreiber</a>.</div>";
-          $content.= "<div class='row'>".
-            "<div class='col-s-12 col-l-12'><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</a></div>".
-          "</div>";
+          $content.= "<p><a href='/entry'><span class='far icon'>&#xf044;</span>Erneut versuchen</a></p>";
         }
       }
     }

@@ -6,13 +6,16 @@
  */
 
 /**
- * Basic configuration
+ * Basic configuration and functions
  */
 require_once(__DIR__.DIRECTORY_SEPARATOR.'config.php');
 require_once(__DIR__.DIRECTORY_SEPARATOR.'constants.php');
 require_once(__DIR__.DIRECTORY_SEPARATOR.'configCheck.php');
 require_once(__DIR__.DIRECTORY_SEPARATOR.'timezone.php');
+require_once(__DIR__.DIRECTORY_SEPARATOR.'functions'.DIRECTORY_SEPARATOR.'apiCall.php');
 require_once(__DIR__.DIRECTORY_SEPARATOR.'functions'.DIRECTORY_SEPARATOR.'output.php');
+require_once(__DIR__.DIRECTORY_SEPARATOR.'functions'.DIRECTORY_SEPARATOR.'showLog.php');
+require_once(__DIR__.DIRECTORY_SEPARATOR.'functions'.DIRECTORY_SEPARATOR.'userLog.php');
 
 /**
  * Database connection and functions

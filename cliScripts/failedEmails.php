@@ -2,16 +2,15 @@
 /**
  * failedEmails.php
  * 
- * Datei zum Nachsenden gescheiterter E-Mails.
- * (bspw. wenn der Mailserver nicht erreichbar war)
+ * Script to re-send failed emails.
+ * (e.g. when the mailserver was not reachable)
  * Cron: * * * * * /usr/bin/php /path/to/cliScripts/failedEmails.php > /dev/null
  */
 
 /**
- * Einbinden der Konfigurationsdatei sowie der Funktionsdatei
+ * Including the configuration and function loader.
  */
-require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."config.php");
-require_once(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."functions.php");
+require_once(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'includes'.DIRECTORY_SEPARATOR.'loader.php');
 
 /**
  * Selektieren aller gescheiterten Emails und abbruch, sofern es keine gibt.
@@ -22,13 +21,7 @@ if(mysqli_num_rows($result) == 0) {
 }
 
 /**
- * Einbinden des PHPMailers
- */
-require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."PHPMailer.php");
-require(__DIR__.DIRECTORY_SEPARATOR."..".DIRECTORY_SEPARATOR."public".DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."PHPMailer".DIRECTORY_SEPARATOR."SMTP.php");
-
-/**
- * Konfiguration der Mailfunktion
+ * Configuration of the email function.
  */
 $mail = new PHPMailer();
 $mail->isSMTP();
@@ -45,7 +38,7 @@ $mail->isHTML(FALSE);
 $mail->CharSet = "UTF-8";
 
 /**
- * Durchlaufen aller gescheiterten Mails.
+ * Iterate all failed emails.
  */
 while($row = mysqli_fetch_assoc($result)) {
   $mail->addAddress($row['email']);

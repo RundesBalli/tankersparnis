@@ -141,4 +141,19 @@ $monthNames = [
   10 => 'Oktober',
   11 => 'November',
   12 => 'Dezember'
+];
+
+
+/**
+ * 
+ * DO NOT CHANGE ANYTHING BELOW THIS LINE, EVEN IF YOU KNOW WHAT YOU ARE DOING!
+ * 
+ */
+
+/**
+ * Config version
+ * 
+ * @var int
+ */
+$configVersion = 1;
 ?>

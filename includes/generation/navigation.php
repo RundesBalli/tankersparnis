@@ -58,6 +58,20 @@ if(!empty($_COOKIE[$cookieName]) AND preg_match('/[a-f0-9]{64}/i', defuse($_COOK
       'newTab' => FALSE,
     ],
   ];
+
+  /**
+   * Statistics
+   */
+  if(defined("perm-showStatistics")) {
+    $navElements[] = [
+      'faSet' => 'fas',
+      'faIcon' => 'f201',
+      'url' => '/statistics',
+      'route' => 'statistics',
+      'text' => 'Statistiken',
+      'newTab' => FALSE,
+    ];
+  }
 } else {
   /**
    * Navigation when not logged in.

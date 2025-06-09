@@ -128,7 +128,7 @@ $mailConfig = [
  * Month names
  * @var array Month names
  */
-$monthNames = array(
+$monthNames = [
   1 => 'Januar',
   2 => 'Februar',
   3 => 'März',
@@ -141,5 +141,4 @@ $monthNames = array(
   10 => 'Oktober',
   11 => 'November',
   12 => 'Dezember'
-);
 ?>

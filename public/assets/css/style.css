@@ -80,12 +80,12 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: calc(var(--fontSize) * 4);
+  font-size: calc(var(--fontSize) * 3);
   margin: calc(var(--basicSpacingSize) * 1.5) 0 calc(var(--basicSpacingSize) * 0.7);
 }
 
 h2 {
-  font-size: calc(var(--fontSize) * 2.5);
+  font-size: calc(var(--fontSize) * 2.2);
   margin: calc(var(--basicSpacingSize) * 1.2) 0 calc(var(--basicSpacingSize) * 0.5);
 }
 

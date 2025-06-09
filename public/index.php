@@ -9,12 +9,6 @@
  */
 
 /**
- * Einbinden der Konfigurationsdatei sowie der Funktionsdatei
- */
-require_once(__DIR__.DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."config.php");
-require_once(__DIR__.DIRECTORY_SEPARATOR."inc".DIRECTORY_SEPARATOR."functions.php");
-
-/**
  * Initialize the output and the default title.
  */
 $content = '';

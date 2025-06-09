@@ -128,8 +128,11 @@ $content.= "<section>";
   "</div>";
   $result = mysqli_query($dbl, "SELECT `log`.*, `logLevel`.`title` AS `logTitle`, `logLevel`.`color` FROM `log` JOIN `logLevel` ON `log`.`logLevel`=`logLevel`.`id` WHERE `userId`=".$userId." ORDER BY `id` DESC LIMIT 25") OR DIE(MYSQLI_ERROR($dbl));
   while($row = mysqli_fetch_assoc($result)) {
+    $timestamp = new DateTime($row['timestamp']);
+    $timestamp->setTimezone($displayTimezone);
+    $timestamp = $timestamp->format('Y-m-d H:i:s');
     $content.= "<div class='row breakWord hover' style='border-left: 6px solid #".output($row['color']).";' title='".output($row['logTitle'])."'>".
-      "<div class='col-s-12 col-l-3 help'>".date("d.m.Y, H:i:s", strtotime($row['timestamp']))."</div>".
+      "<div class='col-s-12 col-l-3 help'>".$timestamp."</div>".
       "<div class='col-s-12 col-l-9'>".showLog($row['text'])."</div>".
     "</div>";
   }

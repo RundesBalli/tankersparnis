@@ -45,7 +45,7 @@ if(!defined("perm-showStatistics")) {
       "</div>";
       while($row = mysqli_fetch_assoc($result)) {
         $content.= "<div class='row hover breakWord'>".
-          "<div class='col-s-6 col-l-3'>".date("d.m.Y", strtotime($row['d']))."</div>".
+          "<div class='col-s-6 col-l-3'>".date("Y-m-d", strtotime($row['d']))."</div>".
           "<div class='col-s-6 col-l-3'>".output($row['c'])."</div>".
           "<div class='col-s-0 col-l-6'>".str_repeat("#", $row['c'])."</div>".
         "</div>";
@@ -191,8 +191,11 @@ if(!defined("perm-showStatistics")) {
         "<div class='col-s-6 col-l-3'>eingespart</div>".
       "</div>";
       while($row = mysqli_fetch_assoc($result)) {
+        $timestamp = new DateTime($row['timestamp']);
+        $timestamp->setTimezone($displayTimezone);
+        $timestamp = $timestamp->format('Y-m-d H:i');
         $content.= "<div class='row hover breakWord small'>".
-          "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
+          "<div class='col-s-12 col-l-3'>".$timestamp." Uhr</div>".
           "<div class='col-s-0 col-l-1'>".output($row['id'])."</div>".
           "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
           "<div class='col-s-0 col-l-1'>".number_format($row['range'], 1, ",", ".")."km</div>".
@@ -224,8 +227,11 @@ if(!defined("perm-showStatistics")) {
       "</div>";
       $result = mysqli_query($dbl, "SELECT `log`.*, `users`.`email`, `logLevel`.`title` AS `logTitle`, `logLevel`.`color` FROM `log` JOIN `users` ON `log`.`userId`=`users`.`id` JOIN `logLevel` ON `log`.`logLevel`=`logLevel`.`id` WHERE `log`.`timestamp` > DATE_SUB(NOW(), INTERVAL 2 WEEK) ORDER BY `log`.`timestamp` DESC") OR DIE(MYSQLI_ERROR($dbl));
       while($row = mysqli_fetch_assoc($result)) {
+        $timestamp = new DateTime($row['timestamp']);
+        $timestamp->setTimezone($displayTimezone);
+        $timestamp = $timestamp->format('Y-m-d H:i:s');
         $content.= "<div class='row breakWord hover' style='border-left: 6px solid #".output($row['color']).";' title='".output($row['logTitle'])."'>".
-          "<div class='col-s-12 col-l-3 help'>".date("d.m.Y, H:i:s", strtotime($row['timestamp']))."</div>".
+          "<div class='col-s-12 col-l-3 help'>".$timestamp."</div>".
           "<div class='col-s-12 col-l-3'>".(defined("perm-showEmails") ? output($row['email']) : "<span class='italic'>REDACTED</span>")."</div>".
           "<div class='col-s-12 col-l-6'>".showLog($row['text'])."</div>".
         "</div>";

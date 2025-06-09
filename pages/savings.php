@@ -84,8 +84,11 @@ if($view == 'total') {
         $totalCost = 0;
         $totalSavings = 0;
         while($row = mysqli_fetch_assoc($result)) {
+          $timestamp = new DateTime($row['timestamp']);
+          $timestamp->setTimezone($displayTimezone);
+          $timestamp = $timestamp->format('Y-m-d H:i');
           $content.= "<div class='row hover breakWord small'>".
-            "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
+            "<div class='col-s-12 col-l-3'>".$timestamp." Uhr</div>".
             "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
             "<div class='col-s-0 col-l-1'>".number_format($row['range'], 1, ",", ".")."km</div>".
             "<div class='col-s-0 col-l-1'>".number_format(($row['fuelQuantity']/$row['range']*100), 1, ",", ".")."</div>".
@@ -97,7 +100,7 @@ if($view == 'total') {
           "</div>";
 
           $excelExport.=
-          date("Y-m-d H:i", strtotime($row['timestamp'])).";".
+          $timestamp.";".
           number_format($row['fuelQuantity'], 2, ",", "").";".
           number_format($row['range'], 1, ",", ".").";".
           number_format(($row['fuelQuantity']/$row['range']*100), 1, ",", "").";".
@@ -305,8 +308,11 @@ if($view == 'total') {
           "<div class='col-s-6 col-l-2'>Aktion</div>".
         "</div>";
         while($row = mysqli_fetch_assoc($result)) {
+          $timestamp = new DateTime($row['timestamp']);
+          $timestamp->setTimezone($displayTimezone);
+          $timestamp = $timestamp->format('Y-m-d H:i');
           $content.= "<div class='row hover breakWord small'>".
-            "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
+            "<div class='col-s-12 col-l-3'>".$timestamp." Uhr</div>".
             "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
             "<div class='col-s-0 col-l-1'>".number_format($row['range'], 1, ",", ".")."km</div>".
             "<div class='col-s-0 col-l-1'>".number_format(($row['fuelQuantity']/$row['range']*100), 1, ",", ".")."</div>".
@@ -357,8 +363,11 @@ if($view == 'total') {
           "<div class='col-s-6 col-l-2'>Aktion</div>".
         "</div>";
         while($row = mysqli_fetch_assoc($result)) {
+          $timestamp = new DateTime($row['timestamp']);
+          $timestamp->setTimezone($displayTimezone);
+          $timestamp = $timestamp->format('Y-m-d H:i');
           $content.= "<div class='row hover breakWord small'>".
-            "<div class='col-s-12 col-l-3'>".date("d.m.Y, H:i", strtotime($row['timestamp']))." Uhr</div>".
+            "<div class='col-s-12 col-l-3'>".$timestamp." Uhr</div>".
             "<div class='col-s-0 col-l-1'>".number_format($row['fuelQuantity'], 2, ",", ".")."</div>".
             "<div class='col-s-0 col-l-1'>".number_format($row['range'], 1, ",", ".")."km</div>".
             "<div class='col-s-0 col-l-1'>".number_format(($row['fuelQuantity']/$row['range']*100), 1, ",", ".")."</div>".

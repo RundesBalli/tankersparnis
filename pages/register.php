@@ -66,7 +66,10 @@ if(isset($_POST['submit'])) {
    */
   if($form == 0) {
     $registerHash = hash('sha256', random_bytes(4096));
-    if(mysqli_query($dbl, "INSERT INTO `users` (`email`, `password`, `salt`, `registerHash`) VALUES ('".$email."', '".$password."', '".$salt."', '".$registerHash."')")) {
+    $result = mysqli_query($dbl, 'SELECT `id` FROM `users` WHERE `email`="'.$email.'" LIMIT 1') OR DIE(MYSQLI_ERROR($dbl));
+
+    if(!mysqli_num_rows($result)) {
+      mysqli_query($dbl, "INSERT INTO `users` (`email`, `password`, `salt`, `registerHash`) VALUES ('".$email."', '".$password."', '".$salt."', '".$registerHash."')") OR DIE(MYSQLI_ERROR($dbl));
       $newUserId = mysqli_insert_id($dbl);
       userLog($newUserId, 1, "Registriert");
       $content.= "<div class='successBox'>Account erfolgreich angelegt. Du bekommst nun eine Bestätigungs E-Mail mit der du deinen Zugang aktivieren kannst.</div>";
@@ -100,11 +103,7 @@ if(isset($_POST['submit'])) {
       }
     } else {
       $form = 1;
-      if(mysqli_errno($dbl) == 1062) {
-        $content.= "<div class='warnBox'>Es existiert bereits ein Nutzerkonto unter dieser E-Mail Adresse.<br>Wenn du dein Passwort vergessen hast, kannst du es unter <a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a> neu setzen.</div>";
-      } else {
-        $content.= "<div class='warnBox'>Unbekannter Fehler. Bitte wende dich an <a href='/imprint'>den Plattformbetreiber</a>.</div>";
-      }
+      $content.= "<div class='warnBox'>Es existiert bereits ein Nutzerkonto unter dieser E-Mail Adresse.<br>Wenn du dein Passwort vergessen hast, kannst du es unter <a href='/pwReset'><span class='fas icon'>&#xf084;</span>Passwort zurücksetzen</a> neu setzen.</div>";
     }
   }
 } else {
